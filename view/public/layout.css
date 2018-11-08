@@ -1,0 +1,289 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+#header_container {
+	width: 100%;
+	
+}
+
+#header_top_border {
+	width: 100%;
+    height: 60px;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 35%);
+    z-index: 50;
+    position: absolute;
+}
+
+#header {
+	height: 155px;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
+}
+
+#header #logo {
+	height: 150px;
+	width: 350px;
+	background: url('../asset/images/logo_light.png');
+	background-repeat: repeat;
+	background-size: auto auto;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-top: 20px;
+	float: left;
+}
+
+#header #navigation_container {
+	width: 100%;
+}
+
+#header #navigation {
+	width: 610px;
+	font-size: 12px;
+	float: left;
+	margin-top: 119px;
+}
+
+#content_container {
+	width: 100%;
+	min-height: 500px;
+}
+
+#content {
+	width: 960px;
+	margin: 0px auto;
+	margin-top: 0px;
+}
+
+#footer_container {
+	width: 100%;
+}
+
+#index_search {
+	width: 960px;
+	height: 180px;
+	/*background-color: #ff3333;*/
+	background-color: #f75050;
+	z-index: 10;
+	position: absolute;
+	/*top: 325px;*/
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#index_banner {
+	width: 100%;
+	position: relative;
+	height: 515px;
+	overflow: hidden;
+}
+
+#vehicle_container {
+	width: 940px;
+	padding: 5px;
+	/*border: 1px solid #c0c0c0;*/
+	background-color: #EAEAEA;
+	height: 410px;
+	margin: 0px auto;
+	margin-top: 30px;
+	position: relative;
+	border: 1px dashed #6e6363;
+	cursor: pointer;
+}
+
+#vehicle_container:hover {
+	border: 1px solid #444444;
+	outline:3px solid #444444;
+}
+
+#vehicle_container_full {
+	width: 940px;
+	padding: 5px;
+	/*border: 1px solid #c0c0c0;*/
+	background-color: #EAEAEA;
+	height: 100%;
+	margin: 0px auto;
+	margin-top: 30px;
+	position: relative;
+	border: 1px dashed #6e6363;
+}
+
+#vehicle_container #vehicle_description {
+	margin-bottom: 10px;
+	height: 65px;
+}
+
+#vehicle_container_full #vehicle_description {
+	margin-bottom: 10px;
+	height: 65px;
+	float: left;
+}
+
+#vehicle_container #vehicle_image {
+	width: 385px;
+	height: 320px;
+	margin-left: 20px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+
+#vehicle_container_full #vehicle_image {
+	width: 900px;
+	height: 675px;
+	margin-left: 20px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	margin-top: 20px; 
+	margin-bottom: 20px;
+}
+
+#vehicle_container #vehicle_image img {
+	height: 285px;
+	display: block;
+	width: 100%;
+}
+
+#vehicle_container_full #vehicle_image img {
+	height: 100%;
+	display: block;
+	width: 100%;
+	position: relative;
+}
+
+#vehicle_image .no_image {
+	width: 100%;
+	height: 100%;
+	float: left;
+	line-height: 100%;
+	text-align: center;
+	background-color: #ff3333;
+	color: #ffffff;
+	padding-top: 100px;
+}
+
+#vehicle_image_count {
+	width: 100%;
+	background-color: #444444;
+	color: #ffffff;
+	height: 35px;
+	line-height: 30px;
+	padding-left: 10px;
+	/*position: absolute;*/
+	float: left;
+	bottom: 0px;
+}
+
+#vehicle_details {
+	width: 500px;
+	min-height: 280px;
+	margin-left: 20px;
+	float: left;
+	margin-top: 20px;
+}
+
+#vehicle_price {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 120px;
+	height: 60px;
+	background-color: #f75050;
+	color: #fff;
+	padding: 10px;
+	text-align: center;
+	border: 3px solid #6e6363;
+}
+
+#vehicle_price h1 {
+	width: 100%;
+	color: #fff;
+	text-align: center;
+}
+
+#footer {
+	width: 960px;
+	min-height: 380px;
+	margin-top: 10px; 
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+}
+
+#footer #navigation {
+	margin-top: 20px;
+}
+
+#footer #navigation ul {
+	padding-left: 30px;
+}
+
+
+#footer #logo {
+	height: 150px;
+	width: 300px;
+	background: url('../asset/images/logo_dark.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+	
+#search_form select {
+	width: 160px;
+	text-align: left;
+	float: left;
+	margin-left: 20px; 
+	margin-right: 20px;
+	padding: 5px;
+}
+
+#search_form .filter {
+	width: 150px;
+	height: 20px;
+	text-align: left;
+	float: left;
+	margin-left: 20px; 
+	margin-right: 20px;
+	padding: 5px;
+	display: none;
+	background-color: #ffffff;
+	position: relative;
+}
+
+#search_form .filter .label {
+	color: #444;
+}
+
+#search_form .filter .close {
+	right: 10px;
+	top: 5px;
+	position: absolute;
+	z-index: 10;
+	color: #444;
+	font-weight: bold;
+}
+
+#search_form .filter .close:hover {
+	cursor: pointer;
+}
+
+#search_form select option {
+	text-align: center;
+}
+
+.spacer {
+	clear: both;
+	height: 40px;
+	width: 100%;
+}

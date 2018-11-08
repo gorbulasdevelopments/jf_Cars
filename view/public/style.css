@@ -1,0 +1,131 @@
+body {
+	/*background-color: #ffffff;*/
+	background-color: #f4f4f4;
+	font-family: "Verdana";
+}
+
+h1 {
+	color: #333333;
+	font-size: 1.8em;
+	font-weight: normal; 
+	line-height: 100%;
+	letter-spacing: 2px;
+}
+
+h2 {
+	color: #3c484d;
+	font-size: 1.4em;
+	font-weight: normal;
+	line-height: 100%;
+	padding-left: 10px;
+	padding-top: 10px;
+	letter-spacing: 2px;
+}
+
+h3 {
+	color: #f75070;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 100%;
+	padding: 10px;
+	letter-spacing: 2px;
+}
+
+p { 
+	color: #6e6363;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: #6e6363;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+				
+#header_top_border {
+	background-color: #3c484d;
+}
+
+#header #navigation {
+	text-align: center;
+	font-weight: bold;
+}
+
+#header #navigation ul {
+	float: right;
+}
+
+#header #navigation ul li {
+display: inline-block;
+padding-right: 15px;
+font-size: 13px;
+letter-spacing: 1px;
+}
+
+#vehicle_details ul {
+	margin-left: 20px;
+	list-style-type: none;
+}
+
+#vehicle_details ul li {
+	line-height: 30px;
+	letter-spacing: 3px;
+}
+
+#vehicle_price h1 {
+	height: 60px;
+	line-height: 60px;
+	float: right;
+}
+
+
+#footer_container {
+	background-color: #3c484d;
+}
+
+#footer {
+	color: #ffffff;
+	text-align: center;
+}
+
+#footer #navigation {
+	font-weight: bold;
+}
+
+#footer #navigation ul {
+	display: inline-block;
+}
+
+#footer #navigation ul li {
+	display: inline-block;
+	padding-right: 20px;
+	font-size: 16px;
+	letter-spacing: 1px;
+	color: #ffffff;
+}
+
+#footer #navigation ul li a {
+	display: inline-block;
+	padding-right: 20px;
+	font-size: 16px;
+	letter-spacing: 1px;
+	color: #ffffff;
+}
+
+#footer #navigation ul li a:visited {
+	display: inline-block;
+	padding-right: 20px;
+	font-size: 16px;
+	letter-spacing: 1px;
+	color: #ffffff;
+}
+
+#search_form .filter .label {
+    color: #444;
+    font-size: 12px;
+}
+
