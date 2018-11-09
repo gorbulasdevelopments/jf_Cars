@@ -8,7 +8,7 @@ require 'lib/View.php';
 require 'lib/Model.php';
 require 'lib/Database.php';
 require 'lib/Session.php';
-require 'controller/error.php';
+//require 'controller/error.php';
 require 'config/paths.php';
 //require 'config/database.php';
 
