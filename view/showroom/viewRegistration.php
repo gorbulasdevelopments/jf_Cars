@@ -1,3 +1,27 @@
+<style type="text/css">
+
+	#enquiryTable {
+		
+	}
+
+	#enquiryTable tr {
+		
+	}
+
+	#enquiryTable tr td {
+		padding: 10px;
+	}
+
+	#enquiryTable tr td option {
+		padding: 10px;
+	}
+
+	#enquiryTable tr td input {
+		padding: 10px;
+	}
+
+</style>
+
 <!-- Content Start -->
 	<div id="content_container">
 
@@ -72,8 +96,44 @@
 			</div>
 
 			
-			<div style="width: 100%; float: left; height: 400px; text-align: center;">
+			<div style="width: 100%; float: left; text-align: center;">
 				<h2>Enquire about this vehicle</h2>
+				<form method="POST" action="/showroom/vehicleEnquiry">
+					<table id="enquiryTable" style="text-align: left; padding: 20px;">
+						<tr>
+							<td>Enquiry:</td>
+							<td>
+								<select name="enquiryType" value="">
+									<option selected hidden value="">Please select an enquiry</option>
+									<option value="viewing">I would like to view this vehilce</option></option>
+									<option value="question">I have a question about this vehicle</option>
+									<option value="testDrive">I would like to book a test drive</option>
+								</select>	
+							</td>
+						</tr>						
+						<tr>
+							<td>Full Name:</td>
+							<td><input type="text" name="customerName"></td>
+						</tr>
+						<tr>
+							<td>Contact Number:</td>
+							<td><input type="text" name="customerNumber"></td>
+						</tr>
+						<tr>
+							<td>Email Address:</td>
+							<td><input type="text" name="customerEmail"></td>
+						</tr>
+						<tr>
+							<td>Message:</td>
+							<td><textarea name="customerMessagee"></textarea></td>
+						</tr>
+						<tr>
+							<td colspan = "2" style="text-align: center;">
+								<input type="submit" value="Submit Enquiry" />
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 			<div style="clear: both"></div>
 		</div>
