@@ -89,6 +89,7 @@ class Sale extends Controller {
             if($shareSale == 1) {
                 header("Location: " . URL . "/admin/sales/");
             } else {
+                require "controller/error.php";
                 $error = new Errors();
                 $error->functionError("shareSale", $shareSale);
             }
