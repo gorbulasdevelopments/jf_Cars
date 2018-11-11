@@ -1,9 +1,9 @@
 <?php
 
-class Index extends Controller {
+class Warranty extends Controller {
 
     function __construct() {
-        parent::__construct();
+		parent::__construct();
 		$this->view->make = 'any';
 		$this->view->model = 'any';
 		$this->view->fuel = 'any';
@@ -12,17 +12,21 @@ class Index extends Controller {
 		$this->view->doors = 'any';
 		$this->view->age = 'any';
 		$this->view->mileage = 'any';
-    }
+	}
     
     public function index() {
 		$this->result = $this->model->getAllSales();
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
+		$this->view->pageTitle = "Warranty Information - JF Car Sales";
+		$this->view->pageDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
+		$this->view->canocial = URL . "/warranty";
+        $this->viewFile = "warranty/index";
 		$this->render();
-    }
-
-    public function render() {
-        $this->view->render('index/index');
-    }
+	}
+	
+	public function render() {
+        $this->view->render($this->viewFile);
+	}
 	
 	private function filterResultsToArray($result) {
 		$filterResults = array(
