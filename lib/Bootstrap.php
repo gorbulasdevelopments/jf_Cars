@@ -16,7 +16,8 @@ class Bootstrap {
         Router::any('/showroom', 'controller\showroom@index');
         Router::any('/showroom/search', 'controller\showroom@search');
 		Router::any('/showroom/getVehicleMakes', 'controller\showroom@getVehicleMakes');
-		Router::any('/showroom/filterResults', 'controller\showroom@filterResults');
+        Router::any('/showroom/filterResults', 'controller\showroom@filterResults');
+        Router::any('/showroom/vehicleEnquiry', 'controller\showroom@vehicleEnquiry');
         Router::any('/showroom/(:any)/(:any)/(:any)', 'controller\showroom@getRegistration');
 
         //Router::any('showroom/(:any)/(:any)/(:any)', 'controller\showroom@getRegistration');

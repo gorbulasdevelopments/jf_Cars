@@ -31,7 +31,6 @@ class Showroom extends Controller {
 		$this->render();
     }
 	
-
 	public function getRegistration() {
 		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -197,11 +196,6 @@ class Showroom extends Controller {
 		echo json_encode($filterResults, true);
 	}
 	
-	
-    public function render() {
-        $this->view->render($this->viewFile);
-    }
-	
 	private function filterResultsToArray($result) {
 		$filterResults = array(
 			'make' => array(),
@@ -252,5 +246,29 @@ class Showroom extends Controller {
 
 		return $filterResults;
 	}
+
+	public function vehicleEnquiry() {
+		parse_str($_POST['data'], $data);
+
+		if(isset($data['enquiryType'])) {
+			$vehicleEnquiry = $this->model->vehicleEnquiry($data);
+			if($vehicleEnquiry) {
+				echo "<div class=\"spacer\" />";
+				echo "<h2>Your enquiry has been sent</h2>";
+            } else {
+				echo "<div class=\"spacer\" />";
+				echo "<h2>Your enquiry could not be sent, the webmaster has been informed</h2>";
+
+				$headers= "MIME-Version: 1.0\r\nContent-Type: text/html;\r\ncharset: utf-8;\r\nFrom: JF Contact Enquiry Error<sully_2306@gorbulas.co.uk>\r\n";
+
+				mail("sully_2306@gorbulas.co.uk", "Enquiry Form Error", "Enquiry message could not be sent", $headers);
+            }
+		}
+	}
+		
+	
+    public function render() {
+        $this->view->render($this->viewFile);
+    }
 
 }

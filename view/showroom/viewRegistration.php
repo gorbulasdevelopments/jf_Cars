@@ -1,5 +1,10 @@
 <style type="text/css">
 
+	#vehicleEnquiryForm {
+		width: 510px;
+		margin: 0px auto;
+	}
+
 	#enquiryTable {
 		
 	}
@@ -14,10 +19,17 @@
 
 	#enquiryTable tr td option {
 		padding: 10px;
+		width: 234px;
 	}
 
 	#enquiryTable tr td input {
 		padding: 10px;
+		width: 250px;
+	}
+
+	#enquiryFormContainer {
+		width: 100%;
+		height: 500px;
 	}
 
 </style>
@@ -36,6 +48,7 @@
 
 	if(sizeof($this->result) > 0) {	
         foreach($this->result as $record) {	
+			$vehicleRegistraion = $record['vehicle_registration'];
 ?>		
             <div id="vehicle_container_full">
 			<div id="vehicle_description">
@@ -96,44 +109,47 @@
 			</div>
 
 			
-			<div style="width: 100%; float: left; text-align: center;">
+			<div id="enquiryContainer" style="width: 100%; float: left; text-align: center;">
 				<h2>Enquire about this vehicle</h2>
-				<form method="POST" action="/showroom/vehicleEnquiry">
-					<table id="enquiryTable" style="text-align: left; padding: 20px;">
-						<tr>
-							<td>Enquiry:</td>
-							<td>
-								<select name="enquiryType" value="">
-									<option selected hidden value="">Please select an enquiry</option>
-									<option value="viewing">I would like to view this vehilce</option></option>
-									<option value="question">I have a question about this vehicle</option>
-									<option value="testDrive">I would like to book a test drive</option>
-								</select>	
-							</td>
-						</tr>						
-						<tr>
-							<td>Full Name:</td>
-							<td><input type="text" name="customerName"></td>
-						</tr>
-						<tr>
-							<td>Contact Number:</td>
-							<td><input type="text" name="customerNumber"></td>
-						</tr>
-						<tr>
-							<td>Email Address:</td>
-							<td><input type="text" name="customerEmail"></td>
-						</tr>
-						<tr>
-							<td>Message:</td>
-							<td><textarea name="customerMessagee"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan = "2" style="text-align: center;">
-								<input type="submit" value="Submit Enquiry" />
-							</td>
-						</tr>
-					</table>
-				</form>
+				<div id="enquiryFormContainer">
+					<form id="vehicleEnquiryForm" method="POST" action="/showroom/vehicleEnquiry">
+						<input type="hidden" name="vehicleRegistration" value="<?php echo $vehicleRegistraion; ?>" />
+						<table id="enquiryTable" style="text-align: left; padding: 20px;">
+							<tr>
+								<td>Enquiry:</td>
+								<td>
+									<select name="enquiryType" value="" required>
+										<option selected hidden value="">Please select an enquiry</option>
+										<option value="viewing">I would like to view this vehilce</option></option>
+										<option value="question">I have a question about this vehicle</option>
+										<option value="testDrive">I would like to book a test drive</option>
+									</select>	
+								</td>
+							</tr>						
+							<tr>
+								<td>Full Name:</td>
+								<td><input type="text" name="customerName" required></td>
+							</tr>
+							<tr>
+								<td>Contact Number:</td>
+								<td><input type="tel" pattern="0[0-9]{10}" name="customerNumber" required></td>
+							</tr>
+							<tr>
+								<td>Email Address:</td>
+								<td><input type="email" name="customerEmail" required></td>
+							</tr>
+							<tr>
+								<td>Message:</td>
+								<td><textarea name="customerMessage" style="width: 280px; height: 100px;" required></textarea></td>
+							</tr>
+							<tr>
+								<td colspan = "2" style="text-align: center;">
+									<input type="submit" value="Submit Enquiry" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
 			</div>
 			<div style="clear: both"></div>
 		</div>
@@ -172,4 +188,27 @@
 			}
 			x[slideIndex-1].style.display = "block";  
 		}
+
+		$(document).ready(function() {
+			$('#vehicleEnquiryForm').submit(function(event) {
+				event.preventDefault();
+
+
+				$.ajax({
+					type: "POST",
+					url: "http://zion/showroom/vehicleEnquiry",
+					dataType: 'json',
+					data: {data:$(this).serialize()},
+					error: function (response) {
+						//console.log(response);
+					},
+					complete: function (response) {
+						$("#enquiryFormContainer").html(response.responseText);
+						console.log(response);
+					}
+				});
+			});
+
+		});
+
 	</script>

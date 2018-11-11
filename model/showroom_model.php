@@ -76,5 +76,40 @@ class showroom_Model extends Model {
         $strSQL->execute();
         return $strSQL->fetchAll();
 	}
+
+	public function vehicleEnquiry($data) {
+		$vehicleRegistration = $data['vehicleRegistration'];
+		$enquiryType = $data['enquiryType'];
+		$customerName = $data['customerName'];
+		$customerNumber = $data['customerNumber'];
+		$customerEmail = $data['customerEmail'];
+		$customerMessage = $data['customerMessage'];
+		$emailSubject = null;
+		switch($enquiryType) {
+			case 'viewing':
+				$emailSubject = "Viewing Request for $vehicleRegistration";
+				$message = "<h2>" . date("d/m/Y") . " Viewing Request</h2> Vehicle: $vehicleRegistration <br />Customer: $customerName <br />Contact Number: $customerNumber </br >Customer Email: $customerEmail<br /> Message: $customerMessage";
+				break;
+			case 'question':
+				$emailSubject = "New question about $vehicleRegistration";
+				$message = "<h2>" . date("d/m/Y") . " Customer Question</h2> Vehicle: $vehicleRegistration <br />Customer: $customerName <br />Contact Number: $customerNumber </br >Customer Email: $customerEmail<br /> Message: $customerMessage";
+				break;
+			case 'testDrive':
+				$emailSubject = "Test drive for $vehicleRegistration";
+				$message = "<h2>" . date("d/m/Y") . " Test Drive Request</h2> Vehicle: $vehicleRegistration <br />Customer: $customerName <br />Contact Number: $customerNumber </br >Customer Email: $customerEmail<br /> Message: $customerMessage";
+				break;
+		}
+
+		if(!is_null($emailSubject)) {
+			$headers= "MIME-Version: 1.0\r\nContent-Type: text/html;\r\ncharset: utf-8;\r\nFrom: JF Contact Enquiry<sully_2306@gorbulas.co.uk>\r\n";
+
+			if(mail("sully_2306@gorbulas.co.uk", $emailSubject, $message, $headers)) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		
+	}
 }
  
