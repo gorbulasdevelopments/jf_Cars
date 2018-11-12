@@ -1,10 +1,10 @@
 body {
 	/*background-color: #ffffff;*/
-	background-color: #f4f4f4;
+	/*background-color: #f4f4f4;*/
 	font-family: "Montserrat", sans-serif;
 }
 
-h1 {
+/*h1 {
 	color: #333333;
 	font-size: 2.8em;
 	font-weight: normal; 
@@ -29,7 +29,7 @@ h3 {
 	line-height: 100%;
 	padding: 10px;
 	letter-spacing: 2px;
-}
+}*/
 
 p { 
 	color: #6e6363;
@@ -57,12 +57,12 @@ a:hover {
 }
 
 #header #navigation ul {
-	float: right;
+	color: #000;
 }
 
 #header #navigation ul li {
 display: inline-block;
-padding-right: 15px;
+
 font-size: 13px;
 letter-spacing: 1px;
 }
@@ -104,19 +104,18 @@ letter-spacing: 1px;
 
 #footer #navigation ul li {
 	display: inline-block;
-	padding-right: 20px;
 	font-size: 16px;
 	letter-spacing: 1px;
 	color: #ffffff;
 }
 
-#footer #navigation ul li a {
+/*#footer #navigation ul li a {
 	display: inline-block;
 	padding-right: 20px;
 	font-size: 16px;
 	letter-spacing: 1px;
 	color: #ffffff;
-}
+}*/
 
 #footer #navigation ul li a:visited {
 	display: inline-block;

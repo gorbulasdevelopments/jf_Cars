@@ -13,7 +13,7 @@ $root_folder = $_SERVER['DOCUMENT_ROOT'] . "";
   <head>
 		<meta charset="UTF-8">
 		<meta name="description" content="JF Cars, Used Car Sales in Kings Lynn, Norfolk.">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<?php 
 			if(isset($this->pageTitle)) {
 				echo "<title>" . $this->pageTitle . "</title>";

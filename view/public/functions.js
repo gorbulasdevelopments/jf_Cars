@@ -146,7 +146,7 @@
 				
 			$.ajax({
 				type: "POST",
-				url: "http://192.168.56.101/showroom/filterResults",
+				url: "http://zion/showroom/filterResults",
 				data: {source:$object, filter:$filter},
 				dataType: 'json',
 				success: function($response)	{

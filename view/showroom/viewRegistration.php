@@ -84,13 +84,13 @@
 
 <!-- Content Start -->
 	<div id="content_container">
-
+		
 	<?php 
 	
 	include ROOT_DIR . "/view/searchBar.php";
 	
 	?>
-		
+	<div id="content">
 		
 <?php	
 
@@ -122,6 +122,15 @@
 
 			
 			<div style="clear: both"></div>
+
+			<div style="width: 100%; height: 200px; padding: 20px;">
+				<pre>Sale Description</pre>
+				<br /><br />
+				<b>This vehicle also has:</b><br /><br />
+				<?php echo $record['sale_summary'] ?>
+
+			</div>
+
 			<div style="float: left; width: 100%; margin-top: 30px; padding-left: 20px;">
 				<h1>Vehicle Details</h1>
 			</div>
@@ -159,6 +168,15 @@
 							<?php echo $record['vehicle_colour'] ?>
 						</div>
 					</div>
+
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							Colour:
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_colour'] ?>
+						</div>
+					</div>
 				</div>
 				<div style="clear: both" />
 
@@ -167,11 +185,7 @@
 				<br />
 				<br />
 				<ul>
-					<li>Make: <?php echo $record['vehicle_make'] ?></li>
-					<li>MODEL: <?php echo $record['vehicle_model'] ?></li>
-					<li>DOORS: <?php echo $record['vehicle_doors'] ?></li>
-					<li>COLOUR: <?php echo $record['vehicle_colour'] ?></li>
-					<br />
+
 					<li>YEAR: <?php echo $record['vehicle_year'] ?></li>
 					<li>ENGINE SIZE: <?php echo $record['vehicle_engine_size'] ?></li>
 					<li>FUEL TYPE: <?php echo $record['vehicle_fuel'] ?></li>
@@ -248,6 +262,7 @@
 	
 ?>
 		<div style="clear: both"></div>
+</div>
 	</div>
 	<!-- Content End -->
 	
@@ -283,7 +298,7 @@
 
 				$.ajax({
 					type: "POST",
-					url: "http://192.168.56.101/showroom/vehicleEnquiry",
+					url: "http://zion/showroom/vehicleEnquiry",
 					dataType: 'json',
 					data: {data:$(this).serialize()},
 					error: function (response) {

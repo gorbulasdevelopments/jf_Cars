@@ -1,6 +1,7 @@
 	<!-- Footer Start -->
 	<div id="footer_container">
 		<div id="footer">
+		<div id="logo"></div>
 			<div id="navigation">
 				<ul>
 					<li><a href="/">HOME</a></li>
@@ -10,17 +11,15 @@
 					<li><a href="/contact">CONTACT US</a></li>
 				</ul>
 			</div>
-			<div id="logo"></div>
-			<div style="width: 100%; height: 100px; letter-spacing: 3px;">
-				<div style="width: 320px; float: left;">
-					5 RUSSELL CLOSE<br /> KING'S LYNN<br /> NORFOLK<br /> PE30 4NQ
-				</div>
-				<div style="width: 320px; float: left; height: 100%; line-height: 100%;">
-					07500 123456
-				</div>
-				<div style="width: 320px; float: left;">
-					<a href="mailto:SALES@JFCARS.CO.UK" style="color: #ffffff;">SALES@JFCARS.CO.UK</a>
-				</div>
+			
+			<div class="footer_content">
+				5 RUSSELL CLOSE<br /> KING'S LYNN<br /> NORFOLK<br /> PE30 4NQ
+			</div>
+			<div class="footer_content">
+				07500 123456
+			</div>
+			<div class="footer_content">
+				<a href="mailto:SALES@JFCARS.CO.UK" style="color: #ffffff;">SALES@JFCARS.CO.UK</a>
 			</div>
 			
 			<div style="width: 300px; height: 80px; margin: 0px auto; color: #ffffff; background-color: #ff3333; line-height: 80px;">

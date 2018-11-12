@@ -1,22 +1,19 @@
 	<!-- Content Start -->
 	<div id="content_container">
 		<div id="index_banner">
-			<img src="<?php echo $images_directory ?>/slide-02.jpg" style="width: 100%;">
-			<div id="index_search">
+			<img src="<?php echo $images_directory ?>/slide-02.jpg" style="width: 100%;" />
+			
+			<p style="position: absolute; left: 0; top: 50%; width: 100%; text-align: center; color: #fff; font-weight: bold; font-size: 24px;">FIND YOUR PERFECT CAR TODAY</p>
+			
+		</div>
 			<?php 
 			
 				include ROOT_DIR . "/view/searchBar.php";
 			
 			?>
-			</div>
-			</img>
-			<p style="position: absolute; left: 0; top: 50%; width: 100%; text-align: center; color: #fff; font-weight: bold; font-size: 24px;">FIND YOUR PERFECT CAR TODAY</p>
-			
-		</div>
-		
 	
 		
-		<div style="width: 960px; height: 500px; margin: 0px auto; text-align: center; margin-top: 80px; margin-bottom: 80px;">
+		<div style="width: 100%; margin: 0px auto; text-align: center; margin-top: 80px; margin-bottom: 80px;">
 			<h1>Welcome to <font style="color: red;">JF</font> CARS</h1>
 			<h3>THE BEST WAY TO BUY YOUR NEXT CAR</h3>
 			<br />

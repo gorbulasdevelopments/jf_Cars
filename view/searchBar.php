@@ -1,9 +1,6 @@
-<div style="width: 100%; height: 180px; background-color: #f75050; margin-bottom: 20px;">
-		
-		<div style="width: 960px;  margin: 0px auto;">
-		
+<div id="search_bar">
 			<form id="search_form" method="GET" action="<?php echo URL; ?>/showroom/search">
-				<div style="width: 800px; margin: 0px auto; padding-top: 20px; margin-bottom: 20px;">
+				<div>
 
 					<select id="make" name="make" <?php echo $this->make != 'any' ? "style=\"display: none\"" : ""; ?>>
 						<?php
@@ -101,8 +98,6 @@
 						<span class="label"><?php echo $this->transmission != 'any' ? $this->transmission : ""; ?></span>
 						<span class="close">X</span>
 					</div>
-				</div>
-				<div style="width: 800px; margin: 0px auto; padding-top: 20px; margin-bottom: 20px;">
 					<select id="engine" name="engine" <?php echo $this->engine != 'any' ? "style=\"display: none\"" : ""; ?>>
 						<?php
 							if($this->engine == 'any') {
@@ -194,11 +189,10 @@
 						<span class="label"><?php echo $this->mileage != 'any' ? $this->mileage : ""; ?></span>
 						<span class="close">X</span>
 					</div>
-				</div>
-				<div style="width: 800px; margin: 0px auto; padding-top: 40px; text-align: center;">
-					<input style="padding: 10px; width: 100px;" type="submit" value="Search">
+				<div id="search_buttons">
+					<input  type="submit" value="Search">
 					
-					<input id="resetFilters" style="padding: 10px; width: 100px;" type="submit" value="Reset Filters">
+					<input id="resetFilters" type="submit" value="Reset Filters">
 				</div>
 			</form>
 		</div>
