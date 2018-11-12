@@ -31,6 +31,7 @@ $root_folder = $_SERVER['DOCUMENT_ROOT'] . "";
 	
 	<link href="<?php echo URL; ?>/view/public/layout.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo URL; ?>/view/public/style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Abel|Raleway" rel="stylesheet">
 	<script src="HTTPs://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo URL; ?>/view/public/functions.js"></script>
   </head>

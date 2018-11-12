@@ -1,12 +1,12 @@
 body {
 	/*background-color: #ffffff;*/
 	background-color: #f4f4f4;
-	font-family: "Verdana";
+	font-family: "Montserrat", sans-serif;
 }
 
 h1 {
 	color: #333333;
-	font-size: 1.8em;
+	font-size: 2.8em;
 	font-weight: normal; 
 	line-height: 100%;
 	letter-spacing: 2px;
@@ -79,8 +79,9 @@ letter-spacing: 1px;
 
 #vehicle_price h1 {
 	height: 60px;
-	line-height: 60px;
+	line-height: 55px;
 	float: right;
+	font-size: 30px;
 }
 
 

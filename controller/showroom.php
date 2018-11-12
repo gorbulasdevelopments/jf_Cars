@@ -114,6 +114,8 @@ class Showroom extends Controller {
 		$this->view->result = $this->result;
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
 		
+		
+
         $this->viewFile = "showroom/search";
         $this->render();
 	}

@@ -146,7 +146,7 @@
 				
 			$.ajax({
 				type: "POST",
-				url: "http://www.gorbulas.co.uk/projects/jf_cars/showroom/filterResults",
+				url: "http://192.168.56.101/showroom/filterResults",
 				data: {source:$object, filter:$filter},
 				dataType: 'json',
 				success: function($response)	{
@@ -164,6 +164,7 @@
 							$("#" + $optionField +"").empty();
 							$("#" + $optionField +"").append("<option value='any'>" + $optionField.charAt(0).toUpperCase() + $optionField.slice(1).toLowerCase() + " (Any)</option>");
 							$.each($value, function($element, $foo) {
+								console.log($foo);
 								if($optionField == 'age') {
 									if($foo == $optionValue) {
 									$("#" + $optionField +"").append("<option value='" + $foo + "' selected>Less than " + $foo + " years</option>");

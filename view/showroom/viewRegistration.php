@@ -32,6 +32,54 @@
 		height: 500px;
 	}
 
+	#vehicleDetails{
+		width: 100%;
+		margin-top:30px;
+		float: left;
+		background-color: #fff;
+		text-align: center;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		
+	}
+
+	#vehicleDetails .detailContainer {
+		width: 29%;
+		border-right: 1px solid #c0c0c0;
+		margin-right: 2%;
+		padding-right: 2%;
+		float: left;
+		text-align: left;
+		font-size: 13px;
+	}
+
+	#vehicleDetails .detailContainer:nth-child(3n+3) {
+		border-right: 0px;
+		margin-right: 0%;
+		padding-right: 0%;
+	}
+
+	#vehicleDetails .detailContainer:nth-child(3n+1) {
+		margin-left: 25px;
+	}
+
+	#vehicleDetails .detailContainer .detailContainerLabel {
+		width: 50%;
+		float: left;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+
+	#vehicleDetails .detailContainer .detailContainerValue {
+		padding-top: 5px;
+		width: 50%;
+		float: left;
+		padding-bottom:5px;
+		font-weight: bold;
+	}
+
+
+
 </style>
 
 <!-- Content Start -->
@@ -74,11 +122,50 @@
 
 			
 			<div style="clear: both"></div>
-			<div style="float: left; width: 100%; text-align: center; margin-top: 30px;">
-				<h1>Vehicle Specification</h1>
+			<div style="float: left; width: 100%; margin-top: 30px; padding-left: 20px;">
+				<h1>Vehicle Details</h1>
 			</div>
-			
-			<div id="vehicle_details">
+				<div id="vehicleDetails">
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							Make:
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_make'] ?>
+						</div>
+					</div>
+					
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							Model:
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_model'] ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							Doors:
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_doors'] ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							Colour:
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_colour'] ?>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both" />
+
+				<br />
+				<br />
+				<br />
+				<br />
 				<ul>
 					<li>Make: <?php echo $record['vehicle_make'] ?></li>
 					<li>MODEL: <?php echo $record['vehicle_model'] ?></li>
@@ -196,7 +283,7 @@
 
 				$.ajax({
 					type: "POST",
-					url: "http://zion/showroom/vehicleEnquiry",
+					url: "http://192.168.56.101/showroom/vehicleEnquiry",
 					dataType: 'json',
 					data: {data:$(this).serialize()},
 					error: function (response) {
