@@ -1,8 +1,6 @@
 <style type="text/css">
 
 	#vehicleEnquiryForm {
-		width: 510px;
-		margin: 0px auto;
 	}
 
 	#enquiryTable {
@@ -29,7 +27,7 @@
 
 	#enquiryFormContainer {
 		width: 100%;
-		height: 500px;
+
 	}
 
 	#vehicleDetails{
@@ -98,20 +96,20 @@
         foreach($this->result as $record) {	
 			$vehicleRegistraion = $record['vehicle_registration'];
 ?>		
-            <div id="vehicle_container_full">
-			<div id="vehicle_description">
+            <div class="vehicle_container_full">
+			<div class="vehicle_description">
 				<h2><b>£<?php echo $record['sale_price'] ?></b> | <?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></h2>
 				<h3><?php echo $record['sale_summary'] ?></h3>
 			</div>
-			<div id="vehicle_image">
+			<div class="vehicle_image">
 				<?php 
 					if(sizeof($this->vehicleImages) > 0) {
 						foreach($this->vehicleImages as $vehicleImage) {	
 							echo "<img class=\"vehicleImages\" src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $vehicleImage['vehicle_image_url']) ."\" style=\"width: 100%; display: none; float: left;\" />";
 						}
 						
-						echo "<button style=\"position: absolute; bottom: 310px; left: -1px; height: 40px; margin-top: 20px; width: 30px;\" onclick=\"plusDivs(-1)\">&#10094;</button>";
-						echo "<button style=\"position: absolute; bottom: 310px; right: -1px; height: 40px; margin-top: 20px; width: 30px;\" onclick=\"plusDivs(1)\">&#10095;</button>";
+						echo "<button id=\"left_button\" onclick=\"plusDivs(-1)\">&#10094;</button>";
+						echo "<button id=\"right_button\"  onclick=\"plusDivs(1)\">&#10095;</button>";
 					} else {
 						echo "<div class=\"no_image\"><h3>Awaiting Image</h3></div>";
 					}
@@ -123,7 +121,7 @@
 			
 			<div style="clear: both"></div>
 
-			<div style="width: 100%; height: 200px; padding: 20px;">
+			<div style="width: 100%; margin-bottom: 40px;">
 				<pre>Sale Description</pre>
 				<br /><br />
 				<b>This vehicle also has:</b><br /><br />
@@ -131,13 +129,13 @@
 
 			</div>
 
-			<div style="float: left; width: 100%; margin-top: 30px; padding-left: 20px;">
+			<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 20px;">
 				<h1>Vehicle Details</h1>
 			</div>
-				<div id="vehicleDetails">
+				<div class="vehicleDetails">
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							Make:
+							<span>Make:</span>
 						</div>
 						<div class="detailContainerValue">
 							<?php echo $record['vehicle_make'] ?>
@@ -146,7 +144,7 @@
 					
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							Model:
+							<span>Model:</span>
 						</div>
 						<div class="detailContainerValue">
 							<?php echo $record['vehicle_model'] ?>
@@ -154,7 +152,7 @@
 					</div>
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							Doors:
+							<span>Doors:</span>
 						</div>
 						<div class="detailContainerValue">
 							<?php echo $record['vehicle_doors'] ?>
@@ -162,7 +160,7 @@
 					</div>
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							Colour:
+							<span>Colour:</span>
 						</div>
 						<div class="detailContainerValue">
 							<?php echo $record['vehicle_colour'] ?>
@@ -171,7 +169,7 @@
 
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							Colour:
+							<span>Colour:</span>
 						</div>
 						<div class="detailContainerValue">
 							<?php echo $record['vehicle_colour'] ?>
@@ -204,14 +202,14 @@
 				<h1>Vehicle Extras</h1>
 			</div>
 			
-			<div id="vehicle_details" style="margin-top: 30px; float: left; line-height: 30px; padding-left: 20px;">
+			<div class="vehicle_details" style="margin-top: 30px; float: left; line-height: 30px; padding-left: 20px;">
 				<?php echo $record['vehicle_extras'] ?>
 				
 			</div>
 
 			
-			<div id="enquiryContainer" style="width: 100%; float: left; text-align: center;">
-				<h2>Enquire about this vehicle</h2>
+			<div id="enquiryContainer">
+				<h1>Enquire about this vehicle</h1>
 				<div id="enquiryFormContainer">
 					<form id="vehicleEnquiryForm" method="POST" action="/showroom/vehicleEnquiry">
 						<input type="hidden" name="vehicleRegistration" value="<?php echo $vehicleRegistraion; ?>" />

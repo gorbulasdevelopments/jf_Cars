@@ -21,30 +21,30 @@
 
 	if(sizeof($this->result) > 0) {	
 	
-		echo "<h2>We currently have " . sizeof($this->result) . " vehicles available in our showroom.</h2>";
+		echo "<h2 class=\"vehicle_count\">We currently have <b>" . sizeof($this->result) . "</b> vehicles available in our showroom.</h2>";
 	
         foreach($this->result as $record) {	
 ?>		
 
-			<div id="vehicle_container" class="vehicle_container">
+			<div class="vehicle_container">
 			
-			<div id="vehicle_description">
+			<div class="vehicle_description">
 				<h2><?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></h2>
 				<h3><?php echo $record['sale_summary'] ?></h3>
 			</div>
-			<div id="vehicle_image">
+			<div class="vehicle_image">
 				<?php 
 					if(!is_null($record['vehicle_image'])) {
-						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
+						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "#content\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
 					} else {
 						echo "<div class=\"no_image\">Awaiting Image</div>";
 					}		
 				?>
 				
-				<div id="vehicle_image_count"><?php echo $record['vehicle_image_count']; ?> Image<?php echo $record['vehicle_image_count'] == 1 ? '' : 's'; ?></div>
+				<div class="vehicle_image_count"><?php echo $record['vehicle_image_count']; ?> Image<?php echo $record['vehicle_image_count'] == 1 ? '' : 's'; ?></div>
 			</div>
 			
-			<div id="vehicle_details">
+			<div class="vehicle_details">
 				<ul>
 					<li>ENGINE SIZE: <?php echo $record['vehicle_engine_size'] ?></li>
 					<li>MILEAGE: <?php echo $record['vehicle_mileage'] ?></li>
@@ -58,7 +58,7 @@
 				<?php //echo substr(md5($record['sale_id']), 0, 8); ?>
 			</div>
 			
-			<div id="vehicle_price">
+			<div class="vehicle_price">
 				<h1>£<?php echo $record['sale_price'] ?></h1>
 			</div>
 		</div>
