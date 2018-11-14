@@ -3,6 +3,10 @@
 	padding: 0;
 }
 
+body {
+	background-color:#f4f4f4;
+}
+
 #header_container, #content_container ,#footer_container {
 	width: 100%;
 	float: left;
@@ -11,6 +15,7 @@
 /* Header */
 
 #header {
+	width: 1140px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 10px;
@@ -25,38 +30,42 @@
     position: absolute;
 }
 
+
 #header #logo {
-	height: 110px;
-	width: 230px;
-	margin-top: 20px;
-	float: left;
+	height: 150px;
+	width: 350px;
 	background: url('../asset/images/logo_light.png');
 	background-repeat: repeat;
 	background-size: auto auto;
 	background-size: contain;
 	background-repeat: no-repeat;
+	margin-top: 20px;
+	float: left;
+}
+
+#header #navigation_container {
+	width: 100%;
 }
 
 #header #navigation {
-	width: 100%;
-	font-size: 8px;
-	margin-top: 0px;
+	font-size: 12px;
+	float: right;
+	margin-top: 119px;
 }
 
 #header #navigation ul {
-	float: left;
 	margin-top: 0px;
 	font-size: 10px;
-	width: 100%;
+	float: right;
 	margin-bottom: 20px;
 }
 
 #header #navigation ul li {
-	float: left;
+	display: inline-block;
 	margin-top: 0px;
 	font-size: 10px;
-	width: 100%;
 	margin-bottom: 20px;
+	padding-left: 20px;
 }
 
 #header #navigation ul li a {
@@ -67,50 +76,70 @@
 /* End Header */
 
 #index_banner {
-	display: none;
+	display: block;
+}
+
+#index_search {
+	width: 960px;
+	height: 180px;
+	/*background-color: #ff3333;*/
+	background-color: #f75050;
+	z-index: 10;
+	position: absolute;
+	/*top: 325px;*/
+	bottom: 10px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#index_banner {
+	width: 100%;
+	position: relative;
+	height: 515px;
+	overflow: hidden;
 }
 
 /* Search Bar */
-
-#search_bar {
-	background-color: #f75050;
-
-}
 
 #search_bar {
 	width: 100%;
 	background-color: #f75050;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	position: relative;
 }
 
 #search_bar #search_form{
-	width: 100%;
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
 }
 
 #search_form select {
-	width: 96%;
+	width: 160px;
 	text-align: left;
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
 	padding: 5px;
-	font-size: 13px;
-	height: 40px;
-	margin: 0px auto;
+	font-size: 12px;
 	margin-bottom: 10px;
-	display: inherit;
 }
 
 #search_form .filter {
-	width: 93%;
-	height: 20px;
+	width: 150px;
+	height: 30px;
 	text-align: left;
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
 	padding: 5px;
 	display: none;
 	background-color: #ffffff;
-	position: relative;
-	height: 30px;
-	margin: 0px auto;
-	margin-bottom: 10px;
-	
+	position: relative;	
 }
 
 #search_form .filter .label {
@@ -135,11 +164,15 @@
 	text-align: center;
 }
 
-#search_form input {
-	width: 95%;
+#search_buttons {
+	width: 800px;
+	text-align: center;
+}
+
+#search_buttons input {
+	width: 160px;
 	margin: 0px auto;
 	padding: 10px; 
-	display: inherit;
 	margin-top: 10px;
 }
 
@@ -152,13 +185,25 @@
 	padding-bottom: 740px;
 }
 
+#content {
+	width: 1170px;
+	margin: 0px auto;
+}
+
 /* End Content */
 
 
 #footer_container {
 	position: relative;
 	width: 100%;
-	margin-top: -740px;
+	margin-top: -715px;
+}
+
+#footer {
+	color: #ffffff;
+	text-align: center;
+	width: 1170px;
+	margin: 0px auto;
 }
 
 #footer #logo {
@@ -174,23 +219,49 @@
 	
 
 #footer #navigation {
-	display: none;
+	display: block;
+	margin-bottom: 50px;
+	margin-top: 30px;
 }
 
 #footer #navigation ul li a {
 	color: #ffffff;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .footer_content {
-	width: 100%; 
+	width: 33%; 
 	margin-bottom: 20px;
+	float: left;
+	height: 100px;
+	letter-spacing: 2px;
+}
+
+#footer #social_buttons {
+	width: 100%; 
+	height: 80px; 
+	color: #ffffff; 
+	background-color: #ff3333; 
+	line-height: 80px;
+	float: left;
+}
+
+#footer #financial_disclosure {
+	width: 100%;
+	float: left;
+	margin: 0px auto;
 }
 
 #footer p {
 	color: #ffffff; 
-	font-size: 12px; 
-	line-height: 16px; 
-	height: 250px;
+	font-size: 13px; 
+	line-height: 20x; 
+	width: 960px;
+	margin: 0px auto;
+	letter-spacing: 2px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /* Basic Styles */
@@ -213,8 +284,9 @@ h2 {
 }
 
 .vehicle_count {
-	text-align: center;
-	padding-left: 0px;
+	text-align: left;
+	padding-left: 10px;
+	margin-top: 20px;
 }
 
 h3 {
@@ -236,13 +308,16 @@ h3 {
 
 .vehicle_container {
 	width: 95%;
-	background-color: #EAEAEA;
+	/*background-color: #EAEAEA;*/
+	background-color: #ffffff;
 	margin: 0px auto;
 	margin-top: 20px;
 	position: relative;
-	border: 1px dashed #6e6363;
+	/*border: 1px dashed #6e6363;*/
 	cursor: pointer;
 	margin-bottom: 10px;
+	padding: 5px;
+	height: 650px;
 }
 
 .vehicle_container .vehicle_description {
@@ -251,19 +326,20 @@ h3 {
 }
 
 .vehicle_container .vehicle_image {
-	width: 95%;
+	width: 700px;
 	overflow: hidden;
-	margin: 0px auto;
+	margin-left: 20px;
+	float: left;
 }
 
 .vehicle_container .vehicle_image img {
 	display: block;
-	width: 100%;
+	width: 700px;
 }
 
 .vehicle_image .no_image {
-	width: 95%;
-	height: 320px;
+	width: 700px;
+	height: 394px;
 	float: left;
 	line-height: 100%;
 	text-align: center;
@@ -288,6 +364,7 @@ h3 {
 	min-height: 280px;
 	margin-left: 10px;
 	margin-top: 20px;
+	float: left;
 }
 
 .vehicle_details ul {
@@ -301,16 +378,16 @@ h3 {
 }
 
 .vehicle_price {
-	position: relative;
-	width: 85%;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 120px;
 	height: 60px;
 	background-color: #f75050;
 	color: #fff;
 	padding: 10px;
 	text-align: center;
 	border: 3px solid #6e6363;
-	margin: 0px auto;
-	margin-bottom: 10px;
 }
 
 .vehicle_price h1 {
@@ -329,26 +406,29 @@ h3 {
 	width: 95%;
 	padding: 5px;
 	/*border: 1px solid #c0c0c0;*/
-	background-color: #EAEAEA;
+	/*background-color: #EAEAEA;*/
+	background-color: #ffffff;
 	height: 100%;
 	margin: 0px auto;
 	margin-top: 30px; 
 	position: relative;
-	border: 1px dashed #6e6363;
+	/*border: 1px dashed #6e6363;*/
 	margin-bottom: 10px;
 }
 
 .vehicle_container_full .vehicle_description {
 	margin-bottom: 10px;
 	float: left;
+	width: 100%;
 }
 
 .vehicle_container_full .vehicle_image {
-	width: 95%;
-	height: 240px;
+	width: 800px;
+	height: 600px;
 	overflow: hidden;
 	position: relative;
 	margin: 0px auto;
+
 }
 
 .vehicle_container_full .vehicle_image img {
@@ -360,7 +440,7 @@ h3 {
 
 .vehicle_container_full .vehicle_image #left_button {
 	position: absolute; 
-	bottom: 100px; 
+	bottom: 280px; 
 	left: -1px; 
 	height: 40px; 
 	margin-top: 20px; 
@@ -369,7 +449,7 @@ h3 {
 
 .vehicle_container_full .vehicle_image #right_button {
 	position: absolute; 
-	bottom: 100px; 
+	bottom: 280px; 
 	right: -1px; 
 	height: 40px; 
 	margin-top: 20px; 
@@ -431,36 +511,49 @@ h3 {
 	width: 100%; 
 	float: left; 
 	text-align: center;
-	height: 700px;
+	height: 600px;
 }
 
 #vehicleEnquiryForm {
-	width: 335px;
 	margin: 0px auto;
 	
 }
 
-#enquiryTable {
-	
+#enquiryTable {	
+	width: 600px;
+	margin: 0px auto;
+	border: 2px solid #c0c0c0;
+	margin-top: 20px;
 }
 
 #enquiryTable tr {
-	display: block;
 }
 
 #enquiryTable tr td {
 	padding: 10px;
+}
+
+#enquiryTable tr td select {
 	display: block;
+	margin: 0px auto;
 }
 
 #enquiryTable tr td option {
 	padding: 10px;
-	width: 100%;
+	width: 100%;	
 }
 
 #enquiryTable tr td input {
 	padding: 10px;
 	width: 100%;
+	display: block;
+	margin: 0px auto;
+}
+
+#enquiryTable tr td textarea {
+	width: 100%;
+	display: block;
+	margin: 0px auto;
 }
 
 #enquiryFormContainer {
