@@ -7,12 +7,10 @@
 			
 		</div>
 			<?php 
-			
 				include ROOT_DIR . "/view/searchBar.php";
-			
 			?>
 	
-		
+		<div id="content">
 		<div style="width: 100%; margin: 0px auto; text-align: center; margin-top: 80px; margin-bottom: 80px;">
 			<h1>Welcome to <font style="color: red;">JF</font> CARS</h1>
 			<h3>THE BEST WAY TO BUY YOUR NEXT CAR</h3>
@@ -39,5 +37,6 @@
 		</div>-->
 		
 		<div style="clear: both"></div>
+</div>
 	</div>
     <!-- Content End -->
