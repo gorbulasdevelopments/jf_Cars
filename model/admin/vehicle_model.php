@@ -510,22 +510,51 @@ class vehicle_Model extends Model {
 		echo "</pre>";
 
 		echo "<pre>";
-		echo "Basic/Search fields<br />";
+		echo "<b>Basic/Search fields</b><br />";
 		echo "Make: " . $obj->Response->DataItems->SmmtDetails->Marque . "<br />";
 		echo "Model: " . $obj->Response->DataItems->SmmtDetails->Range . "<br />";
 		echo "Fuel Type: " . $obj->Response->DataItems->SmmtDetails->FuelType . "<br />";
 		echo "Transmission " . $obj->Response->DataItems->SmmtDetails->Transmission . "<br />";
 		echo "Engine Size: " . $obj->Response->DataItems->SmmtDetails->EngineCapacity . "<br />";
 		echo "Doors: " . $obj->Response->DataItems->SmmtDetails->EngineCapacity . "<br />";
-		echo "Year: " . $obj->Response->DataItems->VehicleRegistration->DateFirstRegistered . "<br />";
+		echo "Year: " . date("d/m/Y", strtotime($obj->Response->DataItems->VehicleRegistration->DateFirstRegistered)) . "<br />";
 		echo "</pre>";
 
 		echo "<pre>";
-		echo "Additional fields<br />";
+		echo "<B>Additional fields</b><br />";
 		echo "Variant: " . $obj->Response->DataItems->SmmtDetails->ModelVariant . "<br />";
+		echo "Seats: " . $obj->Response->DataItems->SmmtDetails->NumberOfSeats . "<br />";
 		echo "Body Style: " . $obj->Response->DataItems->SmmtDetails->BodyStyle . "<br />";
-		echo "Gears, Body Style, Colour, Number of previous owners, Tax Band + 6/12 cost, Fuel Consumption, BHP, Torque, Acceleration";
+		echo "Gears: " . $obj->Response->DataItems->SmmtDetails->NumberOfGears . "<br />";
+		echo "Colour: " . $obj->Response->DataItems->VehicleRegistration->Colour . "<br />";
+		echo "Previous Owners: " . $obj->Response->DataItems->VehicleHistory->NumberOfPreviousKeepers . "<br />";
+		echo "Tax Band: " . $obj->Response->DataItems->VehicleStatus->MotVed->VedBand . "<br />";
+		echo "Tax (6 Months): " . $obj->Response->DataItems->VehicleStatus->MotVed->VedRate->Standard->SixMonth . "<br />";
+		echo "Tax (12 Months): " . $obj->Response->DataItems->VehicleStatus->MotVed->VedRate->Standard->TwelveMonth . "<br />";
+		echo "Fuel Tank: " . $obj->Response->DataItems->TechnicalDetails->Dimensions->FuelTankCapacity . "<br />";
+		echo "Fuel Consumption (Urban): " . $obj->Response->DataItems->TechnicalDetails->Consumption->UrbanCold->Mpg . "<br />";
+		echo "Fuel Consumption (Extra Urban): " . $obj->Response->DataItems->TechnicalDetails->Consumption->ExtraUrban->Mpg . "<br />";
+		echo "Fuel Consumption (Combined): " . $obj->Response->DataItems->TechnicalDetails->Consumption->Combined->Mpg . "<br />";
+		echo "BHP: " . $obj->Response->DataItems->TechnicalDetails->Performance->Power->Bhp . "<br />";
+		echo "Torque: " . $obj->Response->DataItems->TechnicalDetails->Performance->Torque->FtLb . "<br />";
+		echo "Max Speed: " . $obj->Response->DataItems->TechnicalDetails->Performance->MaxSpeed->Mph . "<br />";
 		echo "</pre>";
+
+
+		$json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/SpecAndOptionsData?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=km12akk");
+        $obj = json_decode($json);
+		echo "<pre>";
+		print_r($obj);
+		echo "</pre>";
+
+		$json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleAndMotHistory?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=km12akk");
+        $obj = json_decode($json);
+		echo "<pre>";
+		print_r($obj);
+		echo "</pre>";
+
+
+		
     }
 
 }
