@@ -47,7 +47,11 @@ class Bootstrap {
         Router::any('/admin/vehicles/removeVehicle/(:any)', 'controller\admin\vehicle@removeVehicle');
         Router::any('/admin/vehicles/addVehicleImage/(:any)', 'controller\admin\vehicle@addImage');
         Router::any('/admin/vehicles/removeVehicleImage/(:any)', 'controller\admin\vehicle@removeImage');
+        Router::any('/admin/vehicles/getVehicleData', 'controller\admin\vehicle@getData');
+
         
+
+
         Router::any('/admin/sales', 'controller\admin\sale@getSales');
 		Router::any('/admin/sales/addSale', 'controller\admin\sale@addSale');
 		Router::any('/admin/sales/updateSale/(:any)', 'controller\admin\sale@updateSale');

@@ -112,7 +112,14 @@ class Vehicle extends Controller {
 	}
 
 
-
+    public function getData() {
+        if(!$this->logged) {
+			Session::destroy();
+			header("location: " . URL . "/admin/login");
+		} else { 
+            $this->model->getData();
+        }
+    }
 
     public function render() {
         //$this->model->init();

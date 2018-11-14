@@ -502,4 +502,30 @@ class vehicle_Model extends Model {
 		}
 	}
 
+	public function getData() {
+        $json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=km12akk");
+        $obj = json_decode($json);
+		echo "<pre>";
+		print_r($obj);
+		echo "</pre>";
+
+		echo "<pre>";
+		echo "Basic/Search fields<br />";
+		echo "Make: " . $obj->Response->DataItems->SmmtDetails->Marque . "<br />";
+		echo "Model: " . $obj->Response->DataItems->SmmtDetails->Range . "<br />";
+		echo "Fuel Type: " . $obj->Response->DataItems->SmmtDetails->FuelType . "<br />";
+		echo "Transmission " . $obj->Response->DataItems->SmmtDetails->Transmission . "<br />";
+		echo "Engine Size: " . $obj->Response->DataItems->SmmtDetails->EngineCapacity . "<br />";
+		echo "Doors: " . $obj->Response->DataItems->SmmtDetails->EngineCapacity . "<br />";
+		echo "Year: " . $obj->Response->DataItems->VehicleRegistration->DateFirstRegistered . "<br />";
+		echo "</pre>";
+
+		echo "<pre>";
+		echo "Additional fields<br />";
+		echo "Variant: " . $obj->Response->DataItems->SmmtDetails->ModelVariant . "<br />";
+		echo "Body Style: " . $obj->Response->DataItems->SmmtDetails->BodyStyle . "<br />";
+		echo "Gears, Body Style, Colour, Number of previous owners, Tax Band + 6/12 cost, Fuel Consumption, BHP, Torque, Acceleration";
+		echo "</pre>";
+    }
+
 }

@@ -151,5 +151,7 @@ class admin_Model extends Model {
 			//header('location: ' . URL . '/admin/login');
 		}
     }
+
+
 }
  
