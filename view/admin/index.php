@@ -44,6 +44,7 @@
 	<ul style="margin-left: 40px;">
 		<li style="color: red;"><a href="<?php echo URL; ?>/admin/vehicles/addVehicle">Add Vehicle</a></li>
 		<li style="color: red;"><a href="<?php echo URL; ?>/admin/vehicles">List Vehicles</a></li>
+		<li style="color: red;"><a href="<?php echo URL; ?>/admin/vehicles/getVehicleData">getVehicleData</a></li>
 	</ul>
 		
 	<h3>Sale Functions</h3>

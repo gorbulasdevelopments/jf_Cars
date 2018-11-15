@@ -502,9 +502,11 @@ class vehicle_Model extends Model {
 		}
 	}
 
-	public function getData() {
-        $json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=km12akk");
-        $obj = json_decode($json);
+	public function getVehicleData() {	
+		$json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=" . $_POST['vehicleRegistration'] . "");
+	    echo $json;
+		
+		/* $obj = json_decode($json);
 		echo "<pre>";
 		print_r($obj);
 		echo "</pre>";
@@ -551,7 +553,7 @@ class vehicle_Model extends Model {
         $obj = json_decode($json);
 		echo "<pre>";
 		print_r($obj);
-		echo "</pre>";
+		echo "</pre>";*/
 
 
 		

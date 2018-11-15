@@ -112,12 +112,26 @@ class Vehicle extends Controller {
 	}
 
 
-    public function getData() {
+    public function getVehicleData() {
         if(!$this->logged) {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else { 
-            $this->model->getData();
+            if(isset($_POST['vehicleRegistration'])) {
+                $this->model->addVehicle();
+            } else {   
+                $this->viewFile = "admin/getVehicleData";
+                $this->render();
+            }
+        }
+    }
+
+    public function getVehicleDataResult() {
+        if(!$this->logged) {
+			Session::destroy();
+			header("location: " . URL . "/admin/login");
+		} else {   
+            $this->model->getVehicleData();
         }
     }
 
