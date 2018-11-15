@@ -135,6 +135,26 @@ class Vehicle extends Controller {
         }
     }
 
+    public function getVehicleSpecAndOptions() {
+        if(!$this->logged) {
+			Session::destroy();
+			header("location: " . URL . "/admin/login");
+		} else {   
+            $this->model->getVehicleSpecAndOptions();
+        }
+    }
+
+    public function getVehicleMOTHistory() {
+        if(!$this->logged) {
+			Session::destroy();
+			header("location: " . URL . "/admin/login");
+		} else {   
+            $this->model->getVehicleMOTHistory();
+        }
+    }
+
+
+
     public function render() {
         //$this->model->init();
         //$this->view->category = "home";
