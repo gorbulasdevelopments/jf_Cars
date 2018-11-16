@@ -85,15 +85,19 @@
 		
 	<?php 
 	
-	include ROOT_DIR . "/view/searchBar.php";
+	//include ROOT_DIR . "/view/searchBar.php";
 	
 	?>
 	<div id="content">
-		
 <?php	
 
 	if(sizeof($this->result) > 0) {	
         foreach($this->result as $record) {	
+
+			echo "<div class=\"page_location\">";
+				echo "<a href=\"http://www.jfcars.co.uk\">Homepage</a> > <a href=\"http://www.jfcars.co.uk/showroom\"> Showroom</a> > " . $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] . " - " . $record['sale_summary'];
+			echo "</div>";
+
 			$vehicleRegistraion = $record['vehicle_registration'];
 ?>		
             <div class="vehicle_container_full">

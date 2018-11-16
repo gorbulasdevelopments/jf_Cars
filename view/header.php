@@ -6,6 +6,8 @@ $web_directory = $root_directory . "";
 $images_directory = $web_directory . "/view/asset/images";
 $root_folder = $_SERVER['DOCUMENT_ROOT'] . "";
 
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -56,11 +58,11 @@ $root_folder = $_SERVER['DOCUMENT_ROOT'] . "";
 						echo "<li><a href=\"" . URL . "/admin/sales\">SALES</a></li>";
 						echo "<li><a href=\"" . URL . "/admin/logout\">LOGOUT</a></li>";
 					} else { ?>
-						<li><a href="/">HOME</a></li>
-						<li><a href="/showroom">SHOWROOM</a></li>
-						<li><a href="/warranty">WARRANTY</a></li>
-						<li><a href="/about">ABOUT US</a></li>
-						<li><a href="/contact">CONTACT US</a></li>
+						<li><a <?php echo $this->navTitle == "home" ? "class=\"selectedNav\"" : ""; ?> href="/">HOME</a></li>
+						<li><a <?php echo $this->navTitle == "showroom" ? "class=\"selectedNav\"" : ""; ?> href="/showroom">SHOWROOM</a></li>
+						<li><a <?php echo $this->navTitle == "warranty" ? "class=\"selectedNav\"" : ""; ?> href="/warranty">WARRANTY</a></li>
+						<li><a <?php echo $this->navTitle == "about" ? "class=\"selectedNav\"" : ""; ?> href="/about">ABOUT US</a></li>
+						<li><a <?php echo $this->navTitle == "contact" ? "class=\"selectedNav\"" : ""; ?> href="/contact">CONTACT US</a></li>
 					<?php } ?>
 				</ul>
 			</div>

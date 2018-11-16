@@ -35,7 +35,7 @@
 			<div class="vehicle_image">
 				<?php 
 					if(!is_null($record['vehicle_image'])) {
-						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "#content\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
+						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
 					} else {
 						echo "<div class=\"no_image\">Awaiting Image</div>";
 					}		

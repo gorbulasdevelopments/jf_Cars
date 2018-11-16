@@ -6,13 +6,13 @@
  * and open the template in the editor.
  */
 
-class About extends Controller {
+class Contact extends Controller {
 
     function __construct() {
         parent::__construct();
 
-		$this->view->navTitle = "about";
-		$this->view->pageTitle = "About - JF Car Sales";
+		$this->view->navTitle = "contact";
+		$this->view->pageTitle = "Contact Us - JF Car Sales";
 		$this->view->pageDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
 		$this->view->canocial = URL . "/";
     }
@@ -23,9 +23,9 @@ class About extends Controller {
 
     public function render() {
         $this->model->init();
-        $this->view->category = "about";
+        $this->view->category = "contact";
         
-        $this->view->render('about/index');
+        $this->view->render('contact/index');
     }
 
 }

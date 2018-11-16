@@ -2,7 +2,7 @@
 <div id="content_container">
 			<?php 
 			
-				include ROOT_DIR . "/view/searchBar.php";
+				//include ROOT_DIR . "/view/searchBar.php";
 			
 			?>
     <div id="content">

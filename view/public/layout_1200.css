@@ -50,7 +50,7 @@ body {
 #header #navigation {
 	font-size: 12px;
 	float: right;
-	margin-top: 119px;
+	margin-top: 100px;
 }
 
 #header #navigation ul {
@@ -64,7 +64,6 @@ body {
 	display: inline-block;
 	margin-top: 0px;
 	font-size: 10px;
-	margin-bottom: 20px;
 	padding-left: 20px;
 }
 
@@ -72,8 +71,29 @@ body {
 	display: inline-block;
 	font-size: 16px;
 	letter-spacing: 1px;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
+
+#header #navigation ul li a:hover {
+	background-color: #3c484d;
+	color: #ffffff;
+}
+
+#header #navigation ul li .selectedNav {
+	background-color: #3c484d;
+	color: #ffffff;
+	text-decoration: underline;
+}
+
 /* End Header */
+
+.page_location {
+	font-size: 14px;
+}
+
 
 #index_banner {
 	display: block;
@@ -120,6 +140,7 @@ body {
 
 #search_form select {
 	width: 160px;
+	height: 30px;
 	text-align: left;
 	float: left;
 	margin-left: 20px;
@@ -127,33 +148,39 @@ body {
 	padding: 5px;
 	font-size: 12px;
 	margin-bottom: 10px;
+	border-radius: 0;
 }
 
 #search_form .filter {
 	width: 150px;
-	height: 30px;
+	height: 20px;
 	text-align: left;
 	float: left;
 	margin-left: 20px;
 	margin-right: 20px;
-	padding: 5px;
 	display: none;
+	padding: 5px;
 	background-color: #ffffff;
 	position: relative;	
 }
 
 #search_form .filter .label {
 	color: #444;
-	line-height: 30px;
+	line-height: 20px;
+	display: block;
+	height: 20px;
+	font-weight: bold;
 }
 
 #search_form .filter .close {
-	right: 10px;
-	top: 10px;
+	right: 0;
+	top: 0;
 	position: absolute;
-	z-index: 10;
 	color: #444;
 	font-weight: bold;
+	width: 20px;
+	height: 30px;
+	line-height: 30px;
 }
 
 #search_form .filter .close:hover {
@@ -181,13 +208,16 @@ body {
 /* Content */
 
 #content_container {
-	min-height: 100vh;
+	min-height: 10vh;
 	padding-bottom: 740px;
 }
 
 #content {
 	width: 1170px;
 	margin: 0px auto;
+	background-color: #ffffff;
+	padding: 20px;
+	margin-top: 20px;
 }
 
 /* End Content */
@@ -286,7 +316,7 @@ h2 {
 .vehicle_count {
 	text-align: left;
 	padding-left: 10px;
-	margin-top: 20px;
+	margin-bottom: 30px;
 }
 
 h3 {
@@ -313,7 +343,7 @@ h3 {
 	margin: 0px auto;
 	margin-top: 20px;
 	position: relative;
-	/*border: 1px dashed #6e6363;*/
+	border: 1px solid #3c484d;
 	cursor: pointer;
 	margin-bottom: 10px;
 	padding: 5px;
@@ -327,9 +357,11 @@ h3 {
 
 .vehicle_container .vehicle_image {
 	width: 700px;
+	height: 560px;
 	overflow: hidden;
 	margin-left: 20px;
 	float: left;
+	position: relative;
 }
 
 .vehicle_container .vehicle_image img {
@@ -355,8 +387,7 @@ h3 {
 	height: 35px;
 	line-height: 30px;
 	padding-left: 10px;
-	/*position: absolute;*/
-	float: left;
+	position: absolute;
 	bottom: 0px;
 }
 
@@ -404,7 +435,7 @@ h3 {
 
 .vehicle_container_full {
 	width: 95%;
-	padding: 5px;
+	padding: 20px;
 	/*border: 1px solid #c0c0c0;*/
 	/*background-color: #EAEAEA;*/
 	background-color: #ffffff;
@@ -412,7 +443,7 @@ h3 {
 	margin: 0px auto;
 	margin-top: 30px; 
 	position: relative;
-	/*border: 1px dashed #6e6363;*/
+	border: 1px solid #3c484d;
 	margin-bottom: 10px;
 }
 

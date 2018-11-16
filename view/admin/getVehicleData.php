@@ -13,7 +13,8 @@
         margin: 0px auto;
 		margin-left: 20px;
 		margin-right: 20px;
-		float: left;
+		
+		width: 600px;
     }
 	
     #vehicleTable tr {
@@ -39,7 +40,24 @@
 	#vehicleTable input {
         padding: 5px;
         text-align: center;
-        border: 1px solid #c0c0c0;
+		border: 1px solid #c0c0c0;
+		width: 300px;
+	}
+
+	#vehicleTable input[type='checkbox'] { 
+		width: 20px;
+		height: 14px;
+		float: left;
+		margin-top: 1px;
+	}
+
+	#vehicleTable .featureLabel { 
+		height: 20px;
+		line-height: 15px;
+		display: block;
+		float: left;
+		width: 90%;
+		padding-left: 10px;
 	}
 
 	#vehicleImageTable {
@@ -193,21 +211,21 @@
 					//console.log(value);
 					if(value.Fitment == "Option") {
 						console.log(value.Name + " - " + value.Description + " - " + value.Category );
-						if(value.Description.toLowerCase() !== "null") {
+						if((value.Description !== null ) && (value.Description.toLowerCase() !== "null")) {
 							if(value.Category == "Safety and Security") {
-								$('#vehicleSafety').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  " + value.Description + "<br />");
+								$('#vehicleSafety').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  <span class=\"featureLabel\">" + value.Description + "</span>");
 							};
 							if(value.Category == "Interior") {
-								$('#vehicleInterior').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  " + value.Description + "<br />");
+								$('#vehicleInterior').append("<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" + value.Description + "\">  <span class=\"featureLabel\">" + value.Description + "</span>");
 							};
 							if(value.Category == "Exterior") {
-								$('#vehicleExterior').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  " + value.Description + "<br />");
+								$('#vehicleExterior').append("<input type=\"checkbox\" name=\"vehicleExterior[]\" value=\"" + value.Description + "\">  <span class=\"featureLabel\">" + value.Description + "</span>");
 							};
 							if(value.Category == "Comfort") {
-								$('#vehicleComfort').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  " + value.Description + "<br />");
+								$('#vehicleComfort').append("<input type=\"checkbox\" name=\"vehicleComfort[]\" value=\"" + value.Description + "\">  <span class=\"featureLabel\">" + value.Description + "</span>");
 							};
 							if(value.Category == "Other") {
-								$('#vehicleOther').append("<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" + value.Description + "\">  " + value.Description + "<br />");
+								$('#vehicleOther').append("<input type=\"checkbox\" name=\"vehicleOther[]\" value=\"" + value.Description + "\">  <span class=\"featureLabel\">" + value.Description + "</span>");
 							};
 						}
 					}
@@ -305,11 +323,17 @@
 					<tr><td>Engine BHP:</td><td><input type="text" value="" id="vehicleBHP" name="vehicleBHP"></td></tr>
 					<tr><td>Engine Torque:</td><td><input type="text" value="" id="vehicleTorque" name="vehicleTorque"></td></tr>
 					<tr><td>Engine Max Speed:</td><td><input type="text" value="" id="vehicleMaxSpeed" name="vehicleMaxSpeed"></td></tr>
-					<tr><td id="vehicleSafety" colspan="2"><b>Safety Features</b><br /> <br /></td></tr>
-					<tr><td id="vehicleInterior" colspan="2"><b>Interior Features</b><br /> <br /></td></tr>
-					<tr><td id="vehicleExterior" colspan="2"><b>Exterior Features</b><br /> <br /></td></tr>
-					<tr><td id="vehicleComfort" colspan="2"><b>Comfort Features</b><br /> <br /></td></tr>
-					<tr><td id="vehicleOther" colspan="2"><b>Other Features</b><br /> <br /></td></tr>
+
+					<tr><td colspan="2"><b>Safety Features</b></td></tr>
+					<tr><td id="vehicleSafety" colspan="2"></td></tr>
+					<tr><td colspan="2"><b>Interior Features</b></td></tr>
+					<tr><td id="vehicleInterior" colspan="2"></td></tr>
+					<tr><td colspan="2"><b>Exterior Features</b></td></tr>
+					<tr><td id="vehicleExterior" colspan="2"></td></tr>
+					<tr><td colspan="2"><b>Comfort Features</b></td></tr>
+					<tr><td id="vehicleComfort" colspan="2"></td></tr>
+					<tr><td colspan="2"><b>Other Features</b></td></tr>
+					<tr><td id="vehicleOther" colspan="2"></td></tr>
 					
 					
 					<tr><td>Vehicle Extras:</td><td><textarea rows="10" cols="30" style="height: 200px; width: 250px; border: 1px solid #c0c0c0;" value="" name="vehicleExtras"></textarea></td></tr>

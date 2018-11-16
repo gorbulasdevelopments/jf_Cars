@@ -29,13 +29,13 @@
 			<div class="vehicle_container">
 			
 			<div class="vehicle_description">
-				<h2><a href="<?php echo URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration']; ?>#content"><?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></a></h2>
+				<h2><a href="<?php echo URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration']; ?>"><?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></a></h2>
 				<h3><?php echo $record['sale_summary'] ?></h3>
 			</div>
 			<div class="vehicle_image">
 				<?php 
 					if(!is_null($record['vehicle_image'])) {
-						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "#content\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
+						echo "<a href=\"" . URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "\"><img src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
 					} else {
 						echo "<div class=\"no_image\">Awaiting Image</div>";
 					}		

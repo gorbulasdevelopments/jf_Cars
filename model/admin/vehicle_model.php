@@ -37,7 +37,202 @@ class vehicle_Model extends Model {
         echo "<pre>";
         print_r($_POST);
 		echo "</pre>";
+
+		$vehicleSafety = json_encode($_POST['vehicleSafety']);
+		$vehicleInterior = json_encode($_POST['vehicleInterior']);
+		$vehicleExterior = json_encode($_POST['vehicleExterior']);
+		$vehicleComfort = json_encode($_POST['vehicleComfort']);
+		$vehicleOther = json_encode($_POST['vehicleOther']);
+
+		//echo $vehicleInterior;
+
+		//$vehicleInterior = json_decode(record['vehicle_interior']);
+
 		
+
+		$strSQL = "INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_fuel, vehicle_transmission, vehicle_engine_size, vehicle_doors, vehicle_year, vehicle_mileage, vehicle_body_style, vehicle_variant, vehicle_seats, vehicle_colour, vehicle_gears, vehicle_owners, vehicle_fuel_urban, vehicle_fuel_extra_urban, vehicle_fuel_combined, vehicle_fuel_tank, vehicle_road_tax, vehicle_road_tax_6, vehicle_road_tax_12, vehicle_insurance_group, vehicle_bhp, vehicle_torque, vehicle_max_speed, vehicle_safety, vehicle_interior, vehicle_exterior, vehicle_comfort, vehicle_other, vehicle_extras, vehicle_sold) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleFuel, :vehicleTransmission, :vehicleEngineSize, :vehicleDoors, :vehicleYear, :vehicleMileage, :vehicleBodyStyle, :vehicleVariant, :vehicleSeats, :vehicleColour, :vehicleGears, :vehicleOwners, :vehicleFuelUrban, :vehicleFuelExtraUrban, :vehicleFuelCombined, :vehicleFuelTank, :vehicleRoadTax, :vehicleRoadTax6, :vehicleRoadTax12, :vehicleInsuranceGroup, :vehicleBHP, :vehicleTorque, :vehicleMaxSpeed, :vehicleSafety, :vehicleInterior, :vehicleExterior, :vehicleComfort, :vehicleOther, :vehicleExtras, 0)";
+		echo "<pre>" . $strSQL . "</pre>";
+		
+		//$query = $this->db->prepare("INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_mpg, vehicle_road_tax, vehicle_insurance_group, vehicle_extras) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleVariant, :vehicleEngineSize, :vehicleDoors, :vehicleColour, :vehicleYear, :vehicleMileage, :vehicleFuel, :vehicleTransmission, :vehicleMPG, :vehicleRoadTax, :vehicleInsuranceGroup, :vehicleExtras)");
+
+		$query = $this->db->prepare($strSQL);
+
+		$query->bindParam(":vehicleRegistration", $_POST['vehicleRegistration'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleMake", $_POST['vehicleMake'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleModel", $_POST['vehicleModel'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleFuel", $_POST['vehicleFuel'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleTransmission", $_POST['vehicleTransmission'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleEngineSize", $_POST['vehicleEngineSize'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleDoors", $_POST['vehicleDoors'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleYear", $_POST['vehicleYear'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleMileage", $_POST['vehicleMileage'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleBodyStyle", $_POST['vehicleBodyStyle'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleVariant", $_POST['vehicleVariant'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleSeats", $_POST['vehicleSeats'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleColour", $_POST['vehicleColour'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleGears", $_POST['vehicleGears'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleOwners", $_POST['vehicleOwners'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleFuelUrban", $_POST['vehicleFuelUrban'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleFuelExtraUrban", $_POST['vehicleFuelExtraUrban'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleFuelCombined", $_POST['vehicleFuelCombined'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleFuelTank", $_POST['vehicleFuelTank'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleRoadTax", $_POST['vehicleRoadTax'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleRoadTax6", $_POST['vehicleRoadTax6'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleRoadTax12", $_POST['vehicleRoadTax12'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleInsuranceGroup", $_POST['vehicleInsuranceGroup'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleBHP", $_POST['vehicleBHP'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleTorque", $_POST['vehicleTorque'], PDO::PARAM_STR);
+		$query->bindParam(":vehicleMaxSpeed", $_POST['vehicleMaxSpeed'], PDO::PARAM_INT);
+		$query->bindParam(":vehicleSafety", $vehicleSafety, PDO::PARAM_STR);
+		$query->bindParam(":vehicleInterior", $vehicleInterior, PDO::PARAM_STR);
+		$query->bindParam(":vehicleExterior", $vehicleExterior, PDO::PARAM_STR);
+		$query->bindParam(":vehicleComfort", $vehicleComfort, PDO::PARAM_STR);
+		$query->bindParam(":vehicleOther", $vehicleOther, PDO::PARAM_STR);
+		$query->bindParam(":vehicleExtras", $vehicleExtras, PDO::PARAM_STR);                
+
+		$query->execute();
+
+		$response = $query->errorInfo();
+
+		if(isset($response[2]) && $response[2] != '') {
+			echo $response[2];
+
+			//header("Location: " . URL . "/error/addVehicle/" . $response[2]);
+		} else {
+			if($query->rowCount() > 0) {
+				$vehicleID = $this->db->lastInsertId();
+				echo "Added " . $_POST['vehicleRegistration'] . " to Database";
+				//Upload images
+				if( strtolower($_SERVER[ 'REQUEST_METHOD'] ) == 'post' && !empty( $_FILES['vehicleImages'])) {
+					$images_root_directory = ROOT_DIR . "/view/asset/images/vehicles/";
+					
+					$imageCount = sizeof($_FILES["vehicleImages"]['name']);
+					
+					$fileName = $_POST['vehicleMake'] . "/" . $_POST['vehicleModel'] . "/" . $_POST['vehicleRegistration'];
+					
+					echo "<pre>";
+					print_r($_FILES);
+					echo "</pre>";
+
+					for($i = 0; $i < $imageCount; $i++) {
+						if($_FILES["vehicleImages"]['name'][$i] != '') {
+							//Check file integrity
+							$imageCheck = getimagesize($_FILES["vehicleImages"]["tmp_name"][$i]);
+							if($imageCheck !== false) {
+								$image_directory = $images_root_directory . $fileName;	
+			
+								//Check directory exists
+								if (!file_exists($image_directory)) {
+									mkdir($image_directory, 0777, true);
+								}
+								
+								//Check file count
+								echo "<pre>" . $image_directory . "</pre>";
+								$files = scandir($image_directory);
+								$fileCount = count($files)-2;
+								echo "<pre>File Count: " . $fileCount . "</pre>";
+								$fileCount = ($fileCount + 1);						
+			
+								$currentTime = time();
+								$imageFiles = glob($image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . '.*', GLOB_MARK);
+
+								echo "There are " . count($imageFiles) . " images with the filename " . $image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . ".*<br />";
+
+								while(count($imageFiles) == 1){
+									$currentTime++;
+									$imageFiles = glob($image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . '.*', GLOB_MARK);
+								}
+
+								//Set image name
+								$imageFileType = strtolower(pathinfo($_FILES["vehicleImages"]["name"][$i], PATHINFO_EXTENSION));
+								switch($imageFileType) {
+									case 'jpg':
+										$imageName = $_POST['vehicleRegistration'] . "_" . $currentTime . ".jpg";
+										break;
+									
+									case 'png':
+										$imageName = $_POST['vehicleRegistration'] . "_" . $currentTime . ".png";
+										break;
+									
+									case 'jpeg':
+										$imageName = $_POST['vehicleRegistration'] . "_" . $currentTime . ".jpeg";
+										break;
+			
+									case 'gif':
+										$imageName = $_POST['vehicleRegistration'] . "_" . $currentTime . ".gif";
+										break;
+									
+									default:
+										$imageName = null;
+										echo "File is not in correct format.";
+										break;
+								}
+								
+								echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]["name"][$i] . ")</pre>";
+
+								//Upload file
+								if(!is_null($imageName)) {
+									move_uploaded_file($_FILES['vehicleImages']['tmp_name'][$i], $image_directory . "/" . $imageName); 
+									
+									//Add images to vehicle_image_table
+									if(isset($_POST['coverImage']) && $_POST['coverImage'][0] == $i) {
+										$coverImage = 1;
+									} else {
+										$coverImage = 0;
+									}
+									$imageSalt = base64_encode($fileName . "/" . $imageName);
+									$query = $this->db->prepare("INSERT INTO vehicle_image_table (vehicle_id, vehicle_image_url, vehicle_image_priority, vehicle_cover_image, vehicle_image_salt) VALUES (:vehicleID, :vehicleImageURL, :vehicleImagePriority, :vehicleCoverImage, :vehicleImageSalt)");
+									$query->bindParam(":vehicleID", $vehicleID, PDO::PARAM_INT);
+									$query->bindParam(":vehicleImageURL", $imageName, PDO::PARAM_STR);
+									$query->bindParam(":vehicleImagePriority", $fileCount, PDO::PARAM_INT);
+									$query->bindParam(":vehicleCoverImage", $coverImage, PDO::PARAM_INT);
+									$query->bindParam(":vehicleImageSalt", $imageSalt, PDO::PARAM_INT);
+
+									$query->execute();
+
+									$response = $query->errorInfo();
+
+									if(isset($response[2]) && $response[2] != '') {
+										//header("Location: " . URL . "/error/addVehicle/" . $response[2]);
+										echo $response[2];
+									}
+									
+									echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]['name'][$i] . ") has been uploaded to " . $image_directory . "</pre>";
+								}
+							} else {
+								echo "File is not an image.";
+							}		
+						}
+					}
+				}   
+			}
+		}
+
+		//header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
+		
+
+	}
+	
+
+	public function addVehicle2() {
+		//Add record to database
+
+        echo "<pre>";
+        print_r($_POST);
+		echo "</pre>";
+
+		$vehicleInterior = json_encode($_POST['vehicleInterior']);
+
+		echo $vehicleInterior;
+
+		//$vehicleInterior = json_decode(record['vehicle_interior']);
+
+		
+
+		$strSQL = "INSERT INTO vehicle_table ('vehicle_registration', 'vehicle_make', 'vehicle_model', 'vehicle_fuel', 'vehicle_transmission', 'vehicle_engine_size', 'vehicle_doors', 'vehicle_year', 'vehicle_mileage', 'vehicle_body_style', 'vehicle_variant', 'vehicle_seats', 'vehicle_colour', 'vehicle_gears', 'vehicle_owners', 'vehicle_fuel_urban', 'vehicle_fuel_extra_urban', 'vehicle_fuel_combined', 'vehicle_fuel_tank', 'vehicle_road_tax', 'vehicle_road_tax_6', 'vehicle_road_tax_12', 'vehicle_insurance_group', 'vehicle_bhp', 'vehicle_torque', 'vehicle_max_speed', 'vehicle_safety', 'vehicle_interior', 'vehicle_exterior', 'vehicle_comfort', 'vehicle_other', 'vehicle_extras', 'vehicle_sold') VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleFuel, :vehicleTransmission, :vehicleEngineSize, :vehicleDoors, :vehicleYear, :vehicleMileage, :vehicleBodyStyle, :vehicleVariant, :vehicleSeats, :vehicleColour, :vehicleGears, :vehicleOwners, :vehicleFuelUrban, :vehicleFuelExtraUrban, :vehicleFuelCombined, :vehicleFuelTank, :vehicleRoadTax, :vehicleRoadTax6, :vehicleRoadTax12, :vehicleInsuranceGroup, :vehicleBHP, :vehicleTorque, :vehicleMaxSpeed, :vehicleSafety, :vehicleInterior, :vehicleExterior, :vehicleComfort, :vehicleOther, :vehicleExtras, '0')";
+		//$query = $this->db->prepare("INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_mpg, vehicle_road_tax, vehicle_insurance_group, vehicle_extras) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleVariant, :vehicleEngineSize, :vehicleDoors, :vehicleColour, :vehicleYear, :vehicleMileage, :vehicleFuel, :vehicleTransmission, :vehicleMPG, :vehicleRoadTax, :vehicleInsuranceGroup, :vehicleExtras)");
+
+		/*
 		$query = $this->db->prepare("INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_mpg, vehicle_road_tax, vehicle_insurance_group, vehicle_extras) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleVariant, :vehicleEngineSize, :vehicleDoors, :vehicleColour, :vehicleYear, :vehicleMileage, :vehicleFuel, :vehicleTransmission, :vehicleMPG, :vehicleRoadTax, :vehicleInsuranceGroup, :vehicleExtras)");
 
 		$query->bindParam(":vehicleRegistration", $_POST['vehicleRegistration'], PDO::PARAM_STR);
@@ -174,7 +369,7 @@ class vehicle_Model extends Model {
 
 		header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
 		
-
+*/
     }
 
     public function updateVehicle() {

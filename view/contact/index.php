@@ -6,7 +6,7 @@
 			
 			?>
     <div id="content">
-<h2>About JF Cars</h2>
+<h2>Contact JF Cars</h2>
 
  
     </div>

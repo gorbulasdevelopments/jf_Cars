@@ -12,14 +12,14 @@ class Warranty extends Controller {
 		$this->view->doors = 'any';
 		$this->view->age = 'any';
 		$this->view->mileage = 'any';
-	}
-    
-    public function index() {
-		$this->result = $this->model->getAllSales();
-		$this->view->filterResults = $this->filterResultsToArray($this->result);
+
+		$this->view->navTitle = "warranty";
 		$this->view->pageTitle = "Warranty Information - JF Car Sales";
 		$this->view->pageDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
 		$this->view->canocial = URL . "/warranty";
+	}
+    
+    public function index() {
         $this->viewFile = "warranty/index";
 		$this->render();
 	}

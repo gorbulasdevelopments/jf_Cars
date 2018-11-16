@@ -12,6 +12,11 @@ class Index extends Controller {
 		$this->view->doors = 'any';
 		$this->view->age = 'any';
 		$this->view->mileage = 'any';
+
+		$this->view->navTitle = "home";
+		$this->view->pageTitle = "JF Car Sales";
+		$this->view->pageDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
+		$this->view->canocial = URL . "/";
     }
     
     public function index() {
