@@ -41,7 +41,7 @@
 			console.log("Populate Makes");
 			$.ajax({
 				type: "POST",
-				url: "http://www.gorbulas.co.uk/projects/jf_cars/showroom/getVehicleMakes",
+				url: "http://zion/showroom/getVehicleMakes",
 				dataType: 'json',
 				success: function(response)	{
 					let $len = response.length;
@@ -72,7 +72,7 @@
 				console.log("Populate Models");
 				$.ajax({
 					type: "POST",
-					url: "http://www.gorbulas.co.uk/projects/jf_cars/showroom/getVehicleModels",
+					url: "http://zion/showroom/getVehicleModels",
 					data: {'make':$vehicleMake},
 					dataType: 'json',
 					success: function($response) {

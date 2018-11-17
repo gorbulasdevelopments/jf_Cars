@@ -190,9 +190,9 @@
 						<span class="close">X</span>
 					</div>
 				<div id="search_buttons">
-					<input  type="submit" value="Search">
+					<input class="button" type="submit" value="Search">
 					
-					<input id="resetFilters" type="submit" value="Reset Filters">
+					<input class="button" id="resetFilters" type="submit" value="Reset Filters">
 				</div>
 			</form>
 		</div>

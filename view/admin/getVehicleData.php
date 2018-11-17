@@ -155,7 +155,7 @@
 			
 			//alert($("#vehicleSearchRegistration :selected").text());
 
-			var $vehicleData = $.post('http://localhost/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
+			var $vehicleData = $.post('http://zion/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
 				console.log(vehicleDataResponse);
 
 				var obj = vehicleDataResponse;
@@ -202,7 +202,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleSpecAndOptions = $.post('http://localhost/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleSpecAndOptions = $.post('http://zion/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;
@@ -245,7 +245,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleMOTHistory = $.post('http://localhost/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleMOTHistory = $.post('http://zion/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;

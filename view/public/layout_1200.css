@@ -7,9 +7,19 @@ body {
 	background-color:#f4f4f4;
 }
 
+/** Global **/
+
 #header_container, #content_container ,#footer_container {
 	width: 100%;
 	float: left;
+}
+
+.button {
+	border: 0;
+	padding: 20px;
+	background: #3c484d;
+	color: #f4f4f4;
+	font-weight: bold;
 }
 
 /* Header */
@@ -64,7 +74,7 @@ body {
 	display: inline-block;
 	margin-top: 0px;
 	font-size: 10px;
-	padding-left: 20px;
+	padding-left: 10px;
 }
 
 #header #navigation ul li a {
@@ -73,19 +83,20 @@ body {
 	letter-spacing: 1px;
 	height: 40px;
 	line-height: 40px;
-	padding-left: 5px;
-	padding-right: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #header #navigation ul li a:hover {
 	background-color: #3c484d;
 	color: #ffffff;
+	text-decoration: none;
 }
 
 #header #navigation ul li .selectedNav {
 	background-color: #3c484d;
 	color: #ffffff;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* End Header */
@@ -343,7 +354,7 @@ h3 {
 	margin: 0px auto;
 	margin-top: 20px;
 	position: relative;
-	border: 1px solid #3c484d;
+	border: 1px solid #3c484d2e;
 	cursor: pointer;
 	margin-bottom: 10px;
 	padding: 5px;
@@ -357,7 +368,7 @@ h3 {
 
 .vehicle_container .vehicle_image {
 	width: 700px;
-	height: 560px;
+	/*height: 560px;*/
 	overflow: hidden;
 	margin-left: 20px;
 	float: left;
@@ -443,7 +454,7 @@ h3 {
 	margin: 0px auto;
 	margin-top: 30px; 
 	position: relative;
-	border: 1px solid #3c484d;
+	border: 1px solid #3c484d2e;
 	margin-bottom: 10px;
 }
 
