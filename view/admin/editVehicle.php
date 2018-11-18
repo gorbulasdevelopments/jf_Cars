@@ -102,7 +102,7 @@ echo "</pre>";
 						echo "<tr><td>Vehicle Insurance Group:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_insurance_group'] . "\" name=\"vehicleInsuranceGroup\"></td></tr>";
 						echo "<tr><td>Vehicle Extras:</td><td><textarea rows=\"10\" cols=\"30\" style=\"height: 200px; width: 250px; border: 1px solid #c0c0c0;\" value=\"" . $vehicle['vehicle_extras'] . "\" name=\"vehicleExtras\"></textarea></td></tr>";
 						echo "</table>";
-                    }
+                    
 				?>
 				
 				<center>
@@ -113,16 +113,18 @@ echo "</pre>";
 			
 			<h3>Vehicle Images</h3>
 
-            <form id="vehicleImageForm">
+            <form id="vehicleImageForm" method="POST" action="<?php echo URL; ?>/admin/vehicles/updateVehicleImages">
 			<?php 
-			
+			echo "<input type=\"hidden\" name=\"vehicleID\" value=\"" . $vehicle['vehicle_id'] . "\" />";
+			echo "<input type=\"hidden\" name=\"vehicleRegistration\" value=\"" . $vehicle['vehicle_registration'] . "\" />";
             echo "<table id=\"vehicleImageTable\">";
             echo "<tr><th>Image</th><th>Priority</th><th>Cover Image</th><th>Action</th></tr>";
             foreach($this->vehicleImages as $image) {
 				$imageSalt = base64_encode($image['vehicle_make'] . "/" . $image['vehicle_model'] . "/" . $image['vehicle_registration'] . "/" . $image['vehicle_image_url']);
-                echo "<tr class=\"vehicleImage\">";
+				echo "<tr class=\"vehicleImage\">";
+				echo "<input type=\"hidden\" name=\"imageID[]\" value=\"" . $image['vehicle_image_id'] . "\">";
                 echo "<td><img class=\"vehicleImages\" src=\"" . URL . "/media/media.jpg?id=" . $imageSalt ."\" style=\"width: 300px; margin: 0px auto;\" /></td>";
-                echo "<td style=\"width: 100px;\"><input type=\"text\" value=\"" . $image['vehicle_image_priority'] . "\" /></td>";
+                echo "<td style=\"width: 100px;\"><input name=\"imagePriority[]\" type=\"text\" value=\"" . $image['vehicle_image_priority'] . "\" /></td>";
 				if($image['vehicle_cover_image'] == 1) {
 					echo "<td><input type=\"checkbox\" class=\"radio\" value=\""  . $imageSalt . "\" checked name=\"coverImage[]\" /></td>";
 				} else {
@@ -135,9 +137,11 @@ echo "</pre>";
 			?>
 			
 			<center>
-				<input style="padding: 20px;" type="submit" value="Update Vehicle Images">
+				<input class="button" style="padding: 20px;" type="submit" value="Update Vehicle Images">
 			</center>
 			</form>
+		<?php } ?>
+
 			<div class="spacer"></div>
 			<h3>Upload Images</h3>
    

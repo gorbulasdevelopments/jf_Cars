@@ -25,6 +25,10 @@ class Vehicle extends Controller {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else {
+            echo "<pre>";
+            print_r($_POST);
+            echo "</pre>";
+            exit;
             if(isset($_POST['vehicleRegistration'])) {
                 $this->model->addVehicle();
             } else {   
@@ -55,19 +59,11 @@ class Vehicle extends Controller {
             if(isset($_POST['vehicleRegistration'])) {
                 $this->model->updateVehicle();
             } else {
-
                 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    
                 $uri_array = explode('/', $uri);
-                
                 $vehicleRegistration = end($uri_array);
-                
-                echo "<pre>";
                 $this->view->vehicleResult = $this->model->getVehicleDetails($vehicleRegistration);
-                echo "</pre>";
-
                 $this->view->vehicleImages = $this->model->getVehicleImages($vehicleRegistration);
-    
                 $this->viewFile = "admin/editVehicle";
                 $this->render();
             }
@@ -77,7 +73,7 @@ class Vehicle extends Controller {
         }
 
     }
-	
+
 	public function addImage() {
 		if(!$this->logged) {
 			Session::destroy();
@@ -92,24 +88,29 @@ class Vehicle extends Controller {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else { 
-           // print_r($_POST);
-
             if(isset($_POST['deleteConfirm']) && $_POST['deleteConfirm'] == 1) {
                 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        
                 $uri_array = explode('/', $uri);
-                    
                 $imageSalt = end($uri_array);
                 $response = $this->model->removeImage($imageSalt);
-
-                echo $response;
-
-
-            }
-
-            //$this->model->removeVehicleImage();
+            } else {
+                header("location: " . URL . "/admin/vehicles");
+            }  
         }
-	}
+    }
+    
+    public function updateVehicleImages() {
+        if(!$this->logged) {
+			Session::destroy();
+			header("location: " . URL . "/admin/login");
+		} else { 
+            if(isset($_POST['vehicleID'])) {
+                $this->model->updateVehicleImages();
+            } else {
+                header("location: " . URL . "/admin/vehicles");
+            }            
+        }
+    }
 
 
     public function getVehicleData() {

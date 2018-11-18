@@ -26,7 +26,7 @@ class vehicle_Model extends Model {
 	
 	public function getVehicleImages($vehicleRegistration) {
 		//$strSQL = $this->db->prepare("SELECT DISTINCT vt.vehicle_registration, vt.vehicle_make, vt.vehicle_model, vit.vehicle_image_url, vit.vehicle_image_priority, vehicle_cover_image from (vehicle_table vt join sale_table st on st.vehicle_id = vt.vehicle_id) join vehicle_image_table vit on vt.vehicle_id = vit.vehicle_id WHERE vt.vehicle_registration = '" . $vehicleRegistration . "' ORDER BY vit.vehicle_cover_image DESC,CASE WHEN vit.vehicle_cover_image THEN vit.vehicle_image_priority  ELSE vit.vehicle_image_priority END ASC;");
-		$strSQL = $this->db->prepare("SELECT vt.vehicle_registration, vt.vehicle_make, vt.vehicle_model, vit.vehicle_image_url, vit.vehicle_image_priority, vehicle_cover_image from vehicle_table vt join vehicle_image_table vit on vt.vehicle_id = vit.vehicle_id WHERE vt.vehicle_registration = '" . $vehicleRegistration . "' ORDER BY vit.vehicle_cover_image DESC,CASE WHEN vit.vehicle_cover_image THEN vit.vehicle_image_priority  ELSE vit.vehicle_image_priority END ASC;");
+		$strSQL = $this->db->prepare("SELECT vehicle_image_id, vt.vehicle_id, vt.vehicle_registration, vt.vehicle_make, vt.vehicle_model, vit.vehicle_image_url, vit.vehicle_image_priority, vehicle_cover_image from vehicle_table vt join vehicle_image_table vit on vt.vehicle_id = vit.vehicle_id WHERE vt.vehicle_registration = '" . $vehicleRegistration . "' ORDER BY vit.vehicle_cover_image DESC,CASE WHEN vit.vehicle_cover_image THEN vit.vehicle_image_priority  ELSE vit.vehicle_image_priority END ASC;");
         $strSQL->execute();
         return $strSQL->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -95,9 +95,7 @@ class vehicle_Model extends Model {
 		$response = $query->errorInfo();
 
 		if(isset($response[2]) && $response[2] != '') {
-			echo $response[2];
-
-			//header("Location: " . URL . "/error/addVehicle/" . $response[2]);
+			header("Location: " . URL . "/error/addVehicle/" . $response[2]);
 		} else {
 			if($query->rowCount() > 0) {
 				$vehicleID = $this->db->lastInsertId();
@@ -374,10 +372,6 @@ class vehicle_Model extends Model {
 
     public function updateVehicle() {
 		
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
-		
      $query = $this->db->prepare("UPDATE vehicle_table SET  
             vehicle_registration = :vehicleRegistration,
             vehicle_make = :vehicleMake,
@@ -390,7 +384,7 @@ class vehicle_Model extends Model {
             vehicle_mileage = :vehicleMileage,
             vehicle_fuel = :vehicleFuel,
             vehicle_transmission = :vehicleTransmission,
-            vehicle_mpg = :vehicleMPG,
+            vehicle_fuel_combined = :vehicleMPG,
             vehicle_road_tax = :vehicleRoadTax,
             vehicle_insurance_group = :vehicleInsuranceGroup,
             vehicle_extras = :vehicleExtras
@@ -407,30 +401,28 @@ class vehicle_Model extends Model {
         $query->bindParam(":vehicleMileage", $_POST['vehicleMileage']);
         $query->bindParam(":vehicleFuel", $_POST['vehicleFuel']);
         $query->bindParam(":vehicleTransmission", $_POST['vehicleTransmission']);
-        $query->bindParam(":vehicleMPG", $_POST['vehicleMPG']);
+        $query->bindParam(":vehicleMPG", $_POST['vehicleMPG'], PDO::PARAM_STR);
         $query->bindParam(":vehicleRoadTax", $_POST['vehicleRoadTax']);
         $query->bindParam(":vehicleInsuranceGroup", $_POST['vehicleInsuranceGroup']);
         $query->bindParam(":vehicleExtras", $_POST['vehicleExtras']);                   
         $query->bindParam(":vehicleID", $_POST['vehicleID']);               
 
-        echo "<pre>";
-        //print_r($data);
-        echo "</pre>";
-
 		$query->execute();
+		$response = $query->errorInfo();
 
-
-        if($query->rowCount() > 0) {
-            header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
-        };
-
+		if(isset($response[2]) && $response[2] != '') {
+			$controller = new Errors();
+			$controller->functionError("vehicle_model/updateVehicleImages()", "Failed to update vehicle details due to <b>" . $response[2] . "</b>");
+		} else {	
+			header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
+		}
     }
 	
 	public function addVehicleImage() {
-		echo "<pre>";
+		/*echo "<pre>";
 		print_r($_POST);
 		print_r($_FILES);
-		echo "</pre>";
+		echo "</pre>";*/
 		
 		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -457,10 +449,10 @@ class vehicle_Model extends Model {
 					
 					$fileName = $vehicle['vehicle_make'] . "/" . $vehicle['vehicle_model'] . "/" . $vehicle['vehicle_registration'];
 					
-					echo "<pre>";
+					/*echo "<pre>";
 					print_r($_FILES);
 					echo "</pre>";
-
+					*/
 					for($i = 0; $i < $imageCount; $i++) {
 						if($_FILES["vehicleImages"]['name'][$i] != '') {
 							//Check file integrity
@@ -696,6 +688,50 @@ class vehicle_Model extends Model {
 			return false;
 		}
 	}
+
+    public function updateVehicleImages() {
+		if(isset($_POST['imageID']) && is_array($_POST['imageID'])) {
+			for($i = 0; $i < sizeof($_POST['imageID']); $i++) {
+				$query = $this->db->prepare("UPDATE vehicle_image_table SET vehicle_image_priority = :imagePriority WHERE vehicle_id = :vehicleID AND vehicle_image_id = :imageID");
+				$query->bindParam(":imagePriority", $_POST['imagePriority'][$i], PDO::PARAM_INT);
+				$query->bindParam(":vehicleID", $_POST['vehicleID'], PDO::PARAM_INT);
+				$query->bindParam(":imageID", $_POST['imageID'][$i], PDO::PARAM_INT);
+				$query->execute();
+				$response = $query->errorInfo();
+				if(isset($response[2]) && $response[2] != '') {
+					$controller = new Errors();
+					$controller->functionError("vehicle_model/updateVehicleImages()", "Failed to update image priorities");
+				} 
+			}
+		}
+
+		if(isset($_POST['coverImage']) && is_array($_POST['coverImage'])) {
+			$imageSalt = $_POST['coverImage'][0];
+			$query = $this->db->prepare("UPDATE vehicle_image_table SET vehicle_cover_image = 0 WHERE vehicle_id = :vehicleID");
+			$query->bindParam(":vehicleID", $_POST['vehicleID'], PDO::PARAM_INT);
+			$query->execute();
+			$response = $query->errorInfo();
+			if(isset($response[2]) && $response[2] != '') {
+				$controller = new Errors();
+				$controller->functionError("vehicle_model/updateVehicleImages()", "Failed to reset cover images");
+			} else {
+				$query = $this->db->prepare("UPDATE vehicle_image_table SET vehicle_cover_image = 1 WHERE vehicle_id = :vehicleID AND vehicle_image_salt = :imageSalt");
+				$query->bindParam(":vehicleID", $_POST['vehicleID'], PDO::PARAM_INT);
+				$query->bindParam(":imageSalt", $imageSalt, PDO::PARAM_STR);
+				$query->execute();
+				$response = $query->errorInfo();
+				if(isset($response[2]) && $response[2] != '') {
+					$controller = new Errors();
+					$controller->functionError("vehicle_model/updateVehicleImages()", "Failed to update cover image");
+				} else {
+					header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
+				}
+			}
+		} else {
+			$controller = new Errors();
+			$controller->functionError("vehicle_model/updateVehicleImages()", "No cover image selected");
+		}
+    }
 
 	public function getVehicleMOTHistory() {
 		$json = file_get_contents("https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleAndMotHistory?v=2&api_nullitems=1&auth_apikey=a6105897-35ac-4af3-9d70-fbb4568c5839&key_VRM=" . $_POST['vehicleRegistration'] . "");
