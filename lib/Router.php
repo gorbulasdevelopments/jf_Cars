@@ -155,14 +155,14 @@ class Router {
     }
 
     public static function routeNotFound($url) {
-        require 'controller/error.php';
+        //require 'controller/error.php';
         $controller = new Errors();
         $controller->PageNotFound($url);
         return false;
     }
 
     public static function methodNotFound($method) {
-        require 'controller/error.php';
+        //require 'controller/error.php';
         $controller = new Errors();
         $controller->MethodNotFound($method);
         return false;
