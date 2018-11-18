@@ -28,8 +28,8 @@
 			</div>
 			<div id="financial_disclosure">
 			<p><b>Financial Disclosure</b><br /><br />
-				JF Car Sales Ltd. act as a non-independent credit intermediary for a limited number of lenders and are able to offer a limited number of finance products from these providers. 
-				JF Cars Sales Ltd. is an Appointed Representative of AutoProtect (MBI) Limited who are authorised and regulated by the Financial Conduct Authority, their firm reference number is ######. 
+				JF Car Sales act as a non-independent credit intermediary for a limited number of lenders and are able to offer a limited number of finance products from these providers. 
+				JF Cars Sales is an Appointed Representative of AutoProtect (MBI) Limited who are authorised and regulated by the Financial Conduct Authority, their firm reference number is ######. 
 				You can check this on the FCA's website www.fca.gov.uk or by contacting the FCA on 0800 1116768. Our authorisation reference number is ######. 
 				For any concerns or queries relating to authorised products please contact us by emailing to sales@jfcars.co.uk.</p>
 			</div>
