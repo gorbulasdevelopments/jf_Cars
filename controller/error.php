@@ -11,7 +11,8 @@ class Errors extends Controller {
 	}
 	
 	public function PageNotFound($url) {
-		$this->view->errorMessage = "This page <b>$url</b> does not exist";
+		
+		$this->view->errorMessage = "This controller <b>$url</b> does not exist";
 		$this->render();
 	}
 	
@@ -21,7 +22,8 @@ class Errors extends Controller {
 	}
 
 	public function functionError($function, $message) {
-		$this->view->errorMessage = "The function <b>$function</b> failed due to: <b>$message</b>";
+		$this->view->errorFunction = $function;
+		$this->view->errorMessage = $message;
 		$this->render();
 	}
 
