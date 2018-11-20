@@ -22,6 +22,7 @@ class Index extends Controller {
     public function index() {
 		$this->result = $this->model->getAllSales();
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
+		$this->view->latestSale = $this->model->getLatestSale();
 		$this->render();
     }
 
