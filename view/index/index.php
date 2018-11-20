@@ -31,34 +31,47 @@
 		<div style="text-align: center;">
 			<h1>Latest additions to our stock</h1>
 			<div class="spacer"></div>
-			<div class="vehicle_container">
-				
+
+			<?php foreach($this->latestSale as $record) {	 ?>
+				<div class="vehicle_container">
+							
 				<div class="vehicle_description">
-					<h2><a href="/showroom/FORD/FOCUS/DS57NAO">2008 FORD FOCUS</a></h2>
-					<h3>Hello wolrd</h3>
+					<h2><a href="/showroom/"<?php echo $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration']; ?>><?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></a></h2>
+					<h3><?php echo $record['sale_summary'] ?></h3>
 				</div>
 				<div class="vehicle_image">
-					<a href="/showroom/FORD/FOCUS/DS57NAO"><img src="/media/media.jpg?id=Rk9SRC9GT0NVUy9EUzU3TkFPL0RTNTdOQU9fMTU0MjUzNjMxMy5qcGc="></a>				
-					<div class="vehicle_image_count">1 Image</div>
+					<?php 
+						if(!is_null($record['vehicle_image'])) {
+							echo "<a href=\"/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "\"><img src=\"/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image']) ."\" /></a>";
+						} else {
+							echo "<div class=\"no_image\">Awaiting Image</div>";
+						}		
+					?>
+					
+					<div class="vehicle_image_count"><?php echo $record['vehicle_image_count']; ?> Image<?php echo $record['vehicle_image_count'] == 1 ? '' : 's'; ?></div>
 				</div>
-				
+
 				<div class="vehicle_details">
 					<ul>
-						<li>ENGINE SIZE: 1596</li>
-						<li>MILEAGE: 5000</li>
-						<li>FUEL TYPE: PETROL</li>
-						<li>YEAR: 2008</li>
-						<li>TRANSMISSION: MANUAL</li>
-						<li>INSURANCE GROUP: 7</li>
-						<li>MPG: </li>
-						<li>ROAD TAX: G</li>
+						<li>ENGINE SIZE: <?php echo $record['vehicle_engine_size'] ?></li>
+						<li>MILEAGE: <?php echo $record['vehicle_mileage'] ?></li>
+						<li>FUEL TYPE: <?php echo $record['vehicle_fuel'] ?></li>
+						<li>YEAR: <?php echo $record['vehicle_year'] ?></li>
+						<li>TRANSMISSION: <?php echo $record['vehicle_transmission'] ?></li>
+						<li>INSURANCE GROUP: <?php echo $record['vehicle_insurance_group'] ?></li>
+						<li>MPG: <?php echo $record['vehicle_mpg'] ?></li>
+						<li>ROAD TAX: <?php echo $record['vehicle_road_tax'] ?></li>
 					</ul>
-								</div>
-				
-				<div class="vehicle_price">
-					<h1>£20000</h1>
+					<?php //echo substr(md5($record['sale_id']), 0, 8); ?>
 				</div>
-			</div>
+
+				<div class="vehicle_price">
+					<h1>£<?php echo $record['sale_price'] ?></h1>
+				</div>
+				</div>
+			<?php
+			}		
+			?>
 		</div>
 		<div class="spacer"></div>
 		<div style="width: 100%; height: 420px;">
