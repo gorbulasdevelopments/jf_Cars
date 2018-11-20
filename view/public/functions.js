@@ -41,7 +41,7 @@
 			console.log("Populate Makes");
 			$.ajax({
 				type: "POST",
-				url: "http://zion/showroom/getVehicleMakes",
+				url: "/showroom/getVehicleMakes",
 				dataType: 'json',
 				success: function(response)	{
 					let $len = response.length;
@@ -72,7 +72,7 @@
 				console.log("Populate Models");
 				$.ajax({
 					type: "POST",
-					url: "http://zion/showroom/getVehicleModels",
+					url: "/showroom/getVehicleModels",
 					data: {'make':$vehicleMake},
 					dataType: 'json',
 					success: function($response) {
@@ -146,7 +146,7 @@
 				
 			$.ajax({
 				type: "POST",
-				url: "http://zion/showroom/filterResults",
+				url: "/showroom/filterResults",
 				data: {source:$object, filter:$filter},
 				dataType: 'json',
 				success: function($response)	{
