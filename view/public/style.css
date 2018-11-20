@@ -33,14 +33,27 @@ h3 {
 
 p { 
 	color: #6e6363;
-	font-size: 13px;
+	font-size: 14px;
+	letter-spacing: 1px;
 	line-height: 20px;
 	padding: 20px;
 }
 
-a, a:visited {
-	text-decoration: none;
+ul {
+	padding-left: 40px;
+}
+
+ul li { 
 	color: #6e6363;
+	font-size: 14px;
+	letter-spacing: 1px;
+	line-height: 2;
+}
+
+a, a:visited {
+	color: #f75070;
+	text-decoration: none;
+	/*color: #6e6363;*/
 }
 
 a:hover {

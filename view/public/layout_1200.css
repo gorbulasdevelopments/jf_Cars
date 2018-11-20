@@ -85,6 +85,7 @@ body {
 	line-height: 40px;
 	padding-left: 10px;
 	padding-right: 10px;
+	color: #6e6363;
 }
 
 #header #navigation ul li a:hover {
@@ -317,7 +318,7 @@ h1 {
 h2 {
 	color: #3c484d;
 	font-size: 1.2em;
-	font-weight: bold;
+	font-weight: normal;
 	line-height: 100%;
 	padding-left: 10px;
 	padding-top: 10px;
@@ -333,7 +334,7 @@ h2 {
 
 h3 {
 	color: #f75070;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: bold;
 	line-height: 100%;
 	padding: 10px;
@@ -366,6 +367,10 @@ h3 {
 .vehicle_container .vehicle_description {
 	margin-bottom: 10px;
 	height: 65px;
+}
+
+.vehicle_container .vehicle_description a {
+	color: #6e6363;
 }
 
 .vehicle_container .vehicle_image {
@@ -412,6 +417,7 @@ h3 {
 }
 
 .vehicle_details ul {
+	padding-left: 0px;
 	margin-left: 20px;
 	list-style-type: none;
 }
@@ -668,6 +674,7 @@ h3 {
   .carousel-inner > .next,
   .carousel-inner > .prev {
 	display: block;
+	
   }
   .carousel-inner > .active {
 	left: 0;
@@ -705,6 +712,8 @@ h3 {
 	right: 0; 
 	margin-left: auto; 
 	margin-right: auto; 
+	padding-left: 10%; 
+	padding-right: 10%;
 }
 
 .reviewAuthor {
