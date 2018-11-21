@@ -68,10 +68,12 @@
 				<div class="vehicle_price">
 					<h1>£<?php echo $record['sale_price'] ?></h1>
 				</div>
+				<div style="clear: both"></div>
 				</div>
 			<?php
 			}		
 			?>
+			
 		</div>
 		<div class="spacer"></div>
 		<div style="width: 100%; height: 420px;">

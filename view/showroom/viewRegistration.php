@@ -95,7 +95,7 @@
         foreach($this->result as $record) {	
 
 			echo "<div class=\"page_location\">";
-				echo "<a href=\"http://www.jfcars.co.uk\">Homepage</a> > <a href=\"http://www.jfcars.co.uk/showroom\"> Showroom</a> > " . $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] . " - " . $record['sale_summary'];
+				echo "<a href=\"/\">Homepage</a> > <a href=\"/showroom\"> Showroom</a> > <a href=\"/showroom/" . $record['vehicle_make'] . "\"> " . $record['vehicle_make'] . " </a> > <a href=\"/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "\"> " . $record['vehicle_model'] . " </a> > "  . $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] . " - " . $record['vehicle_registration'];
 			echo "</div>";
 
 			$vehicleRegistraion = $record['vehicle_registration'];
@@ -121,21 +121,17 @@
 
 				
 			</div>
-
-			
-			<div style="clear: both"></div>
-
-			<div style="width: 100%; margin-bottom: 40px;">
-				<pre>Sale Description</pre>
-				<br /><br />
-				<b>This vehicle also has:</b><br /><br />
-				<?php echo $record['sale_summary'] ?>
-
+			<div style=" margin-bottom: 40px;float: right; padding-right: 30px; text-align: center;">
+				<div style=""><h3>Vehicle Registration</h3></div>
+				<div style=" background-color: #eed90c; border: 2px solid #000000; font-size: 28px; width: 200px; text-align: center; height: 40px; line-height: 40px; padding: 10px; border-radius: 10px;"><?php echo $record['vehicle_registration']; ?></div>
+				<div style="margin-top: 40px;">Sale Summary</div>
 			</div>
 
-			<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 20px;">
-				<h1>Vehicle Details</h1>
-			</div>
+			<div class="spacer"></div>
+			<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 40px;">
+				<h1>Vehicle Summary</h1>
+			</div>	
+			<div id="vehicleSummary">
 				<div class="vehicleDetails">
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
@@ -156,6 +152,14 @@
 					</div>
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
+							<span>Body Style:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_body_style'] ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
 							<span>Doors:</span>
 						</div>
 						<div class="detailContainerValue">
@@ -164,13 +168,12 @@
 					</div>
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
-							<span>Colour:</span>
+							<span>Seats:</span>
 						</div>
 						<div class="detailContainerValue">
-							<?php echo $record['vehicle_colour'] ?>
+							<?php echo $record['vehicle_seats'] ?>
 						</div>
 					</div>
-
 					<div class="detailContainer">
 						<div class="detailContainerLabel">
 							<span>Colour:</span>
@@ -179,31 +182,146 @@
 							<?php echo $record['vehicle_colour'] ?>
 						</div>
 					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Engine Size:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo ceil( $record['vehicle_engine_size'] / 100 ) * 100; ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Transmission:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_transmission']; ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Gears:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_gears']; ?>
+						</div>
+					</div>
 				</div>
-				<div style="clear: both" />
-
-				<br />
-				<br />
-				<br />
-				<br />
-				<ul>
-
-					<li>YEAR: <?php echo $record['vehicle_year'] ?></li>
-					<li>ENGINE SIZE: <?php echo $record['vehicle_engine_size'] ?></li>
-					<li>FUEL TYPE: <?php echo $record['vehicle_fuel'] ?></li>
-					<li>TRANSMISSION: <?php echo $record['vehicle_transmission'] ?></li>
-					<li>MILEAGE: <?php echo $record['vehicle_mileage'] ?></li>
-					<br />
-					<li>INSURANCE GROUP: <?php echo $record['vehicle_insurance_group'] ?></li>
-					<li>MPG: <?php echo $record['vehicle_mpg'] ?></li>
-					<li>ROAD TAX: <?php echo $record['vehicle_road_tax'] ?></li>
-				</ul>
-				<div style="clear: both"></div>
+				<div style="clear: both"> </div>
 			</div>
-			<div style="clear: both"></div>
+
+			<div class="spacer"></div>
+
+			<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 40px;">
+				<h1>Performance and Economy</h1>
+			</div>	
+			<div id="vehiclePerformance">
+				<div class="vehicleDetails">
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Fuel Consumption (urban):</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_fuel_urban'] ?> mpg
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Fuel Consumption (extra urban):</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_fuel_extra_urban'] ?> mpg
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Fuel Consumption (combined):</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_fuel_combined'] ?> mpg
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Engine Power:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_bhp'] ?> bhp
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Torque:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_torque'] ?> lbs/ft
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Top Speed:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_max_speed'] ?> mph
+						</div>
+					</div>
+				</div>
+				<div style="clear: both"> </div>
+			</div>
+
+			<div class="spacer"></div>
+
+<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 40px;">
+				<h1>Running Costs</h1>
+			</div>
+<div id="vehicleRunningCosts">
+				<div class="vehicleDetails">
+					
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Road Tax (6 Months):</span>
+						</div>
+						<div class="detailContainerValue">
+							£<?php echo $record['vehicle_road_tax_6'] ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Road Tax (12 months):</span>
+						</div>
+						<div class="detailContainerValue">
+							£<?php echo $record['vehicle_road_tax_12'] ?>
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Fuel Tank:</span>
+						</div>
+						<div class="detailContainerValue">
+							<?php echo $record['vehicle_fuel_tank'] ?> litres
+						</div>
+					</div>
+					<div class="detailContainer">
+						<div class="detailContainerLabel">
+							<span>Filling Cost (Based on £1.18 per litre):</span>
+						</div>
+						<div class="detailContainerValue">
+							£<?php echo ($record['vehicle_fuel_tank'] * 1.18) ?>
+						</div>
+					</div>
+					
+				</div>
+				<div style="clear: both"> </div>
+			</div>
 			
-			<div style="float: left; width: 100%; text-align: center; margin-top: 30px;">
+			<div id="vehicleExtras" style="float: left; width: 100%; text-align: center; margin-top: 30px;">
 				<h1>Vehicle Extras</h1>
+				<?php echo $record['vehicle_safety'] ?><br />
+				<?php echo $record['vehicle_interior'] ?><br />
+				<?php echo $record['vehicle_exterior'] ?><br />
+				<?php echo $record['vehicle_comfort'] ?><br />
+				<?php echo $record['vehicle_other'] ?><br />
+
 			</div>
 			
 			<div class="vehicle_details" style="margin-top: 30px; float: left; line-height: 30px; padding-left: 20px;">

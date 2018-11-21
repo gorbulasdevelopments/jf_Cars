@@ -43,6 +43,10 @@ ul {
 	padding-left: 40px;
 }
 
+#navigation ul {
+	padding-left: 0px;
+}
+
 ul li { 
 	color: #6e6363;
 	font-size: 14px;
@@ -50,7 +54,12 @@ ul li {
 	line-height: 2;
 }
 
-a, a:visited {
+#navigation a, #navigation a:visited {
+	text-decoration: none;
+	color: #6e6363;
+}
+
+p a, p a:visited {
 	color: #f75070;
 	text-decoration: none;
 	/*color: #6e6363;*/

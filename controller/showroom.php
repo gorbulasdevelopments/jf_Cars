@@ -21,17 +21,20 @@ class Showroom extends Controller {
     
     public function index() {
 		$this->result = $this->model->getAllSales();
-
         $this->view->result = $this->result;
-		
 		$this->view->vehicleImages = $this->model->getAllImages();
-		
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
-
-
         $this->viewFile = "showroom/index";
 		$this->render();
-    }
+	}
+	
+	public function getMakes() {
+		echo "Get Makes";
+	}
+
+	public function getModels() {
+		echo "Get Models";
+	}
 	
 	public function getRegistration() {
 		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
