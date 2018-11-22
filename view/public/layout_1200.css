@@ -327,20 +327,21 @@ h2 {
 	padding-right: 10px;
 }
 
+h3 {
+	color: #f75070;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 100%;
+	padding: 10px;
+	letter-spacing: 2px;
+}
+
 .vehicle_count {
 	text-align: left;
 	padding-left: 10px;
 	margin-bottom: 30px;
 }
 
-h3 {
-	color: #f75070;
-	font-size: 13px;
-	font-weight: bold;
-	line-height: 100%;
-	padding: 10px;
-	letter-spacing: 2px;
-}
 
 .spacer {
 	clear: both;
@@ -516,6 +517,19 @@ h3 {
 	width: 30px;
 }
 
+#vehicleNumberPlate {
+	background-color: #eed90c;
+	border: 2px solid #000000;
+	font-size: 38px;
+	width: 200px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	padding: 10px;
+	border-radius: 10px;
+	margin: 0px auto;
+}
+
 #vehicle_price {
 	position: absolute;
 	bottom: 10px;
@@ -547,6 +561,7 @@ h3 {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #c0c0c0;
+	color: #3c484d;
 }
 
 
@@ -634,11 +649,30 @@ h3 {
 	font-weight: bold;
 }
 
+
+#vehicleExtras .vehicleDetails {
+	width: 80%;
+	margin: 0px auto;
+}
+
+#vehicleExtras .detailContainer {
+	width: 100%;
+	float: left;
+	text-align: left;
+	padding-left: 20px;
+}
+
+#vehicleExtras .vehicleDetails .detailContainer:nth-last-child(-n+1) {
+	border-bottom: 0px solid #c0c0c0;
+}
+
+
 #enquiryContainer {
-	width: 100%; 
-	float: left; 
+	float: left;
 	text-align: center;
-	height: 600px;
+	width: 270px;
+	margin: 0px auto;
+	margin-top: 20px;
 }
 
 #vehicleEnquiryForm {
@@ -647,10 +681,8 @@ h3 {
 }
 
 #enquiryTable {	
-	width: 600px;
 	margin: 0px auto;
 	border: 2px solid #c0c0c0;
-	margin-top: 20px;
 }
 
 #enquiryTable tr {
@@ -663,25 +695,34 @@ h3 {
 
 #enquiryTable tr td select {
 	display: block;
+
 	margin: 0px auto;
+
+	font-size: 12px;
+
+	width: 200px;
 }
 
 #enquiryTable tr td option {
-	padding: 10px;
-	width: 100%;	
+padding: 10px;
+
+width: 150px;
+
+font-size: 12px;
 }
 
 #enquiryTable tr td input {
-	padding: 10px;
-	width: 100%;
-	display: block;
-	margin: 0px auto;
+padding: 10px;
+
+width: 178px;
 }
 
 #enquiryTable tr td textarea {
-	width: 100%;
-	display: block;
-	margin: 0px auto;
+width: 188px;
+ padding: 5px;
+height: 100px;
+font-family: "Montserrat", sans-serif;
+font-size: 12px;
 }
 
 #enquiryFormContainer {

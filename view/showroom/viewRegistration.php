@@ -1,80 +1,5 @@
 <style type="text/css">
 
-	#vehicleEnquiryForm {
-	}
-
-	#enquiryTable {
-		
-	}
-
-	#enquiryTable tr {
-		
-	}
-
-	#enquiryTable tr td {
-		padding: 10px;
-	}
-
-	#enquiryTable tr td option {
-		padding: 10px;
-		width: 234px;
-	}
-
-	#enquiryTable tr td input {
-		padding: 10px;
-		width: 250px;
-	}
-
-	#enquiryFormContainer {
-		width: 100%;
-
-	}
-
-	#vehicleDetails{
-		width: 100%;
-		margin-top:30px;
-		float: left;
-		background-color: #fff;
-		text-align: center;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		
-	}
-
-	#vehicleDetails .detailContainer {
-		width: 29%;
-		border-right: 1px solid #c0c0c0;
-		margin-right: 2%;
-		padding-right: 2%;
-		float: left;
-		text-align: left;
-		font-size: 13px;
-	}
-
-	#vehicleDetails .detailContainer:nth-child(3n+3) {
-		border-right: 0px;
-		margin-right: 0%;
-		padding-right: 0%;
-	}
-
-	#vehicleDetails .detailContainer:nth-child(3n+1) {
-		margin-left: 25px;
-	}
-
-	#vehicleDetails .detailContainer .detailContainerLabel {
-		width: 50%;
-		float: left;
-		padding-top:5px;
-		padding-bottom:5px;
-	}
-
-	#vehicleDetails .detailContainer .detailContainerValue {
-		padding-top: 5px;
-		width: 50%;
-		float: left;
-		padding-bottom:5px;
-		font-weight: bold;
-	}
 
 
 
@@ -121,10 +46,46 @@
 
 				
 			</div>
-			<div style=" margin-bottom: 40px;float: right; padding-right: 30px; text-align: center;">
-				<div style=""><h3>Vehicle Registration</h3></div>
-				<div style=" background-color: #eed90c; border: 2px solid #000000; font-size: 28px; width: 200px; text-align: center; height: 40px; line-height: 40px; padding: 10px; border-radius: 10px;"><?php echo $record['vehicle_registration']; ?></div>
-				<div style="margin-top: 40px;">Sale Summary</div>
+			<div style=" margin-bottom: 40px;float: right; padding-right: 10px; text-align: center;">
+				<div><h3>Vehicle Registration</h3></div>
+				<div id="vehicleNumberPlate"><?php echo $record['vehicle_registration']; ?></div>
+				<div id="enquiryContainer">
+				<h1 style="display: none">Enquire about this vehicle</h1>
+				<div id="enquiryFormContainer">
+					<form id="vehicleEnquiryForm" method="POST" action="/showroom/vehicleEnquiry">
+						<input type="hidden" name="vehicleRegistration" value="<?php echo $vehicleRegistraion; ?>" />
+						<table id="enquiryTable" style="text-align: left; padding: 20px;">
+							<tr>
+								<td>
+									<select name="enquiryType" value="" required>
+										<option selected hidden value="">Please select an enquiry</option>
+										<option value="viewing">I would like to view this vehilce</option></option>
+										<option value="question">I have a question about this vehicle</option>
+										<option value="testDrive">I would like to book a test drive</option>
+									</select>	
+								</td>
+							</tr>						
+							<tr>
+								<td><input type="text" name="customerName" required placeholder="Enter Name"></td>
+							</tr>
+							<tr>
+								<td><input type="tel" pattern="0[0-9]{10}" name="customerNumber" required placeholder="Telephone Number"></td>
+							</tr>
+							<tr>
+								<td><input type="email" name="customerEmail" required placeholder="Email Address"></td>
+							</tr>
+							<tr>
+								<td><textarea name="customerMessage" required placeholder="Message"></textarea></td>
+							</tr>
+							<tr>
+								<td colspan = "2" style="text-align: center;">
+									<input type="submit" value="Submit Enquiry" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
 			</div>
 
 			<div class="spacer"></div>
@@ -313,65 +274,66 @@
 				</div>
 				<div style="clear: both"> </div>
 			</div>
+			<div class="spacer"></div>
+
+			<div style="float: left; width: 100%; margin-top: 30px; text-align: center; margin-bottom: 40px;">
 			
-			<div id="vehicleExtras" style="float: left; width: 100%; text-align: center; margin-top: 30px;">
 				<h1>Vehicle Extras</h1>
-				<?php echo $record['vehicle_safety'] ?><br />
-				<?php echo $record['vehicle_interior'] ?><br />
-				<?php echo $record['vehicle_exterior'] ?><br />
-				<?php echo $record['vehicle_comfort'] ?><br />
-				<?php echo $record['vehicle_other'] ?><br />
-
 			</div>
-			
-			<div class="vehicle_details" style="margin-top: 30px; float: left; line-height: 30px; padding-left: 20px;">
-				<?php echo $record['vehicle_extras'] ?>
-				
-			</div>
+			<div id="vehicleExtras">
+				<div class="vehicleDetails" style=" line-height: 30px; padding-left: 20px;">
+					<?php
+						$safetyExtras = json_decode($record['vehicle_safety']);
+						
+						foreach($safetyExtras as $item) {
+							echo "<div class=\"detailContainer\">";
+							echo $item;
+							echo "</div>";
+						}
+						
+						$interiorExtras = json_decode($record['vehicle_interior']);
+						
+						foreach($interiorExtras as $item) {
+							echo "<div class=\"detailContainer\">";
+							echo $item;
+							echo "</div>";
+						}
+						
+						$exteriorExtras = json_decode($record['vehicle_exterior']);
+						
+						foreach($exteriorExtras as $item) {
+							echo "<div class=\"detailContainer\">";
+							echo $item;
+							echo "</div>";
+						}
+						
+						$comfortExtras = json_decode($record['vehicle_comfort']);
+						
+						foreach($comfortExtras as $item) {
+							echo "<div class=\"detailContainer\">";
+							echo $item;
+							echo "</div>";
+						}
+						
+						$otherExtras = json_decode($record['vehicle_other']);
+						
+						foreach($otherExtras as $item) {
+							echo "<div class=\"detailContainer\">";
+							echo $item;
+							echo "</div>";
+						}
+						
+					
+					?>
 
-			
-			<div id="enquiryContainer">
-				<h1>Enquire about this vehicle</h1>
-				<div id="enquiryFormContainer">
-					<form id="vehicleEnquiryForm" method="POST" action="/showroom/vehicleEnquiry">
-						<input type="hidden" name="vehicleRegistration" value="<?php echo $vehicleRegistraion; ?>" />
-						<table id="enquiryTable" style="text-align: left; padding: 20px;">
-							<tr>
-								<td>Enquiry:</td>
-								<td>
-									<select name="enquiryType" value="" required>
-										<option selected hidden value="">Please select an enquiry</option>
-										<option value="viewing">I would like to view this vehilce</option></option>
-										<option value="question">I have a question about this vehicle</option>
-										<option value="testDrive">I would like to book a test drive</option>
-									</select>	
-								</td>
-							</tr>						
-							<tr>
-								<td>Full Name:</td>
-								<td><input type="text" name="customerName" required></td>
-							</tr>
-							<tr>
-								<td>Contact Number:</td>
-								<td><input type="tel" pattern="0[0-9]{10}" name="customerNumber" required></td>
-							</tr>
-							<tr>
-								<td>Email Address:</td>
-								<td><input type="email" name="customerEmail" required></td>
-							</tr>
-							<tr>
-								<td>Message:</td>
-								<td><textarea name="customerMessage" style="width: 280px; height: 100px;" required></textarea></td>
-							</tr>
-							<tr>
-								<td colspan = "2" style="text-align: center;">
-									<input type="submit" value="Submit Enquiry" />
-								</td>
-							</tr>
-						</table>
-					</form>
 				</div>
+				<div style="clear: both"></div>
 			</div>
+			
+
+			<div class="spacer"></div>
+			
+			
 			<div style="clear: both"></div>
 		</div>
 		<?php
