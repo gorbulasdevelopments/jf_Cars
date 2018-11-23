@@ -46,14 +46,13 @@
 			
 			<div class="vehicle_details">
 				<ul>
-					<li>ENGINE SIZE: <?php echo $record['vehicle_engine_size'] ?></li>
-					<li>MILEAGE: <?php echo $record['vehicle_mileage'] ?></li>
-					<li>FUEL TYPE: <?php echo $record['vehicle_fuel'] ?></li>
-					<li>YEAR: <?php echo $record['vehicle_year'] ?></li>
-					<li>TRANSMISSION: <?php echo $record['vehicle_transmission'] ?></li>
-					<li>INSURANCE GROUP: <?php echo $record['vehicle_insurance_group'] ?></li>
-					<li>MPG: <?php echo $record['vehicle_mpg'] ?></li>
-					<li>ROAD TAX: <?php echo $record['vehicle_road_tax'] ?></li>
+				<li><div class="detail_label">MILEAGE: </div><?php echo $record['vehicle_mileage'] ?></li>
+					<li><div class="detail_label">YEAR: </div><?php echo $record['vehicle_year'] ?></li>
+					<li><div class="detail_label">FUEL TYPE: </div><?php echo $record['vehicle_fuel'] ?></li>
+					<li><div class="detail_label">TRANSMISSION: </div><?php echo $record['vehicle_transmission'] ?></li>
+					<li><div class="detail_label">ENGINE SIZE: </div><?php echo $record['vehicle_engine_size'] ?></li>
+					<li><div class="detail_label">DOORS: </div><?php echo $record['vehicle_doors'] ?></li>
+					<li><div class="detail_label">MPG: </div><?php echo $record['vehicle_fuel_combined'] ?></li>
 				</ul>
 				<?php //echo substr(md5($record['sale_id']), 0, 8); ?>
 			</div>

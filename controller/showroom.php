@@ -13,10 +13,13 @@ class Showroom extends Controller {
 		$this->view->age = 'any';
 		$this->view->mileage = 'any';
 
+		
 		$this->view->navTitle = "showroom";
 		$this->view->pageTitle = "Car Showroom - JF Car Sales";
 		$this->view->pageDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
 		$this->view->canocial = URL . "/showroom";
+
+		
     }
     
     public function index() {
@@ -24,6 +27,7 @@ class Showroom extends Controller {
         $this->view->result = $this->result;
 		$this->view->vehicleImages = $this->model->getAllImages();
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
+		$this->view->localJavascript = "/view/showroom/functions_index.js";
         $this->viewFile = "showroom/index";
 		$this->render();
 	}
@@ -50,6 +54,8 @@ class Showroom extends Controller {
 		$this->view->filterResults = $this->filterResultsToArray($this->model->getAllSales());
 
 		$this->view->vehicleImages = $this->model->getVehicleImages($vehicleRegistration);
+
+		$this->view->localJavascript = "/view/showroom/functions_viewRegistration.js";
 
         $this->viewFile = "showroom/viewRegistration";
         $this->render();

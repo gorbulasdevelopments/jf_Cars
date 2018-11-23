@@ -1,10 +1,3 @@
-<style type="text/css">
-
-
-
-
-</style>
-
 <!-- Content Start -->
 	<div id="content_container">
 		
@@ -34,11 +27,11 @@
 				<?php 
 					if(sizeof($this->vehicleImages) > 0) {
 						foreach($this->vehicleImages as $vehicleImage) {	
-							echo "<img class=\"vehicleImages\" src=\"" . URL . "/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $vehicleImage['vehicle_image_url']) ."\" style=\"width: 100%; display: none; float: left;\" />";
+							echo "<img class=\"vehicleImages\" src=\"/media/media.jpg?id=" . base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $vehicleImage['vehicle_image_url']) ."\" style=\"width: 100%; display: none; float: left;\" />";
 						}
 						
-						echo "<button id=\"left_button\" onclick=\"plusDivs(-1)\">&#10094;</button>";
-						echo "<button id=\"right_button\"  onclick=\"plusDivs(1)\">&#10095;</button>";
+						echo "<button id=\"left_button\" onclick=\"$(this).plusDivs(-1)\">&#10094;</button>";
+						echo "<button id=\"right_button\"  onclick=\"$(this).plusDivs(1)\">&#10095;</button>";
 					} else {
 						echo "<div class=\"no_image\"><h3>Awaiting Image</h3></div>";
 					}
@@ -330,10 +323,6 @@
 				<div style="clear: both"></div>
 			</div>
 			
-
-			<div class="spacer"></div>
-			
-			
 			<div style="clear: both"></div>
 		</div>
 		<?php
@@ -347,52 +336,3 @@
 </div>
 	</div>
 	<!-- Content End -->
-	
-	<script>
-		var slideIndex = 1;
-		showDivs(slideIndex);
-
-		function plusDivs(n) {
-			showDivs(slideIndex += n);
-		}
-
-		function showDivs(n) {
-			var i;
-			var x = document.getElementsByClassName("vehicleImages");
-			if (n > x.length) {
-				slideIndex = 1
-			}
-
-			if (n < 1) {
-				slideIndex = x.length
-			}
-
-			for (i = 0; i < x.length; i++) {
-				x[i].style.display = "none";  
-			}
-			x[slideIndex-1].style.display = "block";  
-		}
-
-		$(document).ready(function() {
-			$('#vehicleEnquiryForm').submit(function(event) {
-				event.preventDefault();
-
-
-				$.ajax({
-					type: "POST",
-					url: "http://zion/showroom/vehicleEnquiry",
-					dataType: 'json',
-					data: {data:$(this).serialize()},
-					error: function (response) {
-						//console.log(response);
-					},
-					complete: function (response) {
-						$("#enquiryFormContainer").html(response.responseText);
-						console.log(response);
-					}
-				});
-			});
-
-		});
-
-	</script>
