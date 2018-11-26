@@ -424,7 +424,7 @@ class sale_Model extends Model {
 	}
 	
 	public function shareSale($vehicleRegistration) {
-		$query = $this->db->prepare("SELECT sale_price, sale_summary, vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_mpg, vehicle_road_tax, vehicle_insurance_group, vehicle_extras FROM sale_table st join vehicle_table vt on st.vehicle_id = vt.vehicle_id  WHERE st.sale_complete_date IS NULL AND vt.vehicle_registration = :vehicleRegistration");
+		$query = $this->db->prepare("SELECT sale_price, sale_summary, vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_fuel_combined, vehicle_road_tax, vehicle_insurance_group, vehicle_extras FROM sale_table st join vehicle_table vt on st.vehicle_id = vt.vehicle_id  WHERE st.sale_complete_date IS NULL AND vt.vehicle_registration = :vehicleRegistration");
 		$query->bindParam(":vehicleRegistration", $vehicleRegistration);
         if(!$query->execute()) {
 			$response = $query->errorInfo();
