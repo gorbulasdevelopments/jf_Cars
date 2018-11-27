@@ -155,7 +155,7 @@
 			
 			//alert($("#vehicleSearchRegistration :selected").text());
 
-			var $vehicleData = $.post('http://zion/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
+			var $vehicleData = $.post('/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
 				console.log(vehicleDataResponse);
 
 				var obj = vehicleDataResponse;
@@ -202,7 +202,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleSpecAndOptions = $.post('http://zion/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleSpecAndOptions = $.post('/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;
@@ -245,7 +245,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleMOTHistory = $.post('http://zion/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleMOTHistory = $.post('/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;
@@ -291,7 +291,7 @@
 			<div id="vehicleDataResponse"></div>
 
 			<div class="spacer"></div>
-            <form id="vehicle_form" method="POST" action="<?php echo URL; ?>/admin/vehicles/addVehicle" enctype="multipart/form-data">
+            <form id="vehicle_form" method="POST" action="/admin/vehicles/addVehicle" enctype="multipart/form-data">
 			
 				<table id="vehicleTable">
 					<tr><td colspan="2"><b>Basic Search Fields</b></td></tr>
