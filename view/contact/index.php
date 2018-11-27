@@ -98,6 +98,11 @@
 		padding-left: 20px;
 		width: 100px;
 	}
+	
+	#map {
+		width: 100%;
+		height: 100%;
+	}
 
 </style>
 
@@ -114,7 +119,8 @@
 
 		<p>
 		At JF Car Sales, we pride ourselves by stocking a range range of used cars at great prices.
-
+		</p>
+		<p>
 		If what we have in stock is not what you are looking for, please contact us and we will be happy to help you find the right car.
 		</p>	
 		<div class="spacer"></div>
@@ -241,7 +247,31 @@
 		</form>
 
 		<div id="mapLocation" style="width: 50%; float: left;">
-			<div style="width: 90%; margin-top: 0; margin-left: 5%; height: 440px; background: yellow; float: left;"></div>
+			<div style="width: 90%; margin-top: 0; margin-left: 5%; height: 440px; float: left; overflow: hidden;">
+				<div id="map"></div>
+				<script>
+					var map;
+					function initMap() {
+						var myLatLng = {lat: 52.746322, lng: 0.431628};
+
+						map = new google.maps.Map(document.getElementById('map'), {
+							center: myLatLng,
+							zoom: 12
+						});
+
+						var marker = new google.maps.Marker({
+							position: myLatLng,
+							map: map,
+							title: 'JF Car Sales'
+						});
+
+					}
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-zi7VCfJ7FjHX36w1-CRXGFRE2M60jaY&callback=initMap" async defer></script>
+
+			
+				
+			</div>
 		</div>
 
 		<div class="spacer"></div>
