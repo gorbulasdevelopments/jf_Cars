@@ -448,7 +448,7 @@ class sale_Model extends Model {
 
 					//Post property to Facebook
 					$linkData = [
-						'link' => 'www.gorbulas.co.uk/projects/jf_cars/showroom/' . $sale['vehicle_make'] . '/' . $sale['vehicle_model'] . '/' . $sale['vehicle_registration'] . '',
+						'link' => 'www.jfcars.co.uk/showroom/' . $sale['vehicle_make'] . '/' . $sale['vehicle_model'] . '/' . $sale['vehicle_registration'] . '',
 						'message' => 'Now in stock: £' . $sale['sale_price'] . '' . chr(10) . '' . chr(10) . '' . $sale['vehicle_make'] . ' ' . $sale['vehicle_model'] . ' ' . $sale['vehicle_variant'] . '  ' . chr(10) . '' . chr(10) . 'Colour: ' . $sale['vehicle_colour'] . '' . chr(10) . '' . chr(10) . 'Fuel Type: ' . $sale['vehicle_fuel'] . ' ' . chr(10) . '' . chr(10) . 'Mileage: ' . $sale['vehicle_mileage'] . ''
 					];
 					

@@ -7,14 +7,11 @@
 		margin-bottom: 30px;
 	}
 
-    #vehicleTable {
+    #vehicleTable, #vehicleImageTable {
         border: 1px solid #c0c0c0;
-        font-size: 12px;
-        margin: 0px auto;
-		margin-left: 20px;
-		margin-right: 20px;
-		
-		width: 600px;
+        font-size: 12px;		
+		width: 100%;
+		margin-bottom: 30px;
     }
 	
     #vehicleTable tr {
@@ -62,7 +59,7 @@
 		line-height: 1.5;
 	}
 
-	#vehicleImageTable {
+	/*#vehicleImageTable {
         border: 1px solid #c0c0c0;
 		width: 100%;
         font-size: 10px;
@@ -71,7 +68,7 @@
 		float: left;
 		border-spacing: 0px;
     	border-collapse: collapse;
-    }
+    }*/
 	
 	#vehicleImageTable th {
 		padding: 5px;
@@ -157,7 +154,7 @@
 			
 			//alert($("#vehicleSearchRegistration :selected").text());
 
-			var $vehicleData = $.post('http://localhost/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
+			var $vehicleData = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
 				console.log(vehicleDataResponse);
 
 				var obj = vehicleDataResponse;
@@ -204,7 +201,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleSpecAndOptions = $.post('http://localhost/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleSpecAndOptions = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;
@@ -306,7 +303,7 @@
 				//alert("Finished");
 			});
 
-			var $vehicleMOTHistory = $.post('http://localhost/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+			var $vehicleMOTHistory = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
 				console.log(response);
 
 				var obj = response;
@@ -398,10 +395,9 @@
 					<tr><td id="vehicleOther" colspan="2"></td></tr>
 					
 					
-					<tr><td>Vehicle Extras:</td><td><textarea rows="10" cols="30" style="height: 200px; width: 250px; border: 1px solid #c0c0c0;" value="" name="vehicleExtras"></textarea></td></tr>
+					<tr><td colspan="2"><b>Extra Features</b></td></tr>
+					<tr><td colspan="2"><textarea rows="10" cols="30" style="height: 200px; width: 100%; border: 1px solid #c0c0c0;" value="" name="vehicleExtras"></textarea></td></tr>
 				</table>
-
-				<div id="vehicleExtras"></div>
 				
 				<div style="clear: both"></div>
 				

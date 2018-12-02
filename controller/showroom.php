@@ -52,8 +52,21 @@ class Showroom extends Controller {
 		$this->view->result = $this->model->getRegistration($vehicleMake, $vehicleModel, $vehicleRegistration);
 		
 		$this->view->filterResults = $this->filterResultsToArray($this->model->getAllSales());
-
+		
+		$coverImage = $this->model->getCoverImage($vehicleRegistration);
+		
 		$this->view->vehicleImages = $this->model->getVehicleImages($vehicleRegistration);
+		
+		$this->view->pageTitle = $vehicleRegistration . " - JF Car Sales";
+		$this->view->ogURL = URL . "/showroom/" . $vehicleMake . "/" . $vehicleModel . "/" . $vehicleRegistration;
+		$this->view->ogType = "website";
+		$this->view->ogTitle = "JF Car Sales";
+		$this->view->ogDescription = "Latest stock of used cars for sale at JF Car Sales in Kings Lynn, Norfolk.";
+		$this->view->ogImage = URL . "/media/media.jpg?id=" . $coverImage;
+		$this->view->appID = "404345163435245";
+		
+		
+
 
 		$this->view->localJavascript = "/view/showroom/functions_viewRegistration.js";
 

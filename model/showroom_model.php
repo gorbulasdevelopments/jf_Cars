@@ -18,6 +18,20 @@ class showroom_Model extends Model {
         return $strSQL->fetchAll();
     }
 	
+	public function getCoverImage($vehicleRegistration) {
+		$strSQL = $this->db->prepare("SELECT vt.vehicle_registration, vt.vehicle_make, vt.vehicle_model, vit.vehicle_image_url FROM (vehicle_table vt join sale_table st on st.vehicle_id = vt.vehicle_id) join vehicle_image_table vit on vt.vehicle_id = vit.vehicle_id WHERE vt.vehicle_registration = '" . $vehicleRegistration . "' and vit.vehicle_cover_image = 1");
+		$strSQL->execute();
+        $result = $strSQL->fetchAll(PDO::FETCH_ASSOC);
+		
+		if(sizeof($result) == 1) {
+			foreach($result as $record) {
+				return base64_encode($record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration'] . "/" . $record['vehicle_image_url']);
+			}
+		} else {
+			return "foo";
+		}
+	}
+	
 	public function getMake($vehicleMake) {
 		$strSQL = $this->db->prepare("SELECT * from sale_table st join vehicle_table vt on st.vehicle_id = vt.vehicle_id where st.sale_complete_date is null and vehicle_make = '" . strtoupper($vehicleMake) . "';");
         $strSQL->execute();

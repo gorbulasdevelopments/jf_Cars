@@ -31,6 +31,16 @@ h3 {
 	letter-spacing: 2px;
 }*/
 
+a {
+	text-decoration: none;
+	color: #3c484d;
+}
+
+a: visited {
+	text-decoration: none;
+	color: #3c484d;
+}
+
 p { 
 	color: #6e6363;
 	font-size: 14px;

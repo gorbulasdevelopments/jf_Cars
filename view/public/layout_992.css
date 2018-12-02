@@ -25,7 +25,7 @@ body {
 /* Header */
 
 #header {
-	width: 1140px;
+	width: 960px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 10px;
@@ -44,14 +44,14 @@ body {
 
 
 #header #logo {
-	height: 150px;
-	width: 350px;
+	height: 130px;
+	width: 300px;
 	background: url('../asset/images/logo_light.png');
 	background-repeat: repeat;
 	background-size: auto auto;
 	background-size: contain;
 	background-repeat: no-repeat;
-	margin-top: 20px;
+	margin-top: 30px;
 	float: left;
 }
 
@@ -240,7 +240,7 @@ body {
 }
 
 #content {
-	width: 1170px;
+	width: 960px; 
 	margin: 0px auto;
 	background-color: #ffffff;
 	padding: 20px;
@@ -260,7 +260,7 @@ body {
 #footer {
 	color: #ffffff;
 	text-align: center;
-	width: 1170px;
+	width: 960px;
 	margin: 0px auto;
 }
 
@@ -309,7 +309,6 @@ body {
 	width: 100%;
 	float: left;
 	margin: 0px auto;
-	display: none;
 }
 
 #footer p {
@@ -397,12 +396,12 @@ h3 {
 	margin-left: 20px;
 	float: left;
 	position: relative;
-	margin-bottom: 10px;
+	margin-bottom: 90px;
 }
 
 .vehicle_container .vehicle_image img {
 	display: block;
-	width: 500px;
+	width: 450px;
 }
 
 .vehicle_image .no_image {
@@ -428,7 +427,7 @@ h3 {
 }
 
 .vehicle_details {
-	margin-left: 40px;
+	margin-left: 30px;
 	margin-top: 10px;
 	float: left;
 	padding: 10px;
@@ -501,8 +500,8 @@ h3 {
 }
 
 .vehicle_container_full .vehicle_image {
-	width: 800px;
-	height: 600px;
+	width: 600px;
+	height: 400px;
 	overflow: hidden;
 	position: relative;
 	margin: 0px auto;
@@ -864,106 +863,106 @@ font-size: 12px;
 
 /* Contact Page */
 
-	#contactForm {
-		width: 50%;
-		float: left;
-		background-color: #3c484d;
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+#contactForm {
+	width: 50%;
+	float: left;
+	background-color: #3c484d;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 
-	.contactFieldContainer {
-		width: 100%;
-		height: 60px;
-	}
+.contactFieldContainer {
+	width: 100%;
+	height: 60px;
+}
 
-	.contactLabel {
-		width: 40%;
-		float: left;
-	}
+.contactLabel {
+	width: 40%;
+	float: left;
+}
 
-	.contactLabel p {
-		line-height: 1.2;
-		text-align: right;
-		padding: 10px;
-		float: right;
-		color: #ffffff;
-	}
+.contactLabel p {
+	line-height: 1.2;
+	text-align: right;
+	padding: 10px;
+	float: right;
+	color: #ffffff;
+}
 
-	.contactLabel p span {
-		width: 100%;
-		font-size: 10px;
-		float: right;
-	}
+.contactLabel p span {
+	width: 100%;
+	font-size: 10px;
+	float: right;
+}
 
-	.contactField {
-		text-align: left;
-		width: 50%;
-		float: left;
-		padding-left: 20px;
-	}
+.contactField {
+	text-align: left;
+	width: 45%;
+	float: left;
+	padding-left: 20px;
+}
 
-	.contactField input {
-		text-align: left;
-		width: 100%;
-		float: left;
-		height: 100%;
-		border: 1px solid #c0c0c0;
-		padding-top: 15px;
-		padding-bottom: 15px;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
+.contactField input {
+	text-align: left;
+	width: 100%;
+	float: left;
+	height: 100%;
+	border: 1px solid #c0c0c0;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
-	.contactField textarea {
-		width: 100%;
-		padding: 10px;
-		height: 100px;
-		border: 1px solid #c0c0c0;
-	}
+.contactField textarea {
+	width: 100%;
+	padding: 10px;
+	height: 100px;
+	border: 1px solid #c0c0c0;
+}
 
-	.contactFormSubmit {
-    	text-align: center;
-	}
+.contactFormSubmit {
+	text-align: center;
+}
 
-	.contactFormSubmit input {
-		margin: 0px auto;
-		width: 120px;
-		cursor: pointer;
-		background-color: #ffffff;
-		color: #3c484d;
-	}
+.contactFormSubmit input {
+	margin: 0px auto;
+	width: 120px;
+	cursor: pointer;
+	background-color: #ffffff;
+	color: #3c484d;
+}
 
-	#openingTimes {
-		float: left;
-		width: 50%;
-		color: #6e6363;
-	}
+#openingTimes {
+	float: left;
+	width: 50%;
+	color: #6e6363;
+}
 
-	#openingTimes h3 {
-		padding-left: 40px;
-		padding-top: 0px;
-		margin-bottom: 10px;
-	}
+#openingTimes h3 {
+	padding-left: 40px;
+	padding-top: 0px;
+	margin-bottom: 10px;
+}
 
-	#openingTimes .openingTimeContainer {
-		margin-top: 15px;
-		height: 20px;
-	}
+#openingTimes .openingTimeContainer {
+	margin-top: 15px;
+	height: 20px;
+}
 
-	#openingTimes .openingDay {
-		float: left;
-		padding-left: 70px;
-		width: 250px;
-	}
+#openingTimes .openingDay {
+	float: left;
+	padding-left: 70px;
+	width: 200px;
+}
 
-	#openingTimes .openingTime {
-		float: left;
-		padding-left: 20px;
-		width: 100px;
-	}
-	
-	#map {
-		width: 100%;
-		height: 100%;
-	}
+#openingTimes .openingTime {
+	float: left;
+	padding-left: 20px;
+	width: 100px;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}

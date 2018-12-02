@@ -26,84 +26,44 @@
 }
 
 #header #logo {
-	height: 100px;
+	height: 110px;
 	width: 230px;
+	margin-top: 20px;
+	float: left;
 	background: url('../asset/images/logo_light.png');
 	background-repeat: repeat;
 	background-size: auto auto;
 	background-size: contain;
 	background-repeat: no-repeat;
-	margin: 0px auto;
-	margin-top: 40px;
 }
 
 #header #navigation {
-	display: none;
-}
-
-#navigation_mini {
-	display: none;
-}
-
-.navigation_burger_container {
-	z-index: 50;
-
-	float: left;
-
-	margin-top: 20px;
-
-	display: block;
-
-	position: absolute;
-
-	left: 20px;
-
-	top: 0px;
-  }
-
-
-#navigation_mini {
-	top: 0;
-	left: 0;
 	width: 100%;
-	/*height: 50px; */
-	line-height: 30px;
+	font-size: 8px;
+	margin-top: 0px;
+}
+
+#header #navigation ul {
+	float: left;
+	margin-top: 0px;
+	font-size: 10px;
+	width: 100%;
 	margin-bottom: 20px;
-	height: 200%;
-	position: fixed;
-	background-color: #ffffff;
-	z-index: 1000;
 }
 
-#navigation_mini ul {
-	font-size: 20px;
+#header #navigation ul li {
 	float: left;
+	margin-top: 0px;
+	font-size: 10px;
 	width: 100%;
-	text-align: left;
-	margin-left: 20px;
-	margin-top: 75px;
-	list-style-type: none;
-	padding-left: 10px;
+	margin-bottom: 20px;
 }
 
-#navigation_mini ul li a {
-	font-size: 24px;
-	text-decoration: none;
-	color: #6e6363;
+#header #navigation ul li a {
+	display: inline-block;
+	font-size: 16px;
+	letter-spacing: 1px;
 }
-
-#navigation_mini ul li a:visited {
-	text-decoration: none;
-	color: #6e6363;
-}
-
-
-#navigation_mini .selected {
-	border-bottom: 5px solid #f9e7e7;
-	padding-left: 2px;
-	padding-right: 2px;
-}
-
 /* End Header */
 
 #index_banner {
@@ -140,7 +100,7 @@
 }
 
 #search_form .filter {
-	width: 95%;
+	width: 93%;
 	height: 20px;
 	text-align: left;
 	padding: 5px;
@@ -325,36 +285,19 @@ h3 {
 }
 
 .vehicle_details {
-	min-height: 230px;
-
-margin-left: 10px;
-
-margin-top: 20px;
-
-margin-bottom: 20px;
-
-width: 95%;
-
-background: #ffffff;
-
-padding-top: 15px;
+	min-height: 280px;
+	margin-left: 10px;
+	margin-top: 20px;
 }
 
 .vehicle_details ul {
 	margin-left: 20px;
 	list-style-type: none;
-	padding-left: 10px;
 }
 
 .vehicle_details ul li {
 	line-height: 30px;
 	letter-spacing: 3px;
-}
-
-.detail_label {
-	width: 50%;
-	float: left;
-	margin-right: 30px;
 }
 
 .vehicle_price {
@@ -381,10 +324,6 @@ padding-top: 15px;
 
 
 /* Showroom Item */
-
-.page_location {
-	display: none;
-}
 
 .vehicle_container_full {
 	width: 95%;
@@ -539,7 +478,6 @@ padding-top: 15px;
 	width: 95%; 
 	height: 300px; 
 	margin: 0px auto;
-	max-width: 600px;
 }
 
 .carousel-inner > .item {

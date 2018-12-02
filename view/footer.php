@@ -17,7 +17,7 @@
 				5 RUSSELL CLOSE<br /> KING'S LYNN<br /> NORFOLK<br /> PE30 4NQ
 			</div>
 			<div class="footer_content">
-				07500 123456
+				07979 492760 
 			</div>
 			<div class="footer_content">
 				<a href="mailto:SALES@JFCARS.CO.UK" style="color: #ffffff;">SALES@JFCARS.CO.UK</a>
@@ -29,10 +29,11 @@
 			<div id="financial_disclosure">
 			<p><b>Financial Disclosure</b><br /><br />
 				JF Car Sales act as a non-independent credit intermediary for a limited number of lenders and are able to offer a limited number of finance products from these providers. 
-				JF Cars Sales is an Appointed Representative of AutoProtect (MBI) Limited who are authorised and regulated by the Financial Conduct Authority, their firm reference number is ######. 
-				You can check this on the FCA's website www.fca.gov.uk or by contacting the FCA on 0800 1116768. Our authorisation reference number is ######. 
+				JF Cars Sales is an Appointed Representative of AutoProtect (MBI) Limited who are authorised and regulated by the Financial Conduct Authority, their firm reference number is 825149. 
+				You can check this on the FCA's website www.fca.gov.uk or by contacting the FCA on 0800 1116768. Our authorisation reference number is 825149. 
 				For any concerns or queries relating to authorised products please contact us by emailing to sales@jfcars.co.uk.</p>
 			</div>
+			<div class="spacer"></div>
 		</div>
 		<div style="height: 60px; width: 100%; background-color: #ffffff; float: left;">
 			<div style="width: 300px; height: 100%; margin: 0px auto; color: #ff3333; line-height: 60px; text-align: center;">

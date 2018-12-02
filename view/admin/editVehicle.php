@@ -6,57 +6,80 @@ echo "</pre>";
 ?>
 
 <style type="text/css">
-	#vehicle_form {
+	#vehicle_form, #vehicleImageForm, #vehicleImageUploadForm {
 		margin: 0px auto;
 		width: 806px;
 		margin-bottom: 30px;
 	}
 
-    #vehicleTable {
+    #vehicleTable, #vehicleImageTable {
         border: 1px solid #c0c0c0;
-        font-size: 10px;
-        margin: 0px auto;
-		margin-left: 20px;
-		margin-right: 20px;
-		float: left;
-		margin-bottom: 40px;
+        font-size: 12px;		
+		width: 100%;
+		margin-bottom: 30px;
+    }
+	
+    #vehicleTable tr {
+
     }
 
-#vehicleTable tr {
+    #vehicleTable th {
+		padding: 5px;
+    }
 
-}
+	#vehicleTable td b {
+        padding-left: -15px;
+		font-size: 14px;
+    }
 
-#vehicleTable th {
-	padding: 5px;
-}
+    #vehicleTable td {
+        padding: 10px;
+    }
 
-#vehicleTable td {
-	padding: 5px;
-}
 
-#vehicleTable input {
-	padding: 5px;
-	text-align: center;
-	border: 1px solid #c0c0c0;
-}
 
-	#vehicleImageTable {
+	
+	#vehicleTable input {
+        padding: 5px;
+        text-align: center;
+		border: 1px solid #c0c0c0;
+		width: 300px;
+	}
+
+	#vehicleTable input[type='checkbox'] { 
+		width: 20px;
+		height: 14px;
+		float: left;
+		margin-top: 1px;
+	}
+
+	#vehicleTable .featureLabel { 
+		/*height: 20px;*/
+		line-height: 15px;
+		display: block;
+		float: left;
+		width: 90%;
+		padding-left: 10px;
+		padding-bottom: 10px;
+		line-height: 1.5;
+	}
+
+	/*#vehicleImageTable {
         border: 1px solid #c0c0c0;
 		width: 100%;
         font-size: 10px;
-		margin-top: 20px;
-		margin-bottom: 20px;
+		margin-top: 40px;
+		margin-bottom: 40px;
 		float: left;
 		border-spacing: 0px;
     	border-collapse: collapse;
-    }
+    }*/
 	
 	#vehicleImageTable th {
 		padding: 5px;
 		border-bottom: 1px solid #c0c0c0;
 		text-align: center;
 		height: 30px;
-		font-size: 12px;
     }
 
     #vehicleImageTable td {
@@ -70,6 +93,25 @@ echo "</pre>";
         text-align: center;
 	}
 
+	#vehicleSafety input {
+		margin-left: 20px;
+	}
+
+	#vehicleInterior input {
+		margin-left: 20px;
+	}
+
+	#vehicleExterior input {
+		margin-left: 20px;
+	}
+
+	#vehicleComfort input {
+		margin-left: 20px;
+	}
+
+	#vehicleOther input {
+		margin-left: 20px;
+	}
 </style>
 
 
@@ -82,31 +124,93 @@ echo "</pre>";
             <form id="vehicle_form" method="POST" action="<?php echo URL; ?>/admin/vehicles/updateVehicle">
                 <?php
                     foreach($this->vehicleResult as $vehicle) {
-						echo "<input type=\"hidden\" name=\"vehicleID\" value=\"" . $vehicle['vehicle_id'] . "\" />";
-						echo "<table id=\"vehicleTable\">";
-						echo "<tr><td>Vehicle Registration:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_registration'] . "\" name=\"vehicleRegistration\"></td></tr>";
-						echo "<tr><td>Vehicle Make:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_make'] . "\" name=\"vehicleMake\"></td></tr>";
-						echo "<tr><td>Vehicle Model:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_model'] . "\" name=\"vehicleModel\"></td></tr>";
-						echo "<tr><td>Vehicle Variant:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_variant'] . "\" name=\"vehicleVariant\"></td></tr>";
-						echo "<tr><td>Vehicle Engine Size:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_engine_size'] . "\" name=\"vehicleEngineSize\"></td></tr>";
-						echo "<tr><td>Vehicle Doors:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_doors'] . "\" name=\"vehicleDoors\"></td></tr>";
-						echo "<tr><td>Vehicle Colour:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_colour'] . "\" name=\"vehicleColour\"></td></tr>";
-						echo "<tr><td>Vehicle Year:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_year'] . "\" name=\"vehicleYear\"></td></tr>";
-						echo "</table>";
-						echo "<table id=\"vehicleTable\">";
-						echo "<tr><td>Vehicle Mileage:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_mileage'] . "\" name=\"vehicleMileage\"></td></tr>";
-						echo "<tr><td>Vehicle Fuel:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_fuel'] . "\" name=\"vehicleFuel\"></td></tr>";
-						echo "<tr><td>Vehicle Transmission:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_transmission'] . "\" name=\"vehicleTransmission\"></td></tr>";
-						echo "<tr><td>Vehicle MPG:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_mpg'] . "\" name=\"vehicleMPG\"></td></tr>";
-						echo "<tr><td>Vehicle Road Tax:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_road_tax'] . "\" name=\"vehicleRoadTax\"></td></tr>";
-						echo "<tr><td>Vehicle Insurance Group:</td><td><input type=\"text\" value=\"" . $vehicle['vehicle_insurance_group'] . "\" name=\"vehicleInsuranceGroup\"></td></tr>";
-						echo "<tr><td>Vehicle Extras:</td><td><textarea rows=\"10\" cols=\"30\" style=\"height: 200px; width: 250px; border: 1px solid #c0c0c0;\" value=\"" . $vehicle['vehicle_extras'] . "\" name=\"vehicleExtras\"></textarea></td></tr>";
-						echo "</table>";
-                    
-				?>
+						?>
+						<input type="hidden" name="vehicleID" value="<?php echo $vehicle['vehicle_id']; ?>" />
+						<table id="vehicleTable">
+							<tr><td colspan="2"><b>Basic Search Fields</b></td></tr>
+							<tr><td>Vehicle Registration:</td><td><input type="text" value="<?php echo $vehicle['vehicle_registration']; ?>" id="vehicleRegistration" name="vehicleRegistration"></td></tr>
+							<tr><td>Vehicle Make:</td><td><input type="text" value="<?php echo $vehicle['vehicle_make']; ?>" id="vehicleMake" name="vehicleMake"></td></tr>
+							<tr><td>Vehicle Model:</td><td><input type="text" value="<?php echo $vehicle['vehicle_model']; ?>" id="vehicleModel" name="vehicleModel"></td></tr>
+							<tr><td>Vehicle Fuel:</td><td><input type="text" value="<?php echo $vehicle['vehicle_fuel']; ?>" id="vehicleFuel" name="vehicleFuel"></td></tr>
+							<tr><td>Vehicle Transmission:</td><td><input type="text" value="<?php echo $vehicle['vehicle_transmission']; ?>" id="vehicleTransmission" name="vehicleTransmission"></td></tr>
+							<tr><td>Vehicle Engine Size:</td><td><input type="text" value="<?php echo $vehicle['vehicle_engine_size']; ?>" id="vehicleEngineSize" name="vehicleEngineSize"></td></tr>
+							<tr><td>Vehicle Doors:</td><td><input type="text" value="<?php echo $vehicle['vehicle_doors']; ?>" id="vehicleDoors" name="vehicleDoors"></td></tr>
+							<tr><td>Vehicle Year:</td><td><input type="text" value="<?php echo $vehicle['vehicle_year']; ?>" id="vehicleYear" name="vehicleYear"></td></tr>
+							<tr><td>Vehicle Mileage:</td><td><input type="text" value="<?php echo $vehicle['vehicle_mileage']; ?>" name="vehicleMileage"></td></tr>
+					
+							<tr><td colspan="2"><b>Additional Fields</b></td></tr>
+							<tr><td>Body Style:</td><td><input type="text" value="<?php echo $vehicle['vehicle_body_style']; ?>" id="vehicleBodyStyle" name="vehicleBodyStyle"></td></tr>
+							<tr><td>Variant:</td><td><input type="text" value="<?php echo $vehicle['vehicle_variant']; ?>" id="vehicleVariant" name="vehicleVariant"></td></tr>
+							<tr><td>Seats:</td><td><input type="text" value="<?php echo $vehicle['vehicle_seats']; ?>" id="vehicleSeats" name="vehicleSeats"></td></tr>
+							<tr><td>Colour:</td><td><input type="text" value="<?php echo $vehicle['vehicle_colour']; ?>" id="vehicleColour" name="vehicleColour"></td></tr>
+							<tr><td>Gears:</td><td><input type="text" value="<?php echo $vehicle['vehicle_gears']; ?>" id="vehicleGears" name="vehicleGears"></td></tr>
+							<tr><td>Previous Owners:</td><td><input type="text" value="<?php echo $vehicle['vehicle_owners']; ?>" id="vehicleOwners" name="vehicleOwners"></td></tr>
+							<tr><td>Fuel Consumption (Urban):</td><td><input type="text" value="<?php echo $vehicle['vehicle_fuel_urban']; ?>" id="vehicleFuelUrban" name="vehicleFuelUrban"></td></tr>
+							<tr><td>Fuel Consumption(Extra Urban):</td><td><input type="text" value="<?php echo $vehicle['vehicle_fuel_extra_urban']; ?>" id="vehicleFuelExtraUrban" name="vehicleFuelExtraUrban"></td></tr>
+							<tr><td>Fuel Consumption (Combined):</td><td><input type="text" value="<?php echo $vehicle['vehicle_fuel_combined']; ?>" id="vehicleFuelCombined" name="vehicleFuelCombined"></td></tr>
+							<tr><td>Fuel Tank:</td><td><input type="text" value="<?php echo $vehicle['vehicle_fuel_tank']; ?>" id="vehicleFuelTank" name="vehicleFuelTank"></td></tr>
+							<tr><td>Road Tax Band:</td><td><input type="text" value="<?php echo $vehicle['vehicle_road_tax']; ?>" id="vehicleRoadTax" name="vehicleRoadTax"></td></tr>
+							<tr><td>Road Tax (6 Months):</td><td><input type="text" value="<?php echo $vehicle['vehicle_road_tax_6']; ?>" id="vehicleRoadTax6" name="vehicleRoadTax6"></td></tr>
+							<tr><td>Road Tax (12 Months):</td><td><input type="text" value="<?php echo $vehicle['vehicle_road_tax_12']; ?>" id="vehicleRoadTax12" name="vehicleRoadTax12"></td></tr>
+							<tr><td>Vehicle Insurance Group:</td><td><input type="text" value="<?php echo $vehicle['vehicle_insurance_group']; ?>" id="vehicleInsuranceGroup" name="vehicleInsuranceGroup"></td></tr>
+							<tr><td>Engine BHP:</td><td><input type="text" value="<?php echo $vehicle['vehicle_bhp']; ?>" id="vehicleBHP" name="vehicleBHP"></td></tr>
+							<tr><td>Engine Torque:</td><td><input type="text" value="<?php echo $vehicle['vehicle_torque']; ?>" id="vehicleTorque" name="vehicleTorque"></td></tr>
+							<tr><td>Engine Max Speed:</td><td><input type="text" value="<?php echo $vehicle['vehicle_max_speed']; ?>" id="vehicleMaxSpeed" name="vehicleMaxSpeed"></td></tr>
+
+							<tr><td colspan="2"><b>Safety Features</b></td></tr>
+							<tr><td id="vehicleSafety" colspan="2">
+								<?php 
+									foreach(json_decode($vehicle['vehicle_safety']) as $item) {
+										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									}
+								?>
+							</td></tr>
+							<tr><td colspan="2"><b>Interior Features</b></td></tr>
+							<tr><td id="vehicleInterior" colspan="2">
+								<?php 
+									foreach(json_decode($vehicle['vehicle_interior']) as $item) {
+										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									}
+								?>
+							</td></tr>
+							<tr><td colspan="2"><b>Exterior Features</b></td></tr>
+							<tr><td id="vehicleExterior" colspan="2">
+								<?php 
+									foreach(json_decode($vehicle['vehicle_exterior']) as $item) {
+										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									}
+								?>
+							</td></tr>
+							<tr><td colspan="2"><b>Comfort Features</b></td></tr>
+							<tr><td id="vehicleComfort" colspan="2">
+								<?php 
+									foreach(json_decode($vehicle['vehicle_comfort']) as $item) {
+										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									}
+								?></td></tr>
+							<tr><td colspan="2"><b>Other Features</b></td></tr>
+							<tr><td id="vehicleOther" colspan="2">
+								<?php 
+									foreach(json_decode($vehicle['vehicle_other']) as $item) {
+										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									}
+								?>
+							</td></tr>
+							
+							
+							<tr><td colspan="2"><b>Extra Features</b></td></tr>
+							<tr><td colspan="2"><textarea rows="10" cols="30" style="height: 200px; width: 100%; border: 1px solid #c0c0c0;" value="
+								<?php 
+									foreach(json_decode($vehicle['vehicle_extras']) as $item) {
+										echo $item . "<br />";
+									}
+								?>
+							
+							" name="vehicleExtras"></textarea></td></tr>
+						</table>
 				
 				<center>
-				<input style="padding: 20px;" type="submit" value="Update Vehicle Details">
+				<input class="button" type="submit" value="Update Vehicle Details">
 				</center>
 
             </form>
@@ -158,7 +262,7 @@ echo "</pre>";
 				
 				
 				<center>
-				<input style="padding: 20px;" type="submit" value="Upload New Images">
+				<input class="button" type="submit" value="Upload New Images">
 				</center>
 
 

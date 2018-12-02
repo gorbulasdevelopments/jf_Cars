@@ -31,18 +31,19 @@ class vehicle_Model extends Model {
         return $strSQL->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-    public function addVehicle() {
+    public function addVehicle( $vehicleData ) {
 		//Add record to database
 
-        echo "<pre>";
-        print_r($_POST);
+       /* echo "<pre>";
+        print_r($vehicleData);
 		echo "</pre>";
-
-		$vehicleSafety = json_encode($_POST['vehicleSafety']);
-		$vehicleInterior = json_encode($_POST['vehicleInterior']);
-		$vehicleExterior = json_encode($_POST['vehicleExterior']);
-		$vehicleComfort = json_encode($_POST['vehicleComfort']);
-		$vehicleOther = json_encode($_POST['vehicleOther']);
+*/
+		$vehicleSafety = json_encode($vehicleData['vehicleSafety']);
+		$vehicleInterior = json_encode($vehicleData['vehicleInterior']);
+		$vehicleExterior = json_encode($vehicleData['vehicleExterior']);
+		$vehicleComfort = json_encode($vehicleData['vehicleComfort']);
+		$vehicleOther = json_encode($vehicleData['vehicleOther']);
+		$vehicleExtra = json_encode($vehicleData['vehicleExtra']);
 
 		//echo $vehicleInterior;
 
@@ -51,7 +52,7 @@ class vehicle_Model extends Model {
 		
 
 		$strSQL = "INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_fuel, vehicle_transmission, vehicle_engine_size, vehicle_doors, vehicle_year, vehicle_mileage, vehicle_body_style, vehicle_variant, vehicle_seats, vehicle_colour, vehicle_gears, vehicle_owners, vehicle_fuel_urban, vehicle_fuel_extra_urban, vehicle_fuel_combined, vehicle_fuel_tank, vehicle_road_tax, vehicle_road_tax_6, vehicle_road_tax_12, vehicle_insurance_group, vehicle_bhp, vehicle_torque, vehicle_max_speed, vehicle_safety, vehicle_interior, vehicle_exterior, vehicle_comfort, vehicle_other, vehicle_extras, vehicle_sold) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleFuel, :vehicleTransmission, :vehicleEngineSize, :vehicleDoors, :vehicleYear, :vehicleMileage, :vehicleBodyStyle, :vehicleVariant, :vehicleSeats, :vehicleColour, :vehicleGears, :vehicleOwners, :vehicleFuelUrban, :vehicleFuelExtraUrban, :vehicleFuelCombined, :vehicleFuelTank, :vehicleRoadTax, :vehicleRoadTax6, :vehicleRoadTax12, :vehicleInsuranceGroup, :vehicleBHP, :vehicleTorque, :vehicleMaxSpeed, :vehicleSafety, :vehicleInterior, :vehicleExterior, :vehicleComfort, :vehicleOther, :vehicleExtras, 0)";
-		echo "<pre>" . $strSQL . "</pre>";
+		//echo "<pre>" . $strSQL . "</pre>";
 		
 		//$query = $this->db->prepare("INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_engine_size, vehicle_doors, vehicle_colour, vehicle_year, vehicle_mileage, vehicle_fuel, vehicle_transmission, vehicle_mpg, vehicle_road_tax, vehicle_insurance_group, vehicle_extras) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleVariant, :vehicleEngineSize, :vehicleDoors, :vehicleColour, :vehicleYear, :vehicleMileage, :vehicleFuel, :vehicleTransmission, :vehicleMPG, :vehicleRoadTax, :vehicleInsuranceGroup, :vehicleExtras)");
 
@@ -88,7 +89,7 @@ class vehicle_Model extends Model {
 		$query->bindParam(":vehicleExterior", $vehicleExterior, PDO::PARAM_STR);
 		$query->bindParam(":vehicleComfort", $vehicleComfort, PDO::PARAM_STR);
 		$query->bindParam(":vehicleOther", $vehicleOther, PDO::PARAM_STR);
-		$query->bindParam(":vehicleExtras", $vehicleExtras, PDO::PARAM_STR);                
+		$query->bindParam(":vehicleExtras", $vehicleExtra, PDO::PARAM_STR);                
 
 		$query->execute();
 

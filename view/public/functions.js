@@ -1,4 +1,18 @@
+	
 	$(document).ready(function() {
+
+		$(".navigation_burger").click(function() { 
+			if ($("#navigation_mini").css('display') == 'none' || $("#navigation_mini").css("visibility") == "hidden") {
+				
+				$("#navigation_mini").animate({width:'toggle'},0000);
+			} else if ($("#navigation_mini").css('display') == 'block' || $("#navigation_mini").css("visibility") == "visible") {
+				$("#navigation_mini").animate({width:'toggle'},0000);
+			}
+		});
+		
+
+	
+		
 		let getUrlParameter = function getUrlParameter(sParam) {
 			let sPageURL = decodeURIComponent(window.location.search.substring(1)),
 				sURLletiables = sPageURL.split('&'),
@@ -138,10 +152,10 @@
 			$("#mileage").append("<option selected value=\"any\">Mileage (Any)</option>");		
 
 			filterResults();			
-		}
+		};
 		
-		function filterResults($element = '') {
-			$object = $element.id;
+		function filterResults($element) { 
+			$object = $element;
 			$filter = JSON.stringify($("#search_form").serializeArray());
 				
 			$.ajax({
@@ -149,7 +163,7 @@
 				url: "/showroom/filterResults",
 				data: {source:$object, filter:$filter},
 				dataType: 'json',
-				success: function($response)	{
+				success: function($response) {
 					console.log($response);
 					$.each($response, function($optionField, $value) {
 						$optionValue = $("#" + $optionField +"").val();
@@ -164,7 +178,6 @@
 							$("#" + $optionField +"").empty();
 							$("#" + $optionField +"").append("<option value='any'>" + $optionField.charAt(0).toUpperCase() + $optionField.slice(1).toLowerCase() + " (Any)</option>");
 							$.each($value, function($element, $foo) {
-								console.log($foo);
 								if($optionField == 'age') {
 									if($foo == $optionValue) {
 									$("#" + $optionField +"").append("<option value='" + $foo + "' selected>Less than " + $foo + " years</option>");
@@ -172,7 +185,6 @@
 										$("#" + $optionField +"").append("<option value='" + $foo + "'>Less than " + $foo + " years</option>");
 									}
 								} else {
-									
 									if($foo == $optionValue) {
 										$("#" + $optionField +"").append("<option value='" + $foo + "' selected>" + $foo + "</option>");
 									} else {
@@ -183,11 +195,11 @@
 					});
 				}
 			});
-		}
-		
-		
-;
+		};
 
+
+		
+		
 		$( "#search_form" ).submit(function( event ) {
 		  //console.log( $( this ).serializeArray() );
 		});
@@ -198,7 +210,7 @@
 		  event.preventDefault();
 		});
 		
-		$("#search_form select").change(function() {
+		$("#search_form select").change(function(event) {
 			if(this.value != 'any') {
 				$(this).hide();
 				if(this.id == 'age') { 
@@ -209,7 +221,7 @@
 					$("#" + this.id + "_filter").show();
 				}
 			}
-			filterResults()
+			filterResults(this.id)
 		});	
 		
 		$("#search_form .filter .close").click(function() {
@@ -219,5 +231,4 @@
 			$(this).parent().hide();
 			filterResults();
 		});
-
 	});

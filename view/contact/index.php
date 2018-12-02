@@ -1,108 +1,6 @@
 <style type="text/css">
 
-	#contactForm {
-		width: 50%;
-		float: left;
-		background-color: #3c484d;
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
 
-	.contactFieldContainer {
-		width: 100%;
-		height: 60px;
-	}
-
-	.contactLabel {
-		width: 40%;
-		float: left;
-	}
-
-	.contactLabel p {
-		line-height: 1.2;
-		text-align: right;
-		padding: 10px;
-		float: right;
-		color: #ffffff;
-	}
-
-	.contactLabel p span {
-		width: 100%;
-		font-size: 10px;
-		float: right;
-	}
-
-	.contactField {
-		text-align: left;
-		width: 50%;
-		float: left;
-		padding-left: 20px;
-	}
-
-	.contactField input {
-		text-align: left;
-		width: 100%;
-		float: left;
-		height: 100%;
-		border: 1px solid #c0c0c0;
-		padding-top: 15px;
-		padding-bottom: 15px;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	.contactField textarea {
-		width: 100%;
-		padding: 10px;
-		height: 100px;
-		border: 1px solid #c0c0c0;
-	}
-
-	.contactFormSubmit {
-    	text-align: center;
-	}
-
-	.contactFormSubmit input {
-		margin: 0px auto;
-		width: 120px;
-		cursor: pointer;
-		background-color: #ffffff;
-		color: #3c484d;
-	}
-
-	#openingTimes {
-		float: left;
-		width: 50%;
-		color: #6e6363;
-	}
-
-	#openingTimes h3 {
-		padding-left: 30px;
-		padding-top: 0px;
-		margin-bottom: 10px;
-	}
-
-	#openingTimes .openingTimeContainer {
-		margin-top: 15px;
-		height: 20px;
-	}
-
-	#openingTimes .openingDay {
-		float: left;
-		padding-left: 50px;
-		width: 250px;
-	}
-
-	#openingTimes .openingTime {
-		float: left;
-		padding-left: 20px;
-		width: 100px;
-	}
-	
-	#map {
-		width: 100%;
-		height: 100%;
-	}
 
 </style>
 
@@ -133,7 +31,7 @@
 					KING'S LYNN<br />
 					NORFOLK<br />
 					PE30 4NQ <br /><br />
-					07500 123456<br /> <br />
+					07979 492760<br /> <br />
 					SALES@JFCARS.CO.UK
 				</div>
 			</div>
@@ -196,7 +94,7 @@
 					Sunday
 				</div>
 				<div class="openingTime">
-					08:30 - 17:30
+					10:00 - 16:00
 				</div>
 			</div>
 			<div style="clear: both"></div>
