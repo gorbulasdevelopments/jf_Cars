@@ -496,16 +496,17 @@ h3 {
 .vehicle_container_full .vehicle_description {
 	margin-bottom: 10px;
 	float: left;
-	width: 100%;
+	width: 600px;
 }
 
 .vehicle_container_full .vehicle_image {
 	width: 600px;
-	height: 400px;
+	height: 450px;
 	overflow: hidden;
 	position: relative;
 	margin: 0px auto;
 	float: left;
+	margin-top: 22px;
 
 }
 
@@ -593,7 +594,18 @@ h3 {
 }
 
 #vehicleSummary .detailContainer {
-	width: 33%;
+	width: 100%;
+	text-align: left;
+}
+
+#vehicleSummary .detailContainer .detailContainerLabel {
+	width: 80%;
+	text-align: left;
+}
+
+#vehicleSummary .detailContainer .detailContainerValue {
+	width: 20%;
+	text-align: left;
 }
 
 #vehicleRunningCosts .detailContainer {
@@ -636,7 +648,7 @@ h3 {
 	padding-right: 0%;
 }
 
-#vehicleSummary .vehicleDetails .detailContainer:nth-last-child(-n+3) {
+#vehicleSummary .vehicleDetails .detailContainer:nth-last-child(-n+1) {
 	border-bottom: 0px solid #c0c0c0;
 }
 

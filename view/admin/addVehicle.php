@@ -167,6 +167,7 @@
 				$('#vehicleEngineSize').val(obj.Response.DataItems.SmmtDetails.EngineCapacity);
 				$('#vehicleDoors').val(obj.Response.DataItems.SmmtDetails.NumberOfDoors);
 				$('#vehicleYear').val(obj.Response.DataItems.VehicleRegistration.YearOfManufacture);
+				$('#vehicleMileage').val("0");
 
 
 				$('#vehicleBodyStyle').val(obj.Response.DataItems.SmmtDetails.BodyStyle);
@@ -182,7 +183,7 @@
 				$('#vehicleRoadTax').val(obj.Response.DataItems.VehicleStatus.MotVed.VedCo2Band);
 				$('#vehicleRoadTax6').val(obj.Response.DataItems.VehicleStatus.MotVed.VedRate.Standard.SixMonth);
 				$('#vehicleRoadTax12').val(obj.Response.DataItems.VehicleStatus.MotVed.VedRate.Standard.TwelveMonth);
-				$('#vehicleInsuranceGroup').val("TBC");
+				$('#vehicleInsuranceGroup').val("0");
 				$('#vehicleBHP').val(obj.Response.DataItems.TechnicalDetails.Performance.Power.Bhp);
 				$('#vehicleTorque').val(obj.Response.DataItems.TechnicalDetails.Performance.Torque.FtLb);
 				$('#vehicleMaxSpeed').val(obj.Response.DataItems.TechnicalDetails.Performance.MaxSpeed.Mph);
@@ -362,7 +363,7 @@
 					<tr><td>Vehicle Engine Size:</td><td><input type="text" value="" id="vehicleEngineSize" name="vehicleEngineSize"></td></tr>
 					<tr><td>Vehicle Doors:</td><td><input type="text" value="" id="vehicleDoors" name="vehicleDoors"></td></tr>
 					<tr><td>Vehicle Year:</td><td><input type="text" value="" id="vehicleYear" name="vehicleYear"></td></tr>
-					<tr><td>Vehicle Mileage:</td><td><input type="text" value="" name="vehicleMileage"></td></tr>
+					<tr><td>Vehicle Mileage:</td><td><input type="text" value="" id="vehicleMileage" name="vehicleMileage"></td></tr>
 			
 					<tr><td colspan="2"><b>Additional Fields</b></td></tr>
 					<tr><td>Body Style:</td><td><input type="text" value="" id="vehicleBodyStyle" name="vehicleBodyStyle"></td></tr>

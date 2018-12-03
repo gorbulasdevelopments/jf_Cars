@@ -34,14 +34,12 @@ class Vehicle extends Controller {
 				$vehicleData = $_POST;
 				
 				//I dont check for empty() incase your app allows a 0 as ID.
-				if (strlen($input)==0) {
-				  echo 'no input';
-				  exit;
-				}
+				if (strlen($input)>=0) {
 
-				$ids = explode("\n", str_replace("\r", "", $input));
-				
-				$vehicleData['vehicleExtras'] = array_filter($ids);
+					$ids = explode("\n", str_replace("\r", "", $input));
+					
+					$vehicleData['vehicleExtras'] = array_filter($ids);
+				}
 
                 $this->model->addVehicle($vehicleData);
             } else {   
