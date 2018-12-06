@@ -79,7 +79,8 @@
 				
 					<tr><td>Vehicle Registration:</td><td><input type="text" id="vehicleRegistration" value="" name="vehicleRegistration"></td></tr>
 					<tr><td>Sale Price:</td><td><input type="text" value="" name="salePrice"></td></tr>
-					<tr><td>Sale Summary:</td><td><textarea rows="10" cols="30" style="height: 200px; width: 250px; border: 1px solid #c0c0c0;" value="" name="saleSummary"></textarea></td></tr>
+					<tr><td>Sale Summary:</td><td><textarea rows="10" cols="30" style="height: 100px; width: 450px; border: 1px solid #c0c0c0;" value="" name="saleSummary"></textarea></td></tr>
+					<tr><td>Sale Description:</td><td><textarea rows="30" cols="80" style="height: 200px; width: 450px; border: 1px solid #c0c0c0;" value="" name="saleDescription"></textarea></td></tr>
 					
 					<tr>
 					<td colspan="2">

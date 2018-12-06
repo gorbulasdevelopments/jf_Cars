@@ -35,11 +35,12 @@ class sale_Model extends Model {
 					$vehicldID = $vehicle["vehicle_id"];
 					$username = Session::get("username");
 					$date = date("Y-m-d H:i:s");
-					$query = $this->db->prepare("INSERT INTO sale_table (sale_author, vehicle_id, sale_price, sale_summary, sale_add_date) VALUES (:saleAuthor, :vehicleID, :salePrice, :saleSummary, :saleAddDate)");
+					$query = $this->db->prepare("INSERT INTO sale_table (sale_author, vehicle_id, sale_price, sale_summary, sale_description, sale_add_date) VALUES (:saleAuthor, :vehicleID, :salePrice, :saleSummary, :saleDescription, :saleAddDate)");
 					$query->bindParam(":saleAuthor", $username, PDO::PARAM_STR);
 					$query->bindParam(":vehicleID", $vehicldID, PDO::PARAM_STR);
 					$query->bindParam(":salePrice", $_POST['salePrice'], PDO::PARAM_STR);
 					$query->bindParam(":saleSummary", $_POST['saleSummary'], PDO::PARAM_STR);
+					$query->bindParam(":saleDescription", $_POST['saleDescription'], PDO::PARAM_STR);
 					$query->bindParam(":saleAddDate", $date, PDO::PARAM_STR);
 					if(!$query->execute()) {
 						$response = $query->errorInfo();
@@ -65,7 +66,25 @@ class sale_Model extends Model {
 			return true;
 		}
 	}
-    
+	
+	public function getSaleDetails($vehicleRegistration) {
+		$strSQL = "SELECT vehicle_registration, sale_price, sale_summary, sale_description from vehicle_table vt left join sale_table st on st.vehicle_id = vt.vehicle_id where vt.vehicle_registration = :vehicleRegistration";
+		$query = $this->db->prepare($strSQL);
+		$query->bindParam(":vehicleRegistration", $vehicleRegistration, PDO::PARAM_STR);
+		$query->execute();
+		
+		$response = $query->errorInfo();
+		if(isset($response[2]) && $response[2] != '') {
+			$controller = new Errors();
+			$controller->functionError("sale_model/getSaleDetails()", "Failed to select sale details from database");
+		} else {
+			return $query->fetchAll(PDO::FETCH_ASSOC);
+		}
+	}
+
+	public function updateSale() {
+		print_r($_POST);
+	}
 	
 	//Existing functions from vehicle_model
 

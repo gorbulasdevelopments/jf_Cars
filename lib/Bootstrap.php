@@ -61,6 +61,7 @@ class Bootstrap {
 
         Router::any('/admin/sales', 'controller\admin\sale@getSales');
 		Router::any('/admin/sales/addSale', 'controller\admin\sale@addSale');
+		Router::any('/admin/sales/updateSale', 'controller\admin\sale@updateSale');
 		Router::any('/admin/sales/updateSale/(:any)', 'controller\admin\sale@updateSale');
         Router::any('/admin/sales/removeSale/(:any)', 'controller\admin\sale@removeSale');
         Router::any('/admin/sales/shareSale/(:any)', 'controller\admin\sale@shareSale');

@@ -63,15 +63,19 @@ class Sale extends Controller {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else { 
-            if(isset($_POST['SOMETHING'])) {
-                $response = $this->model->updateSale($vehicleRegistration);
-                if($response) {
+            $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $uri_array = explode('/', $uri);
+            $vehicleRegistration = end($uri_array);
+            if(isset($_POST['vehicleRegistration'])) {
+                $response = $this->model->updateSale();
+                /*if($response) {
                     header("Location: " . URL . "/admin/sales/viewSale/" . $vehicleRegistration);
                 } else {
                     header("Location: " . URL . "/error/" . $response);
-                }
+                }*/
             } else {
-                $this->viewFile = "admin/updateSale";
+                $this->view->saleDetails = $this->model->getSaleDetails($vehicleRegistration);
+                $this->viewFile = "admin/editSale";
                 $this->render();
             } 
         }

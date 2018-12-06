@@ -1,15 +1,9 @@
-<?php
-
-echo "<pre>";
-//print_r($this->vehicleResult);
-echo "</pre>";
-?>
-
 <style type="text/css">
 	#vehicle_form, #vehicleImageForm, #vehicleImageUploadForm {
 		margin: 0px auto;
 		width: 806px;
 		margin-bottom: 30px;
+		border-collapse: collapse;	
 	}
 
     #vehicleTable, #vehicleImageTable {
@@ -64,7 +58,7 @@ echo "</pre>";
 		line-height: 1.5;
 	}
 
-	/*#vehicleImageTable {
+	#vehicleImageTable {
         border: 1px solid #c0c0c0;
 		width: 100%;
         font-size: 10px;
@@ -73,18 +67,21 @@ echo "</pre>";
 		float: left;
 		border-spacing: 0px;
     	border-collapse: collapse;
-    }*/
+    }
 	
 	#vehicleImageTable th {
 		padding: 5px;
 		border-bottom: 1px solid #c0c0c0;
 		text-align: center;
 		height: 30px;
-    }
+	}
+	
+	#vehicleImageTable tr {
+		border-bottom: 1px solid #c0c0c0;
+	}
 
     #vehicleImageTable td {
 		padding: 5px;
-		border-bottom: 1px solid #c0c0c0;
 		text-align: center;
     }
 	
@@ -160,39 +157,65 @@ echo "</pre>";
 							<tr><td colspan="2"><b>Safety Features</b></td></tr>
 							<tr><td id="vehicleSafety" colspan="2">
 								<?php 
-									foreach(json_decode($vehicle['vehicle_safety']) as $item) {
-										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									foreach(json_decode(stripslashes($vehicle['vehicle_safety'])) as $key => $value) {
+										//echo $key . " - " . $value . "<br />";
+										if($value) {
+											echo "<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" . $key . "\" checked>  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										} else {
+											echo "<input type=\"checkbox\" name=\"vehicleSafety[]\" value=\"" . $key . "\">  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										}
 									}
 								?>
 							</td></tr>
 							<tr><td colspan="2"><b>Interior Features</b></td></tr>
 							<tr><td id="vehicleInterior" colspan="2">
 								<?php 
-									foreach(json_decode($vehicle['vehicle_interior']) as $item) {
-										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									foreach(json_decode(stripslashes($vehicle['vehicle_interior'])) as $key => $value) {
+										//echo $key . " - " . $value . "<br />";
+										if($value) {
+											echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $key . "\" checked>  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										} else {
+											echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $key . "\">  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										}
 									}
 								?>
 							</td></tr>
 							<tr><td colspan="2"><b>Exterior Features</b></td></tr>
 							<tr><td id="vehicleExterior" colspan="2">
 								<?php 
-									foreach(json_decode($vehicle['vehicle_exterior']) as $item) {
-										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									foreach(json_decode(stripslashes($vehicle['vehicle_exterior'])) as $key => $value) {
+										//echo $key . " - " . $value . "<br />";
+										if($value) {
+											echo "<input type=\"checkbox\" name=\"vehicleExterior[]\" value=\"" . $key . "\" checked>  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										} else {
+											echo "<input type=\"checkbox\" name=\"vehicleExterior[]\" value=\"" . $key . "\">  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										}
 									}
 								?>
 							</td></tr>
 							<tr><td colspan="2"><b>Comfort Features</b></td></tr>
 							<tr><td id="vehicleComfort" colspan="2">
 								<?php 
-									foreach(json_decode($vehicle['vehicle_comfort']) as $item) {
-										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									foreach(json_decode(stripslashes($vehicle['vehicle_comfort'])) as $key => $value) {
+										//echo $key . " - " . $value . "<br />";
+										if($value) {
+											echo "<input type=\"checkbox\" name=\"vehicleComfort[]\" value=\"" . $key . "\" checked>  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										} else {
+											echo "<input type=\"checkbox\" name=\"vehicleComfort[]\" value=\"" . $key . "\">  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										}
 									}
-								?></td></tr>
+								?>
+							</td></tr>
 							<tr><td colspan="2"><b>Other Features</b></td></tr>
 							<tr><td id="vehicleOther" colspan="2">
 								<?php 
-									foreach(json_decode($vehicle['vehicle_other']) as $item) {
-										echo "<input type=\"checkbox\" name=\"vehicleInterior[]\" value=\"" . $item . "\" checked>  <span class=\"featureLabel\">" . $item . "</span>" . "<br />";
+									foreach(json_decode(stripslashes($vehicle['vehicle_other'])) as $key => $value) {
+										//echo $key . " - " . $value . "<br />";
+										if($value) {
+											echo "<input type=\"checkbox\" name=\"vehicleOther[]\" value=\"" . $key . "\" checked>  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										} else {
+											echo "<input type=\"checkbox\" name=\"vehicleOther[]\" value=\"" . $key . "\">  <span class=\"featureLabel\">" . $key . "</span>" . "<br />";
+										}
 									}
 								?>
 							</td></tr>
@@ -257,6 +280,11 @@ echo "</pre>";
 					<tr><td>Vehicle Image #3:</td><td><input id="image3" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image3_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="2" name="coverImage[]" /></td></tr>
 					<tr><td>Vehicle Image #4:</td><td><input id="image4" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image4_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="3" name="coverImage[]" /></td></tr>
 					<tr><td>Vehicle Image #5:</td><td><input id="image5" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image5_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="4" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #6:</td><td><input id="image6" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image6_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="5" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #7:</td><td><input id="image7" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image7_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="6" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #8:</td><td><input id="image8" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image8_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="7" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #9:</td><td><input id="image9" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image9_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="8" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #10:</td><td><input id="image10" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image10_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="9" name="coverImage[]" /></td></tr>
 
 				</table>
 				
@@ -288,7 +316,69 @@ echo "</pre>";
 	}
 	
 	$(document).ready(function() {
-		$("input:checkbox").on('click', function() {
+
+		$("#vehicle_form").submit(function( event ) {
+			event.preventDefault();
+
+			var $vehicleSafety = {};
+			$("#vehicleSafety input:checkbox").each(function(){
+				$vehicleSafety[this.value] = this.checked;
+			});
+
+			var $vehicleInterior = {};
+			$("#vehicleInterior input:checkbox").each(function(){
+				$vehicleInterior[this.value] = this.checked;
+			});
+
+			var $vehicleExterior = {};
+			$("#vehicleExterior input:checkbox").each(function(){
+				$vehicleExterior[this.value] = this.checked;
+			});
+
+			var $vehicleComfort = {};
+			$("#vehicleComfort input:checkbox").each(function(){
+				$vehicleComfort[this.value] = this.checked;
+			});
+
+			var $vehicleOther = {};
+			$("#vehicleOther input:checkbox").each(function(){
+				$vehicleOther[this.value] = this.checked;
+			});
+
+			$formData = new FormData(this);
+
+			$formData.set('vehicleSafety', JSON.stringify($vehicleSafety));
+			$formData.set('vehicleInterior', JSON.stringify($vehicleInterior));
+			$formData.set('vehicleExterior', JSON.stringify($vehicleExterior));
+			$formData.set('vehicleComfort', JSON.stringify($vehicleComfort));
+			$formData.set('vehicleOther', JSON.stringify($vehicleOther));
+
+			$.ajax({
+				url: "/admin/vehicles/updateVehicle", // Url to which the request is send
+				type: "POST",             // Type of request to be send, called as method
+				data: $formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+				contentType: false,       // The content type used when sending data to the server.
+				cache: false,             // To unable request pages to be cached
+				processData:false,        // To send DOMDocument or non processed data file it is set to false
+				success: function(data)   // A function to be called if request succeeds
+				{
+					if (data.indexOf("success") >= 0) {
+						alert("Vehicle updated successfully");
+					} else {
+						alert(data);
+					}
+					
+				}
+			});
+
+
+			//$('#vehicle_form').submit();
+
+			console.log($vehicleSafety)
+
+		});
+
+		$("#vehicleImageTable input:checkbox").on('click', function() {
 			// in the handler, 'this' refers to the box clicked on
 			var $box = $(this);
 			if ($box.is(":checked")) {
@@ -303,6 +393,9 @@ echo "</pre>";
 				$box.prop("checked", false);
 			}
 		});
+
+
+
 
 		$("#vehicleImageTable").on('click', '.removeVehicleImage', function(e) {
 			e.preventDefault();

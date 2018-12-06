@@ -26,22 +26,9 @@ class Vehicle extends Controller {
 			header("location: " . URL . "/admin/login");
 		} else {
 
+            
             if(isset($_POST['vehicleRegistration'])) {
-				
-				
-				$input = isset($_POST['vehicleExtras'])?$_POST['vehicleExtras']:"";
-
-				$vehicleData = $_POST;
-				
-				//I dont check for empty() incase your app allows a 0 as ID.
-				if (strlen($input)>=0) {
-
-					$ids = explode("\n", str_replace("\r", "", $input));
-					
-					$vehicleData['vehicleExtras'] = array_filter($ids);
-				}
-
-                $this->model->addVehicle($vehicleData);
+                $this->model->addVehicle();
             } else {   
                 $this->viewFile = "admin/addVehicle";
                 $this->render();

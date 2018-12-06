@@ -12,6 +12,7 @@
         font-size: 12px;		
 		width: 100%;
 		margin-bottom: 30px;
+		border-collapse:collapse;
     }
 	
     #vehicleTable tr {
@@ -75,11 +76,14 @@
 		border-bottom: 1px solid #c0c0c0;
 		text-align: center;
 		height: 30px;
-    }
+	}
+	
+	#vehicleImageTable tr {
+		border-bottom: 1px solid #c0c0c0;
+	}
 
     #vehicleImageTable td {
 		padding: 5px;
-		border-bottom: 1px solid #c0c0c0;
 		text-align: center;
     }
 	
@@ -107,6 +111,8 @@
 	#vehicleOther input {
 		margin-left: 20px;
 	}
+
+}
 </style>
 
 <script>
@@ -127,6 +133,60 @@
 	}
 	
 	$(document).ready(function() {
+
+		$("#vehicle_form").submit(function( event ) {
+			event.preventDefault();
+
+			var $vehicleSafety = {};
+			$("#vehicleSafety input:checkbox").each(function(){
+				$vehicleSafety[this.value] = this.checked;
+			});
+
+			var $vehicleInterior = {};
+			$("#vehicleInterior input:checkbox").each(function(){
+				$vehicleInterior[this.value] = this.checked;
+			});
+
+			var $vehicleExterior = {};
+			$("#vehicleExterior input:checkbox").each(function(){
+				$vehicleExterior[this.value] = this.checked;
+			});
+
+			var $vehicleComfort = {};
+			$("#vehicleComfort input:checkbox").each(function(){
+				$vehicleComfort[this.value] = this.checked;
+			});
+
+			var $vehicleOther = {};
+			$("#vehicleOther input:checkbox").each(function(){
+				$vehicleOther[this.value] = this.checked;
+			});
+
+			$formData = new FormData(this);
+
+			$formData.set('vehicleSafety', JSON.stringify($vehicleSafety));
+			$formData.set('vehicleInterior', JSON.stringify($vehicleInterior));
+			$formData.set('vehicleExterior', JSON.stringify($vehicleExterior));
+			$formData.set('vehicleComfort', JSON.stringify($vehicleComfort));
+			$formData.set('vehicleOther', JSON.stringify($vehicleOther));
+
+			$.ajax({
+				url: "/admin/vehicles/addVehicle", // Url to which the request is send
+				type: "POST",             // Type of request to be send, called as method
+				data: $formData, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+				contentType: false,       // The content type used when sending data to the server.
+				cache: false,             // To unable request pages to be cached
+				processData:false,        // To send DOMDocument or non processed data file it is set to false
+				success: function(data)   // A function to be called if request succeeds
+				{
+					alert("Success");
+				}
+			});
+		});
+
+
+
+
 	$("input:checkbox").on('click', function() {
 		// in the handler, 'this' refers to the box clicked on
 		var $box = $(this);
@@ -146,6 +206,10 @@
 		$("#vehicle_search_form").submit(function( event ) {
 			event.preventDefault();
 
+			if(!confirm("Are you sure?")) {
+				return false;
+			};
+
 			$('#vehicleSafety').empty()
 			$('#vehicleInterior').empty()
 			$('#vehicleExterior').empty()
@@ -155,7 +219,7 @@
 			//alert($("#vehicleSearchRegistration :selected").text());
 
 			var $vehicleData = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleDataResult', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(vehicleDataResponse) {
-				console.log(vehicleDataResponse);
+				//console.log(vehicleDataResponse);
 
 				var obj = vehicleDataResponse;
 
@@ -203,13 +267,13 @@
 			});
 
 			var $vehicleSpecAndOptions = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleSpecAndOptions', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
-				console.log(response);
+				//console.log(response);
 
 				var obj = response;
 
 				$.each(obj.Response.DataItems.FactoryEquipmentList, function( key, value ) {
 					//console.log(value);
-					console.log(value.Fitment + " - " + value.Name + " - " + value.Description + " - " + value.Category );
+					//console.log(value.Fitment + " - " + value.Name + " - " + value.Description + " - " + value.Category );
 					//if((value.Description !== null ) && (value.Description.toLowerCase() !== "null")) {
 						if(value.Category == "Safety and Security") {
 							if(value.Fitment == "Option") {	
@@ -304,8 +368,8 @@
 				//alert("Finished");
 			});
 
-			var $vehicleMOTHistory = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
-				console.log(response);
+			/*var $vehicleMOTHistory = $.post('http://www.jfcars.co.uk/admin/vehicles/getVehicleMOTHistory', {'vehicleRegistration' : $("#vehicleSearchRegistration").val()}, function(response) {
+				//console.log(response);
 
 				var obj = response;
 
@@ -322,7 +386,7 @@
 			$vehicleMOTHistory.always(function( result ) {
 				//alert("Finished");
 			});
-
+*/
 
 
 
@@ -409,6 +473,13 @@
 					<tr><td>Vehicle Image #3:</td><td><input id="image3" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image3_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="2" name="coverImage[]" /></td></tr>
 					<tr><td>Vehicle Image #4:</td><td><input id="image4" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image4_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="3" name="coverImage[]" /></td></tr>
 					<tr><td>Vehicle Image #5:</td><td><input id="image5" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image5_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="4" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #6:</td><td><input id="image6" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image6_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="5" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #7:</td><td><input id="image7" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image7_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="6" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #8:</td><td><input id="image8" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image8_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="7" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #9:</td><td><input id="image9" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image9_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="8" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #10:</td><td><input id="image10" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image10_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="9" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #11:</td><td><input id="image11" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image11_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="10" name="coverImage[]" /></td></tr>
+					<tr><td>Vehicle Image #12:</td><td><input id="image12" type="file" value="" name="vehicleImages[]" onchange="readImage(this);"></td><td><img id="image12_preview" src="#" alt="" /></td><td><input type="checkbox" class="radio" value="11" name="coverImage[]" /></td></tr>
 
 				</table>
 				

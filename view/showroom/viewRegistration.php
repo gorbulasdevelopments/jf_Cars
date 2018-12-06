@@ -39,6 +39,9 @@
 				
 			</div>
 			
+			<div class="saleDescription">
+			<?php echo $record['sale_description']; ?>
+			</div>
 			</div>
 			
 			<div style=" margin-bottom: 40px;float: right; padding-right: 10px; text-align: center;">
@@ -286,52 +289,62 @@
 			<div id="vehicleExtras">
 				<div class="vehicleDetails" style=" line-height: 30px; padding-left: 20px;">
 					<?php
-						$safetyExtras = json_decode($record['vehicle_safety']);
-						
+						$safetyExtras = json_decode(stripslashes($record['vehicle_safety']), true);
+
 						if(sizeof($safetyExtras) > 0) {
-							foreach($safetyExtras as $item) {
-								echo "<div class=\"detailContainer\">";
-								echo $item;
-								echo "</div>";
+							foreach($safetyExtras as $key => $value ) {
+								if($value) {
+									echo "<div class=\"detailContainer\">";
+									echo $key;
+									echo "</div>";
+								}
 							}
 						}
 						
-						$interiorExtras = json_decode($record['vehicle_interior']);
+						$interiorExtras = json_decode(stripslashes($record['vehicle_interior']), true);
 						
 						if(sizeof($interiorExtras) > 0) {
-							foreach($interiorExtras as $item) {
-								echo "<div class=\"detailContainer\">";
-								echo $item;
-								echo "</div>";
+							foreach($interiorExtras as $key => $value ) {
+								if($value) {
+									echo "<div class=\"detailContainer\">";
+									echo $key;
+									echo "</div>";
+								}
 							}
 						}
 						
-						$exteriorExtras = json_decode($record['vehicle_exterior']);
-						
+						$exteriorExtras = json_decode(stripslashes($record['vehicle_exterior']), true);
+
 						if(sizeof($exteriorExtras) > 0) {
-							foreach($exteriorExtras as $item) {
-								echo "<div class=\"detailContainer\">";
-								echo $item;
-								echo "</div>";
+							foreach($exteriorExtras as $key => $value ) {
+								if($value) {
+									echo "<div class=\"detailContainer\">";
+									echo $key;
+									echo "</div>";
+								}
 							}
 						}
 						
-						$comfortExtras = json_decode($record['vehicle_comfort']);
+						$comfortExtras = json_decode(stripslashes($record['vehicle_comfort']), true);
 						
 						if(sizeof($comfortExtras) > 0) {
-							foreach($comfortExtras as $item) {
-								echo "<div class=\"detailContainer\">";
-								echo $item;
-								echo "</div>";
+							foreach($comfortExtras as $key => $value ) {
+								if($value) {
+									echo "<div class=\"detailContainer\">";
+									echo $key;
+									echo "</div>";
+								}
 							}
 						}
 						
-						$otherExtras = json_decode($record['vehicle_other']);
+						$otherExtras = json_decode(stripslashes($record['vehicle_other']), true);
 						if(sizeof($otherExtras) > 0) {
-							foreach($otherExtras as $item) {
-								echo "<div class=\"detailContainer\">";
-								echo $item;
-								echo "</div>";
+							foreach($otherExtras as $key => $value ) {
+								if($value) {
+									echo "<div class=\"detailContainer\">";
+									echo $key;
+									echo "</div>";
+								}
 							}
 						}
 						
