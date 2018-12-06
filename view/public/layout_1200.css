@@ -456,7 +456,7 @@ h3 {
 	position: absolute;
 	bottom: 20px;
 	right: 20px;
-	width: 120px;
+	min-width: 120px;
 	height: 60px;
 	background-color: #f75050;
 	color: #fff;

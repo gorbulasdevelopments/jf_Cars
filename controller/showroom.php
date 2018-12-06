@@ -25,7 +25,7 @@ class Showroom extends Controller {
     public function index() {
 		$this->result = $this->model->getAllSales();
         $this->view->result = $this->result;
-		$this->view->vehicleImages = $this->model->getAllImages();
+		//$this->view->vehicleImages = $this->model->getAllImages();
 		$this->view->filterResults = $this->filterResultsToArray($this->result);
 		$this->view->localJavascript = "/view/showroom/functions_index.js";
         $this->viewFile = "showroom/index";
@@ -34,10 +34,35 @@ class Showroom extends Controller {
 	
 	public function getMakes() {
 		echo "Get Makes";
+		
+		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+		$uri_array = explode('/', $uri);
+		$vehicleMake = end($uri_array);
+		
+		$this->result = $this->model->getMake($vehicleMake);
+        $this->view->result = $this->result;
+		//$this->view->vehicleImages = $this->model->getAllImages();
+		//$this->view->filterResults = $this->filterResultsToArray($this->result);
+		$this->view->localJavascript = "/view/showroom/functions_index.js";
+        $this->viewFile = "showroom/index";
+		$this->render();
 	}
 
 	public function getModels() {
 		echo "Get Models";
+		
+			$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+		$uri_array = explode('/', $uri);
+		$vehicleModel = end($uri_array);
+		$vehicleMake = prev($uri_array);
+		
+		$this->result = $this->model->getModel($vehicleMake, $vehicleModel);
+        $this->view->result = $this->result;
+		//$this->view->vehicleImages = $this->model->getAllImages();
+		//$this->view->filterResults = $this->filterResultsToArray($this->result);
+		$this->view->localJavascript = "/view/showroom/functions_index.js";
+        $this->viewFile = "showroom/index";
+		$this->render();
 	}
 	
 	public function getRegistration() {

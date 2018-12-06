@@ -16,7 +16,7 @@
 
 
 		<p>
-		At JF Car Sales, we pride ourselves by stocking a range range of used cars at great prices.
+		At JF Car Sales, we pride ourselves by stocking a range of used cars at great prices.
 		</p>
 		<p>
 		If what we have in stock is not what you are looking for, please contact us and we will be happy to help you find the right car.
@@ -96,6 +96,9 @@
 				<div class="openingTime">
 					10:00 - 16:00
 				</div>
+			</div>
+			<div class="openingTimeContainer">
+				<h3>Viewing by appointment only outside of opening times</h3>
 			</div>
 			<div style="clear: both"></div>
 		</div>
