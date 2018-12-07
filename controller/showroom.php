@@ -33,8 +33,6 @@ class Showroom extends Controller {
 	}
 	
 	public function getMakes() {
-		echo "Get Makes";
-		
 		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		$uri_array = explode('/', $uri);
 		$vehicleMake = end($uri_array);
@@ -49,9 +47,7 @@ class Showroom extends Controller {
 	}
 
 	public function getModels() {
-		echo "Get Models";
-		
-			$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 		$uri_array = explode('/', $uri);
 		$vehicleModel = end($uri_array);
 		$vehicleMake = prev($uri_array);

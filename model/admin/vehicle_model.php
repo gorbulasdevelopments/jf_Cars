@@ -31,7 +31,7 @@ class vehicle_Model extends Model {
         return $strSQL->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-    public function addVehicle( $vehicleData ) {
+    public function addVehicle() {
 		//Add record to database
 
 		$input = isset($_POST['vehicleExtras']) ? $_POST['vehicleExtras'] : "";

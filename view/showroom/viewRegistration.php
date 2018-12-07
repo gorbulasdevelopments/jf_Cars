@@ -57,9 +57,9 @@
 								<td>
 									<select name="enquiryType" value="" required>
 										<option selected hidden value="">Please select an enquiry</option>
-										<option value="viewing">I would like to view this vehilce</option></option>
-										<option value="question">I have a question about this vehicle</option>
-										<option value="testDrive">I would like to book a test drive</option>
+										<option value="viewing">Arrange a viewing</option></option>
+										<option value="question">I have a question</option>
+										<option value="testDrive">Book a test drive</option>
 									</select>	
 								</td>
 							</tr>						
@@ -77,7 +77,7 @@
 							</tr>
 							<tr>
 								<td colspan = "2" style="text-align: center;">
-									<input type="submit" value="Submit Enquiry" />
+									<input class="button" type="submit" value="Submit Enquiry" />
 								</td>
 							</tr>
 						</table>

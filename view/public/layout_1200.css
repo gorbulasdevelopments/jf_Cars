@@ -369,17 +369,30 @@ h3 {
 
 .vehicle_container {
 	width: 95%;
-	background-color: #EAEAEA;
+	/*background-color: #EAEAEA;*/
 	/*background-color: #ffffff;*/
 	margin: 0px auto;
-	margin-top: 20px;
 	position: relative;
-	border: 1px solid #6b767b;
+	/*border: 1px solid #6b767b;*/
 	cursor: pointer;
 	margin-bottom: 10px;
 	padding: 20px;
+	margin-top: 10px;
 	text-align: left;
-	border-radius: 3px;
+	/*border-radius: 3px;*/
+}
+
+
+
+#content .bottom_border {
+	height: 10px; 
+	width: 95%; 
+	margin: 0px auto; 
+	border-bottom: 1px solid #c0c0c0;
+}
+
+#content .bottom_border:nth-last-of-type(2) {
+	border-bottom: none;
 }
 
 .vehicle_container .vehicle_description {
@@ -388,7 +401,14 @@ h3 {
 }
 
 .vehicle_container .vehicle_description a {
-	color: #6e6363;
+	color: #f75070;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.vehicle_container .vehicle_description h3 {
+	color: #3c484d;
+	padding-left: 13px;
 }
 
 .vehicle_container .vehicle_image {
@@ -450,6 +470,7 @@ h3 {
 .vehicle_details ul li .detail_label {
 	width: 240px;
 	float: left;
+	font-weight: bold;
 }
 
 .vehicle_price {
@@ -483,13 +504,13 @@ h3 {
 	width: 95%;
 	padding: 20px;
 	/*border: 1px solid #c0c0c0;*/
-	background-color: #EAEAEA;
+	/*background-color: #EAEAEA;*/
 	/*background-color: #ffffff;*/
 	height: 100%;
 	margin: 0px auto;
-	margin-top: 30px; 
+	
 	position: relative;
-	border: 1px solid #3c484d2e;
+	/*border: 1px solid #3c484d2e;*/
 	margin-bottom: 10px;
 	border-radius: 3px;
 }
@@ -498,6 +519,17 @@ h3 {
 	margin-bottom: 10px;
 	float: left;
 	width: 800px;
+}
+
+.vehicle_container_full .vehicle_description h2 {
+	color: #f75070;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.vehicle_container_full .vehicle_description h3 {
+	color: #3c484d;
+	padding-left: 13px;
 }
 
 .vehicle_container_full .vehicle_image {
@@ -538,8 +570,8 @@ h3 {
 
 #vehicleNumberPlate {
 	background-color: #eed90c;
-	border: 2px solid #000000;
-	font-size: 38px;
+
+	font-size: 24px;
 	width: 200px;
 	text-align: center;
 	height: 40px;
@@ -547,6 +579,14 @@ h3 {
 	padding: 10px;
 	border-radius: 10px;
 	margin: 0px auto;
+
+
+background: #f8d11c;
+color: #333;
+letter-spacing: 2px;
+font-weight: 900;
+border: 1px solid #907704;
+border-radius: 3px;
 }
 
 #vehicle_price {
@@ -702,18 +742,29 @@ h3 {
 	float: left;
 	text-align: center;
 	margin: 0px auto;
-	margin-top: 20px;
-	background-color: #ffffff;
+	margin-top: 25px;
+	background-color: #3c484d;
 }
 
 #vehicleEnquiryForm {
 	margin: 0px auto;
-	
+}
+
+
+
+#vehicleEnquiryForm input {
+	margin: 0px auto;
+	width: 120px;
+	cursor: pointer;
+	background-color: #ffffff;
+	color: #3c484d;
+	border: 0;
+ 	box-shadow: none;
+ 	border-radius: 0px;
 }
 
 #enquiryTable {	
 	margin: 0px auto;
-	border: 2px solid #c0c0c0;
 }
 
 #enquiryTable tr {
@@ -732,6 +783,9 @@ h3 {
 	font-size: 12px;
 
 	width: 200px;
+	border: 0;
+ 	box-shadow: none;
+ 	border-radius: 0px;
 }
 
 #enquiryTable tr td option {

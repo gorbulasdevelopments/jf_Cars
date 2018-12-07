@@ -29,7 +29,7 @@
 			<div class="vehicle_container">
 			
 			<div class="vehicle_description">
-				<h2><a href="<?php echo URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration']; ?>"><?php echo $record['vehicle_year'] . " " . $record['vehicle_make'] . " " . $record['vehicle_model'] ?></a></h2>
+				<h2><a href="<?php echo URL . "/showroom/" . $record['vehicle_make'] . "/" . $record['vehicle_model'] . "/" . $record['vehicle_registration']; ?>"><?php echo $record['vehicle_make'] . " " . $record['vehicle_model'] ?></a></h2>
 				<h3><?php echo strtoupper($record['sale_summary']) ?></h3>
 			</div>
 			<div class="vehicle_image">
@@ -63,6 +63,7 @@
 			</div>
 			<div style="clear: both;"></div>
 		</div>
+		<div class="bottom_border"></div>
 		<?php
         }		
     } else {

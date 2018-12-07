@@ -16,7 +16,7 @@
     }
 	
     #sale_table tr {
-
+		min-height: 40px
     }
 
     #sale_table th {
@@ -26,6 +26,14 @@
     #sale_table td {
         padding: 5px;
     }
+
+	#sale_table tr td.table_header {
+		width: 150px;
+		display: block;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 40px;
+	}
 	
 	#sale_table input {
         padding: 5px;
@@ -59,15 +67,15 @@
 			<?php foreach($this->saleDetails as $sale) { ?>
             <form id="sale_form" method="POST" action="/admin/sales/updateSale">
 			<table id="sale_table">			
-					<tr><td>Vehicle Registration:</td><td><input type="text" id="vehicleRegistration" value="<?php echo $sale['vehicle_registration']; ?>" name="vehicleRegistration"></td></tr>
-					<tr><td>Sale Price:</td><td><input type="text" value="<?php echo $sale['sale_price']; ?>" name="salePrice"></td></tr>
-					<tr><td>Sale Summary:</td><td><textarea rows="10" cols="30" style="height: 100px; width: 450px; border: 1px solid #c0c0c0;" name="saleSummary"><?php echo $sale['sale_summary']; ?></textarea></td></tr>
-					<tr><td>Sale Description:</td><td><textarea rows="30" cols="80" style="height: 200px; width: 450px; border: 1px solid #c0c0c0;" name="saleDescription"><?php echo $sale['sale_description']; ?></textarea></td></tr>
+					<tr><td class="table_header">Vehicle Registration:</td><td><input type="text" id="vehicleRegistration" value="<?php echo $sale['vehicle_registration']; ?>" name="vehicleRegistration"></td></tr>
+					<tr><td class="table_header">Sale Price:</td><td><input type="text" value="<?php echo $sale['sale_price']; ?>" name="salePrice"></td></tr>
+					<tr><td class="table_header">Sale Summary:</td><td><textarea rows="10" cols="30" style="height: 100px; width: 450px; border: 1px solid #c0c0c0;" name="saleSummary"><?php echo $sale['sale_summary']; ?></textarea></td></tr>
+					<tr><td class="table_header">Sale Description:</td><td><textarea rows="30" cols="80" style="height: 200px; width: 450px; border: 1px solid #c0c0c0;" name="saleDescription"><?php echo $sale['sale_description']; ?></textarea></td></tr>
 					
 					<tr>
 					<td colspan="2">
 						<center>
-							<input style="padding: 20px;" type="submit" value="Add Sale">
+							<input class="button" style="padding: 20px;" type="submit" value="Add Sale">
 						</center>
 					</td>
 					</tr>
