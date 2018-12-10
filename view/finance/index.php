@@ -6,14 +6,25 @@
 			
 			?>
     <div id="content">
-<h2>Finance</h2>
-<div class="spacer"></div>
+	<h3>LOOKING TO BUY A NEW OR USED CAR, BUT CANNOT AFFORD THE FULL AMOUNT TODAY? </h3>
+	<p>
+		At JF Car Sales, we are proud to be able to provide you with a variety of finance options to allow you to purchase the car of your dreams.
+		<br /><br />
+		When you have decided you would like to purchase one of our vehicles, we can discuss all the financial options available to you.
+		<br /><br />
+		Terms and conditions apply. Available to 18s and over & UK residents only. Guarantees and/or indemnities may be required.
+	</p>
 
-
-
-We are trading as a credit broker and not a lender, and are authorised and regulated by the Financial Conduct Authority, firm reference 364715. We can introduce you to a limited number of carefully selected finance partners and may receive a commission from them for the introduction. JSW CAR SALES, Q8 Garage, Lynn Rd, Setchey, Kings Lynn, Norfolk, PE33 0BD.
-
-Representative finance examples are for illustrative purposes only. Finance is subject to status and credit acceptance. Terms and conditions apply. Available to 18s and over & UK residents only. Guarantees and/or indemnities may be required. Excess mileage and damage charges may apply when vehicle returned.
+	<p>
+		<b>Financial Disclosure</b>
+		<br />
+		<br />
+		JF Car Sales act as a non-independent credit intermediary for a limited number of lenders and are able to offer a limited number of finance products from these providers. 
+		JF Cars Sales is an Appointed Representative of AutoProtect (MBI) Limited who are authorised and regulated by the Financial Conduct Authority, their firm reference number is 825149. 
+		You can check this on the FCA's website www.fca.gov.uk or by contacting the FCA on 0800 1116768. Our authorisation reference number is 825149. 
+		For any concerns or queries relating to authorised products please contact us by emailing to <a href="mailto:sales@jfcars.co.uk">sales@jfcars.co.uk</a>.
+		
+	</p>
 	<div class="spacer"></div>
 	</div>
 

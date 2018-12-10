@@ -493,40 +493,36 @@ class vehicle_Model extends Model {
         
 	}
 
-	public function removeVehicle($vehicleRegistration) {
-		echo "Remove Vehicle " . $vehicleRegistration . "<br />";
+	public function removeVehicle() {
+		
+		$vehicleRegistration = $_POST['vehicleRegistration'];
+		$removeResponse = "";
 		//Get vehicle_id, vehicle_make, vehicle_model, vehicle_registration
 		$query = $this->db->prepare("SELECT vehicle_id, vehicle_make, vehicle_model, vehicle_registration FROM vehicle_table WHERE vehicle_registration = :vehicleRegistration");
 		$query->bindParam(":vehicleRegistration", $vehicleRegistration,  PDO::PARAM_STR);
 		$query->execute();
-
-		echo "Found: " . $query->rowCount() . "<br />";
-
+		
 		if($query->rowCount() > 0) {
+			$removeResponse .= "vehiclesFound:" . $query->rowCount();
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 			foreach($result as $vehicle) {
 				$vehicleImageDirectory =  ROOT_DIR . "/view/asset/images/vehicles/" . $vehicle['vehicle_make'] . "/" . $vehicle['vehicle_model'] . "/" . $vehicle['vehicle_registration'] . "/";
 				$modelDirectory = ROOT_DIR . "/view/asset/images/vehicles/" . $vehicle['vehicle_make'] . "/" . $vehicle['vehicle_model'] . "/";
 				$makeDirectory = ROOT_DIR . "/view/asset/images/vehicles/" . $vehicle['vehicle_make'] . "/";
-				echo "Image Directory : " . $vehicleImageDirectory . "<br />";
-				
-
-				echo "<pre>";
-				print_r($imageFiles);
-				echo "</pre>";
 
 				//Remove all images from directory
 				$imageFiles = glob($vehicleImageDirectory . '*', GLOB_MARK);
 				foreach ($imageFiles as $file) {
 					if (!is_dir($file)) {
-						echo "Delete File " . $file . "<br />";
 						unlink($file);
 					}
 				}
 				//Directory will now be empty - remove it
 				rmdir($vehicleImageDirectory);
 
+				
+				
 				//Check if Model directory is empty and remove
 				$modelFiles = glob($modelDirectory . '*', GLOB_MARK);
 				if(count($modelFiles) == 0) {
@@ -537,27 +533,33 @@ class vehicle_Model extends Model {
 					}
 				}
 
-				
-				
-
 				$query = $this->db->prepare("DELETE FROM vehicle_table WHERE vehicle_id = :vehicleID");
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
+				
+				$removeResponse .= ",vehiclesDeleted:" . $query->rowCount();
 
 				$query = $this->db->prepare("DELETE FROM vehicle_image_table WHERE vehicle_id = :vehicleID");
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
+				
+				$removeResponse .= ",imagesDeleted:" . $query->rowCount();
 
 				$query = $this->db->prepare("DELETE FROM sale_table WHERE vehicle_id = :vehicleID");
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
-
-				header("Location: " . URL . "/admin/vehicles");
-
+				
+				$removeResponse .= ",salesDeleted:" . $query->rowCount();
 			}
 		} else {
-			header("Location: " . URL . "/admin/vehicles");
+			$removeResponse .= "vehiclesFound:0";
 		}
+		
+		echo "{" . $removeResponse . "}";
+		
+		/*else {
+			header("Location: " . URL . "/admin/vehicles");
+		}*/
 	}
 
 	public function removeImage($imageSalt) {

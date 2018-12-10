@@ -32,6 +32,43 @@ echo "</pre>";
 
 </style>
 
+<script>
+	
+	$(document).ready(function() {
+
+		$(".removeVehicleButton").click(function( event ) {
+			event.preventDefault();
+
+			if(!confirm("Are you sure?")) {
+				return false;
+			};
+			
+			alert($(this).closest('tr').find('.vehicleRegistration').html());
+			
+			var $vehicleData = $.post($(this).attr('href'), {'vehicleRegistration' : $(this).closest('tr').find('.vehicleRegistration').html()}, function(removeResponse) {
+				console.log(removeResponse);
+
+
+
+			}, 'json');
+
+
+			$vehicleData.done(function( result ) {
+			});
+
+			$vehicleData.fail(function( xhr, status, error ) {
+				alert(xhr + " : " + status + " : " + error);
+			});
+
+			$vehicleData.always(function( result ) {
+				//alert("Finished");
+			});
+		});
+
+
+	});
+</script>
+
 	<div id="content_container">
 
         <div id="content">
@@ -51,13 +88,13 @@ echo "</pre>";
                 <?php
                     foreach($this->vehicleResult as $vehicle) {
                         echo "<tr>";
-                        echo "<td>" . $vehicle['vehicle_registration'] . "</td>";
+                        echo "<td class=\"vehicleRegistration\">" . $vehicle['vehicle_registration'] . "</td>";
                         echo "<td>" . $vehicle['vehicle_make'] . "</td>";
                         echo "<td>" . $vehicle['vehicle_model'] . "</td>";
                         echo "<td>" . $vehicle['vehicle_variant'] . "</td>";
                         echo "<td>" . $vehicle['vehicle_image_count'] . "</td>";
                         echo "<td><a href=\"" . URL . "/admin/vehicles/updateVehicle/" . $vehicle['vehicle_registration'] . "\">Edit</a></td>";
-                        echo "<td><a href=\"" . URL . "/admin/vehicles/removeVehicle/" . $vehicle['vehicle_registration'] . "\">Delete</a></td>";
+                        echo "<td><a class=\"removeVehicleButton\" href=\"" . URL . "/admin/vehicles/removeVehicle/" . $vehicle['vehicle_registration'] . "\">Delete</a></td>";
                         
                         echo "</tr>";
                     }

@@ -41,10 +41,13 @@ class Vehicle extends Controller {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else { 
-            $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-            $uri_array = explode('/', $uri);
-            $vehicleRegistration = end($uri_array);
-            $this->model->removeVehicle($vehicleRegistration);
+			if(isset($_POST['vehicleRegistration'])) {
+                $this->model->removeVehicle();
+            } else {   
+                $this->viewFile = "admin/vehicles";
+                $this->render();
+            }
+            
         }
 
     }
