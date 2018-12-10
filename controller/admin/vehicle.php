@@ -25,8 +25,6 @@ class Vehicle extends Controller {
 			Session::destroy();
 			header("location: " . URL . "/admin/login");
 		} else {
-
-            
             if(isset($_POST['vehicleRegistration'])) {
                 $this->model->addVehicle();
             } else {   

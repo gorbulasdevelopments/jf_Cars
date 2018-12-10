@@ -52,6 +52,7 @@ class vehicle_Model extends Model {
 		//$vehicleInterior = json_decode(record['vehicle_interior']);
 
 		
+		$vehicleResponse = array("vehicleRegistration" => $_POST['vehicleRegistration']);
 
 		$strSQL = "INSERT INTO vehicle_table (vehicle_registration, vehicle_make, vehicle_model, vehicle_fuel, vehicle_transmission, vehicle_engine_size, vehicle_doors, vehicle_year, vehicle_mileage, vehicle_body_style, vehicle_variant, vehicle_seats, vehicle_colour, vehicle_gears, vehicle_owners, vehicle_fuel_urban, vehicle_fuel_extra_urban, vehicle_fuel_combined, vehicle_fuel_tank, vehicle_road_tax, vehicle_road_tax_6, vehicle_road_tax_12, vehicle_insurance_group, vehicle_bhp, vehicle_torque, vehicle_max_speed, vehicle_safety, vehicle_interior, vehicle_exterior, vehicle_comfort, vehicle_other, vehicle_extras, vehicle_sold) VALUES (:vehicleRegistration, :vehicleMake, :vehicleModel, :vehicleFuel, :vehicleTransmission, :vehicleEngineSize, :vehicleDoors, :vehicleYear, :vehicleMileage, :vehicleBodyStyle, :vehicleVariant, :vehicleSeats, :vehicleColour, :vehicleGears, :vehicleOwners, :vehicleFuelUrban, :vehicleFuelExtraUrban, :vehicleFuelCombined, :vehicleFuelTank, :vehicleRoadTax, :vehicleRoadTax6, :vehicleRoadTax12, :vehicleInsuranceGroup, :vehicleBHP, :vehicleTorque, :vehicleMaxSpeed, :vehicleSafety, :vehicleInterior, :vehicleExterior, :vehicleComfort, :vehicleOther, :vehicleExtras, 0)";
 		//echo "<pre>" . $strSQL . "</pre>";
@@ -98,22 +99,20 @@ class vehicle_Model extends Model {
 		$response = $query->errorInfo();
 
 		if(isset($response[2]) && $response[2] != '') {
-			header("Location: " . URL . "/error/addVehicle/" . $response[2]);
+			$vehicleResponse += ['errorMessage' => "Vehicle already exists"];
 		} else {
 			if($query->rowCount() > 0) {
+				$vehicleResponse += ['vehiclesAdded' => 1];
 				$vehicleID = $this->db->lastInsertId();
-				echo "Added " . $_POST['vehicleRegistration'] . " to Database";
 				//Upload images
 				if( strtolower($_SERVER[ 'REQUEST_METHOD'] ) == 'post' && !empty( $_FILES['vehicleImages'])) {
 					$images_root_directory = ROOT_DIR . "/view/asset/images/vehicles/";
 					
 					$imageCount = sizeof($_FILES["vehicleImages"]['name']);
 					
-					$fileName = $_POST['vehicleMake'] . "/" . $_POST['vehicleModel'] . "/" . $_POST['vehicleRegistration'];
+					$vehicleResponse += ['imagesRequested' => sizeof(array_filter($_FILES["vehicleImages"]['name']))];
 					
-					echo "<pre>";
-					print_r($_FILES);
-					echo "</pre>";
+					$fileName = $_POST['vehicleMake'] . "/" . $_POST['vehicleModel'] . "/" . $_POST['vehicleRegistration'];
 
 					for($i = 0; $i < $imageCount; $i++) {
 						if($_FILES["vehicleImages"]['name'][$i] != '') {
@@ -128,16 +127,16 @@ class vehicle_Model extends Model {
 								}
 								
 								//Check file count
-								echo "<pre>" . $image_directory . "</pre>";
+								//echo "<pre>" . $image_directory . "</pre>";
 								$files = scandir($image_directory);
 								$fileCount = count($files)-2;
-								echo "<pre>File Count: " . $fileCount . "</pre>";
+								//echo "<pre>File Count: " . $fileCount . "</pre>";
 								$fileCount = ($fileCount + 1);						
 			
 								$currentTime = time();
 								$imageFiles = glob($image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . '.*', GLOB_MARK);
 
-								echo "There are " . count($imageFiles) . " images with the filename " . $image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . ".*<br />";
+								//echo "There are " . count($imageFiles) . " images with the filename " . $image_directory. "/" . $_POST['vehicleRegistration'] . "_" . $currentTime . ".*<br />";
 
 								while(count($imageFiles) == 1){
 									$currentTime++;
@@ -165,11 +164,11 @@ class vehicle_Model extends Model {
 									
 									default:
 										$imageName = null;
-										echo "File is not in correct format.";
+										$vehicleResponse += ['errorMessage' => "Could not upload " . $_FILES["vehicleImages"]["name"][$i] . " - Invalid file format"];
 										break;
 								}
 								
-								echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]["name"][$i] . ")</pre>";
+								//echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]["name"][$i] . ")</pre>";
 
 								//Upload file
 								if(!is_null($imageName)) {
@@ -194,14 +193,13 @@ class vehicle_Model extends Model {
 									$response = $query->errorInfo();
 
 									if(isset($response[2]) && $response[2] != '') {
-										//header("Location: " . URL . "/error/addVehicle/" . $response[2]);
-										echo $response[2];
+										$vehicleResponse += ['errorMessage' => $response[2]];
 									}
 									
-									echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]['name'][$i] . ") has been uploaded to " . $image_directory . "</pre>";
+									//echo "<pre>" . $imageName . "(" . $_FILES["vehicleImages"]['name'][$i] . ") has been uploaded to " . $image_directory . "</pre>";
 								}
 							} else {
-								echo "File is not an image.";
+								$vehicleResponse += ['errorMessage' => "Could not upload " . $_FILES["vehicleImages"]["name"][$i] . " - Invalid file format"];
 							}		
 						}
 					}
@@ -210,7 +208,7 @@ class vehicle_Model extends Model {
 		}
 
 		//header("location: " . URL . "/admin/vehicles/updateVehicle/" . $_POST['vehicleRegistration']);
-		
+		echo json_encode($vehicleResponse);
 
 	}
 
@@ -313,10 +311,6 @@ class vehicle_Model extends Model {
     }
 	
 	public function addVehicleImage() {
-		/*echo "<pre>";
-		print_r($_POST);
-		print_r($_FILES);
-		echo "</pre>";*/
 		
 		$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -445,65 +439,18 @@ class vehicle_Model extends Model {
 			header("location: " . URL . "/admin/vehicles/updateVehicle/" . $vehicle['vehicle_registration']);
         };			
 	}
-	
-	public function shareVehicle($vehicleRegistration) {
-		$query = $this->db->prepare("SELECT vehicle_registration, vehicle_make, vehicle_model, vehicle_variant, vehicle_colour, vehicle_fuel, vehicle_mileage from vehicle_table where vehicle_registration = :vehicleRegistration");
-		$query->bindParam(":vehicleRegistration", $vehicleRegistration);
-        $query->execute();
-		
-		$result = $query->fetchAll(PDO::FETCH_ASSOC);
-
-		if($query->rowCount() == 1) {
-			echo "foo";
-			foreach($result as $vehicle) {
-				echo "foo";
-				define('FACEBOOK_SDK_V4_SRC_DIR', ROOT_DIR . '/lib/facebook/');
-				require_once(ROOT_DIR . '/lib/facebook/autoload.php');
-
-				$fb = new Facebook\Facebook([
-					'app_id' => '404345163435245',
-					'app_secret' => '5f7d800bd6b7723e6125acf7566aa6d8',
-					'default_graph_version' => 'v2.2',
-				   ]);
-
-
-				//Post property to Facebook
-				$linkData = [
-					'link' => 'www.gorbulas.co.uk/projects/jf_cars/showroom/' . $vehicle['vehicle_make'] . '/' . $vehicle['vehicle_model'] . '/' . $vehicle['vehicle_registration'] . '',
-					'message' => 'Now in stock: ' . chr(10) . '' . chr(10) . '' . $vehicle['vehicle_make'] . ' ' . $vehicle['vehicle_model'] . ' ' . $vehicle['vehicle_variant'] . '  ' . chr(10) . '' . chr(10) . 'Colour: ' . $vehicle['vehicle_colour'] . '' . chr(10) . '' . chr(10) . 'Fuel Type: ' . $vehicle['vehicle_fuel'] . ' ' . chr(10) . '' . chr(10) . 'Mileage: ' . $vehicle['vehicle_mileage'] . ''
-				   ];
-				   
-				   print_r($linkData);
-				   
-				   $pageAccessToken ='EAAFvvZCHVTO0BAHaNZA0ipZBRGvNAZB3mX0nlFu4rBeL1kzyldxeEoO8AMZAIIaJdX7sr7GDAYhVsbcHZAz1DbgCULe6PT9QIhlgcSKC2hAmxvV2tSmn3ucBn05SwbZBYEeb75bXmmNEESNxEz2xc8Lsur9KZCYqaSKqulxZAXRnIK8Q7XHgstfVQrWdyAwVZBoqBZAlVESibVZBHQZDZD';
-				   
-				   try {
-					$response = $fb->post('/me/feed', $linkData, $pageAccessToken);
-					header("Location: " . URL . "/admin/vehicles");
-				   } catch(Facebook\Exceptions\FacebookResponseException $e) {
-					echo 'Graph returned an error: '.$e->getMessage();
-					exit;
-				   } catch(Facebook\Exceptions\FacebookSDKException $e) {
-					echo 'Facebook SDK returned an error: '.$e->getMessage();
-					exit;
-				   }
-				   $graphNode = $response->getGraphNode();
-			}
-		}
-        
-	}
 
 	public function removeVehicle() {
-		
 		$vehicleRegistration = $_POST['vehicleRegistration'];
-		$removeResponse = "";
+		$removeResponse = array("vehicleRegistration" => $vehicleRegistration);
+
 		//Get vehicle_id, vehicle_make, vehicle_model, vehicle_registration
 		$query = $this->db->prepare("SELECT vehicle_id, vehicle_make, vehicle_model, vehicle_registration FROM vehicle_table WHERE vehicle_registration = :vehicleRegistration");
 		$query->bindParam(":vehicleRegistration", $vehicleRegistration,  PDO::PARAM_STR);
 		$query->execute();
 		
 		if($query->rowCount() > 0) {
-			$removeResponse .= "vehiclesFound:" . $query->rowCount();
+			$removeResponse += ['vehiclesFound' => $query->rowCount()];
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 			foreach($result as $vehicle) {
@@ -519,17 +466,23 @@ class vehicle_Model extends Model {
 					}
 				}
 				//Directory will now be empty - remove it
-				rmdir($vehicleImageDirectory);
+				if(file_exists($vehicleImageDirectory)) {
+					rmdir($vehicleImageDirectory);
+				}
 
 				
 				
 				//Check if Model directory is empty and remove
 				$modelFiles = glob($modelDirectory . '*', GLOB_MARK);
 				if(count($modelFiles) == 0) {
-					rmdir($modelDirectory);
+					if(file_exists($modelDirectory)) {
+						rmdir($modelDirectory);
+					}
 					$makeFiles = glob($makeDirectory . '*', GLOB_MARK);
 					if(count($makeFiles) == 0) {
-						rmdir($makeDirectory);
+						if(file_exists($makeDirectory)) {
+							rmdir($makeDirectory);
+						}
 					}
 				}
 
@@ -537,25 +490,26 @@ class vehicle_Model extends Model {
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
 				
-				$removeResponse .= ",vehiclesDeleted:" . $query->rowCount();
+				$removeResponse += ['vehiclesDeleted' => $query->rowCount()];
 
 				$query = $this->db->prepare("DELETE FROM vehicle_image_table WHERE vehicle_id = :vehicleID");
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
 				
-				$removeResponse .= ",imagesDeleted:" . $query->rowCount();
+				$removeResponse += ['imagesDeleted' => $query->rowCount()];
 
 				$query = $this->db->prepare("DELETE FROM sale_table WHERE vehicle_id = :vehicleID");
 				$query->bindParam(":vehicleID", $vehicle['vehicle_id'],  PDO::PARAM_INT);
 				$query->execute();
 				
-				$removeResponse .= ",salesDeleted:" . $query->rowCount();
+				$removeResponse += ['salesDeleted' => $query->rowCount()];
 			}
 		} else {
-			$removeResponse .= "vehiclesFound:0";
+			$removeResponse += ['vehiclesFound' => 0];
 		}
 		
-		echo "{" . $removeResponse . "}";
+		header('Content-type: application/json');
+		echo json_encode($removeResponse);
 		
 		/*else {
 			header("Location: " . URL . "/admin/vehicles");

@@ -39,15 +39,27 @@ echo "</pre>";
 		$(".removeVehicleButton").click(function( event ) {
 			event.preventDefault();
 
-			if(!confirm("Are you sure?")) {
+			 let $vehicleRegistration = $(this).closest('tr').find('.vehicleRegistration').html()
+			
+			if(!confirm("Are you sure you want to remove " + $vehicleRegistration + "?")) {
 				return false;
 			};
 			
-			alert($(this).closest('tr').find('.vehicleRegistration').html());
+			//alert($(this).closest('tr').find('.vehicleRegistration').html());
+			let parentRow = $(this).closest('tr');
 			
-			var $vehicleData = $.post($(this).attr('href'), {'vehicleRegistration' : $(this).closest('tr').find('.vehicleRegistration').html()}, function(removeResponse) {
+			var $vehicleData = $.post($(this).attr('href'), {'vehicleRegistration' : $vehicleRegistration}, function(removeResponse) {
 				console.log(removeResponse);
-
+				if(removeResponse.vehiclesFound == 1) {
+					if(removeResponse.vehiclesDeleted == 1) {
+						//alert(removeResponse.vehicleRegistration + " has been deleted");
+						parentRow.remove();
+					} else {
+						alert("Unable to remove " + removeResponse.vehicleRegistration);
+					}
+				} else {
+					alert("No vehicles found");
+				}
 
 
 			}, 'json');
